@@ -1,0 +1,135 @@
+header {
+    position: fixed;
+    top:0;
+    left:0;
+    width: 20%;
+    background-color: var(--bg-header);
+    color: var(--txt);
+    width: 25vh;
+    height: 100vh;
+    align-items:flex-start;
+    justify-content: center;
+    display: flex;
+    gap: 1rem;
+    padding: 5rem 1rem;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+header img {
+    width: 130px;
+    height: auto;
+    padding-bottom: 5rem;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    gap: 1rem;
+    border-radius: 4px;
+    background-color: var(--bg-light);
+}
+
+#logoMobile {
+    display: none;
+}
+
+.navLink {
+    color: var(--txt);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    width: 100%;
+    text-align: center;
+}
+
+.navLink:hover {
+    background-color: var(--primary);
+    color: var(--txtLight);
+    cursor: pointer;
+}
+
+.navLink.active {
+    background-color: var(--primary);
+    color: var(--txtLight);
+}
+
+main {
+    margin-left: 15%;
+    padding: 2rem;
+    height: 100vh;
+}
+
+section {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.visible {
+    display: flex;
+}
+
+.hidden {
+    display: none;
+}
+
+footer .navLinks {
+    display: none;
+}
+
+@media (max-width: 992px) {
+    header {
+        position:relative;
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+    }
+
+    nav {
+        display: none !important;
+    }
+
+    #logoMobile {
+        display: block;
+        width: 100px;
+        padding-bottom: 0;
+        padding: 1rem;
+    }
+
+    main {
+        margin-left: 0;
+        margin-bottom: 8vh;
+    }
+
+    .navLinks {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+        padding: 0.5rem 5rem;
+    }
+
+    .copy {
+        display: none;
+    }
+
+    footer{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        height: 8vh;
+        width: 100%;
+        background-color: var(--bg-header);
+        color: var(--txt);
+        box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+}
