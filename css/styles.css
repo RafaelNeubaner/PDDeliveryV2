@@ -1,0 +1,512 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "DM Sans", sans-serif;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+/* GLOBAL - THEME TOKENS */
+:root {
+    --txt: #212428;
+    --txtLight: #ffffff;
+    --txtDark: #212428;
+    --txtMuted: #616161;
+    --bg: #fffaf0;
+    --bg-light: #fffaf0;
+    --bg-dark: #141414;
+    --bg-header: #fffaf0;
+    --bg-card: #E8E8E8;
+    --primary: #DC2F02;
+    --secondary: #FCBF49;
+    --tertiary: #FBD38D;
+    --rosa: #D62828;
+    --azul: #003049;
+    --preto-padrao: #212428;
+
+}
+
+/* GLOBAL - BASE */
+body {
+    background-color: var(--bg);
+    color: var(--txt);
+    overflow-x: hidden;
+}
+
+/* GLOBAL - DARK MODE OVERRIDES */
+body.darkMode {
+    --txt: #ffffff;
+    --txtLight: #ffffff;
+    --txtDark: #000000;
+    --txtMuted: #919191;
+    --bg: #141414;
+    --bg-light: #fffaf0;
+    --bg-dark: #141414;
+    --bg-header: #141414;
+    --bg-card: #252525;
+    --primary: #DC2F02;
+    --secondary: #FCBF49;
+    --tertiary: #FBD38D;
+    --rosa: #D62828;
+    --azul: #003049;
+    --preto-padrao: #212428;
+}
+
+.themeToggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: none;
+    background-color: transparent;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--txt);
+}
+
+.themeToggle:hover {
+
+    color: var(--txtLight);
+}
+
+body.darkMode .themeToggle {
+    background-color: transparent;
+    color: var(--txt);
+
+}
+
+body.darkMode .themeToggle:hover {
+    background-color: transparent;
+    color: var(--txtLight);
+}
+
+/* GLOBAL - BACKGROUND UTILITIES */
+.bg {
+    background-color: var(--bg);
+    color: var(--txt);
+}
+
+.bgLight {
+    background-color: var(--bg-light);
+    color: var(--txtDark);
+}
+
+.bgDark {
+    background-color: var(--bg-dark);
+    color: var(--txtLight);
+}
+
+.bgPrimary {
+    background-color: var(--primary);
+    color: var(--txtLight);
+}
+
+.bgSecondary {
+    background-color: var(--secondary);
+    color: var(--txt);
+}
+
+.bgTertiary {
+    background-color: var(--tertiary);
+    color: var(--txt);
+}
+
+.bgHeader {
+    background-color: var(--bg-header);
+    color: var(--txt);
+}
+
+.txtLight {
+    color: var(--txtLight);
+}
+
+.txtDark {
+    color: var(--txt);
+}
+
+.txtMuted {
+    color: var(--txtMuted);
+}
+
+.txtInvisible {
+    color: transparent;
+}
+
+.btnPrimary {
+    background-color: var(--primary);
+    color: var(--txtLight);
+    border: none;
+    text-decoration: none;
+    padding: 10px 24px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+
+.btnPrimary.disable {
+    background-color: var(--txtMuted);
+    color: var(--bg);
+    pointer-events: none;
+}
+
+.btnPrimary:hover {
+    background: #DC2F02;
+    box-shadow: 0 0 12px 0 #DC2F02;
+}
+
+.btnPrimary:active {
+    border-radius: 12px;
+    background: #DC2F02;
+    box-shadow: -4px 4px 2px 0 rgba(0, 0, 0, 0.25) inset;
+}
+
+.btnPrimaryOutline {
+    background-color: transparent;
+    display: inline-block;
+    color: var(--primary);
+    border: 3px solid var(--primary);
+    padding: 8px 22px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition:
+        all 0.1s ease,
+        color 0.1s ease;
+}
+
+.btnPrimaryOutline:hover {
+    background-color: var(--primary) !important;
+    color: var(--txtLight) !important;
+    border: 3px solid var(--primary) !important;
+}
+
+.btnPrimaryOutline:active {
+    border-radius: 12px;
+    background: transparent;
+    box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.25);
+}
+
+.btnPrimaryOutline.darkmode:hover {
+    background-color: var(--primary) !important;
+    color: var(--txtLight) !important;
+    border: 3px solid var(--txt) !important;
+}
+
+.btnSecondary {
+    background-color: var(--azul);
+    color: var(--txtLight);
+    border: none;
+    text-decoration: none;
+    padding: 10px 24px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+
+.btnSecondary:hover {
+    background: var(--azul);
+    box-shadow: 0 0 12px 0 var(--azul);
+}
+
+.btnSecondary:active {
+    border-radius: 12px;
+    background: var(--azul);
+    box-shadow: -4px 4px 2px 0 rgba(0, 0, 0, 0.25) inset;
+}
+
+.btnSecondaryOutline {
+    background-color: transparent;
+    display: inline-block;
+    color: var(--azul);
+    border: 3px solid var(--azul);
+    padding: 8px 22px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition:
+        all 0.1s ease,
+        color 0.1s ease;
+}
+
+.btnSecondaryOutline:hover {
+    background-color: var(--azul) !important;
+    color: var(--txtLight) !important;
+    border: 3px solid var(--azul) !important;
+}
+
+.btnSecondaryOutline:active {
+    border-radius: 12px;
+    background: transparent;
+    box-shadow: 0 0 0 3px rgba(0, 48, 73, 0.25);
+}
+
+.btnSecondaryOutline.darkmode:hover {
+    background-color: var(--azul) !important;
+    color: var(--txtLight) !important;
+    border: 3px solid var(--txt) !important;
+}
+
+.link2 {
+    color: var(--txt);
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.link {
+    color: var(--primary);
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.link:hover {
+    color: rgb(255, 94, 0);
+}
+
+.link.darkmode {
+    color: var(--tertiary);
+}
+
+.link.darkmode:hover {
+    color: var(--primary);
+}
+
+
+.mainTitle {
+    font-size: 42px;
+    font-weight: bold;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.subTitle {
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.subTitleCard {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.cardTitle {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.subTitleCard {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.cardLabel {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.btnText {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.textCenter {
+    text-align: center;
+}
+
+.font36 {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.font20 {
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.txtFooter {
+    font-size: 14px;
+    color: var(--txtMuted);
+}
+
+p {
+    font-size: 1.6rem;
+}
+
+.mLarge {
+    margin-bottom: 72px;
+}
+
+.mSmall {
+    margin-bottom: 32px;
+}
+
+.mb24 {
+    margin-bottom: 24px;
+}
+
+.red {
+    color: var(--primary);
+}
+
+input,
+textarea,
+input.form-control {
+    padding: 10px !important;
+    border-radius: 12px !important;
+    border: 2px solid var(--secondary) !important;
+    outline: none;
+    background-color: transparent !important;
+    color: var(--txt) !important;
+    font-size: 1.2rem;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--txtMuted-dark) !important;
+}
+
+input:focus,
+textarea:focus {
+    background-color: var(--text-dark) !important;
+    border: 2px solid var(--primary) !important;
+    color: var(--txt) !important;
+    box-shadow: 0 0 0 0.2rem rgba(110, 159, 216, 0.25);
+}
+
+select {
+    padding: 10px !important;
+    color: var(--txtMuted) !important;
+    border-radius: 12px !important;
+    border: 2px solid var(--secondary) !important;
+    outline: none !important;
+    background-color: var(--bg) !important;
+}
+
+@media (max-width: 992px) {
+
+    .btnPrimary {
+        padding: 8px 14px;
+    }
+
+    .btnPrimaryOutline {
+        padding: 8px 14px;
+    }
+
+    .btnSecondary {
+        padding: 8px 14px;
+    }
+
+    .btnSecondaryOutline {
+        padding: 8px 14px;
+    }
+
+    .mainTitle {
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .subTitle {
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .title {
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .cardTitle {
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+    .subTitleCard {
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .cardLabel {
+        font-size: 14px;
+    }
+
+    .btnText {
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .mLarge {
+        margin-bottom: 48px;
+    }
+
+    .mSmall {
+        margin-bottom: 26px;
+    }
+
+}
+
+@media (max-width: 576px) {
+
+    .btnPrimary {
+        font-size: small;
+        padding: 8px 12px;
+    }
+
+    .btnPrimaryOutline {
+        padding: 8px 12px;
+    }
+
+    .btnSecondary {
+        padding: 8px 12px;
+    }
+
+    .btnSecondaryOutline {
+        padding: 8px 12px;
+    }
+
+    .mainTitle {
+        font-size: 26px;
+        font-weight: bold;
+    }
+
+    .subTitle {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .subTitleCard {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .title {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .cardTitle {
+        font-size: 20px;
+    }
+
+    .cardLabel {
+        font-size: 12px;
+    }
+    
+    p {
+        font-size: 1.4rem;
+    }
+
+    .mLarge {
+        margin-bottom: 32px;
+    }
+
+    .mSmall {
+        margin-bottom: 12px;
+    }
+}
