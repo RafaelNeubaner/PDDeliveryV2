@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Adm | PD Delivery V2</title>
+    <link rel="icon" href="/assets/media/icons/favicon.svg" type="image/x-icon" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="./css/login.css" />
+    <script src="../js/users/isNotAuthenticated.js" type="module"></script>
+    <script src="./js/login.js" type="module" defer></script>
+      <script src="/js/darkmode.js"></script>
+    <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
+  </head>
+  <body>
+    <main class="loginPage textCenter">
+      <img src="/assets/media/images/login/login-img.jpg" alt="" class="loginImage d-none d-lg-block">
+      <section class="loginCard">
+        <a  href="/index.html">
+          <img
+            src="/assets/media/logo/Logo.png"
+            alt="PD Delivery V2"
+            id="logo"
+            class="logo"
+          />
+        </a>
+
+        <h1 class="mainTitle textCenter">Acesso Adm</h1>
+
+        <form class="login-form" autocomplete="on">
+          <!-- <label for="login-user">E-mail</label> -->
+          <input
+            id="loginUser"
+            name="usuario"
+            type="text"
+            placeholder="Digite um email administrativo"
+            autocomplete="username"
+            required
+          />
+
+          <!-- <label for="login-password">Senha</label> -->
+          <div class="passwordWithEye d-flex flex-row align-items-center gap-2">
+            <input
+              id="loginPassword"
+              name="senha"
+              type="password"
+              placeholder="Digite sua senha"
+              autocomplete="current-password"
+              required
+            />
+            <i class="bi bi-eye-slash" id="verSenha"></i>
+          </div>
+          
+          <div class="loginLinks">
+            <a href="" class="link subTitleCard " id="abrirModalSenha">Esqueceu a senha?</a>
+          </div>
+            <button type="submit" class="btnPrimary" id="loginButton">Login</button>
+        </form>
+
+      </section>
+ 
+
+      <article class="modalRecuperarSenha" id="modalRecuperarSenha">
+        <div class="bg">
+          <button class="btnPrimary sair" id="sairModalSenha">X</button>
+        <hgroup>
+          <h2 class="subTitle textCenter">Esqueceu a Senha? </h2>
+        </hgroup>
+          <div class="containerReset">
+            <form class="resetForm" autocomplete="on">
+          <label class="txtInvisible" for="resetEmail">E-mail</label>
+          <input
+            id="resetEmail"
+            name="email"
+            type="email"
+            placeholder="Digite seu e-mail"
+            autocomplete="email"
+            required
+          />
+          </div>
+          <br>
+          <button type="submit" class="btnPrimary mt12" id="enviar">Enviar</button>
+        </form>
+        </div>
+      </article>
+    </main>
+  </body>
+</html>
