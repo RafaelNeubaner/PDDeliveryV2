@@ -27,7 +27,7 @@
     <script src="../js/users/isNotAuthenticated.js" type="module"></script>
     <script src="./js/login.js" type="module" defer></script>
       <script src="/js/darkmode.js"></script>
-    <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
+      <!--<script src="../js/requiredAuthentication.js" type="module"></script>-->    <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
   </head>
   <body>
     <main class="loginPage textCenter">
@@ -71,7 +71,7 @@
             <a href="#" class="termos subTitleCard" id="abrirModalTermos">Termos e Condições</a>
             <a href="#" class="link subTitleCard " id="abrirModalSenha">Esqueceu a senha?</a>
           </div>
-            <button type="submit" class="btnPrimary" id="loginButton">Login</button>
+            <button type="button" class="btnPrimary" id="loginButton">Login</button>
         </form>
 
         <p class="subTitleCard">
@@ -79,6 +79,14 @@
           <a href="./cadastro.html" class="link subTitleCard">Cadastre-se</a>
         </p>
       </section>
+
+      <div class="loading hide">
+        <div class="spinner-content">
+          <div class="spinner-border text-light" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </div>
 
       <article class="termsModal" id="termosModal">
         <div class="termsModalContent bg">
