@@ -1,3 +1,6 @@
+import { loginCliente } from "../../js/services/useAuth.js";
+
+const loading = document.querySelector(".loading")
 const modalTermos = document.getElementById('termosModal');
 const modalSenha = document.getElementById('modalRecuperarSenha');
 const fecharModalTermos = document.getElementById('fecharModalTermos');
@@ -38,9 +41,19 @@ verSenha.addEventListener('click', function() {
     }
 });
 
-loginButton.addEventListener('click', function(event) {
-    if (!validarLogin()) {
-        event.preventDefault();
+loginButton.addEventListener('click', async function(event) {
+    event.preventDefault();
+    validarLogin()
+
+    try{
+        loading.classList.remove("hide")
+        const result = await loginCliente(login.value.trim(), document.getElementById('loginPassword').value)
+        loading.classList.add("hide")
+        location.href="/"
+        
+    } catch(e){
+        loading.classList.add("hide")
+        alert(e.message)
     }
 });
 

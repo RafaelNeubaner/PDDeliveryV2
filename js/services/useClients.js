@@ -91,7 +91,7 @@ async function getClient(id){
  * @param {Object} credenciais 
  * @param {string} credenciais.identifier
  * @param {string} credenciais.password
- * @returns 
+ * @returns {Client}
  */
 async function signInClient(credenciais){
 

@@ -15,15 +15,14 @@ export default async function handler(req, res){
         }
     })
 
-    
-
     const client = await response.json()
 
     if(client.length === 0) return res.status(403).json("Invalid Request")
+
     if (client[0].password === data.password){
         delete client[0].password
         return res.status(200).json(client[0])
     }
 
-    
+    return res.status(403).json()
 }
