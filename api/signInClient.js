@@ -1,4 +1,4 @@
-URL_CLIENTES = "https://6a315f607bc5e1c61265a1c2.mockapi.io/client"
+const URL_CLIENTES = "https://6a315f607bc5e1c61265a1c2.mockapi.io/client"
 
 export default async function handler(req, res){
 
