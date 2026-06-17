@@ -4,7 +4,7 @@ export default async function handler(req, res){
 
     const {body} = req
 
-    data = body
+    let data = body
 
     var cpfRegex = /^\d{3}\.?\d{3}\.?\d{3}-?\d{2}$/i;
     const response =  await fetch( cpfRegex.test(data.identifier) ?`${URL_CLIENTES}?cpf=${data.identifier}` :`${URL_CLIENTES}?email=${data.identifier}`, {
