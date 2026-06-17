@@ -25,8 +25,7 @@
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="./css/login.css" />
     <script src="../js/users/isNotAuthenticated.js" type="module"></script>
-    <script src="./js/login.js" type="module" defer></script>
-      <script src="/js/darkmode.js"></script>
+    <script src="./js/login-adm.js" type="module" defer></script>
     <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
   </head>
   <body>
@@ -69,7 +68,7 @@
           </div>
           
           <div class="loginLinks">
-            <a href="" class="link subTitleCard " id="abrirModalSenha">Esqueceu a senha?</a>
+            <a href="#" class="link subTitleCard " id="abrirModalSenha">Esqueceu a senha?</a>
           </div>
             <button type="submit" class="btnPrimary" id="loginButton">Login</button>
         </form>
@@ -85,7 +84,7 @@
         </hgroup>
           <div class="containerReset">
             <form class="resetForm" autocomplete="on">
-          <label class="txtInvisible" for="resetEmail">E-mail</label>
+          <label class="label-email" for="resetEmail">E-mail</label>
           <input
             id="resetEmail"
             name="email"
