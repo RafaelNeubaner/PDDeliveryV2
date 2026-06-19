@@ -36,12 +36,12 @@ const requiredInputs = [
   'login-confirm-password',
 ].map((id) => document.getElementById(id));
 
-<<<<<<< login/js/login.js
 function clearAllErrors() {
   requiredInputs.forEach((input) => setFieldError(input, false));
   formFeedback.textContent = '';
   formFeedback.classList.remove('is-error');
-=======
+}
+
 document.getElementById('abrirModalTermos').addEventListener('click', function(event) {
     event.preventDefault();
     modalTermos.classList.add('is-open');
@@ -97,7 +97,6 @@ function validarLogin() {
     }
     //adicionar a função de verificação da API aqui
     return true;
->>>>>>> login/js/login.js
 }
 
 function setFieldError(input, isInvalid) {
@@ -149,9 +148,9 @@ function validarTelefone(telefone) {
   return digitsOnly.length >= 11;
 }
 
-// function validarSenha(senha) {
-//   return senha.length >= 6;
-// }
+function validarSenha(senha) {
+  return senha.length >= 6;
+}
 
 function validarLoginEmail(email) {
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -249,12 +248,12 @@ async function validarFormulario(event) {
   const senha = passwordInput.value;
   const confirmarSenha = confirmPasswordInput.value;
 
-  // if (!validarSenha(senha)) {
-  //   setFieldError(passwordInput, true);
-  //   formFeedback.textContent = 'Sua senha deve ter no mínimo 6 caracteres.';
-  //   formFeedback.classList.add('is-error');
-  //   return;
-  // }
+  if (!validarSenha(senha)) {
+    setFieldError(passwordInput, true);
+    formFeedback.textContent = 'Sua senha deve ter no mínimo 6 caracteres, incluindo letras e números maiúsculos e minúsculos e caracteres especiais.';
+    formFeedback.classList.add('is-error');
+    return;
+  }
 
   if (senha !== confirmarSenha) {
     setFieldError(confirmPasswordInput, true);
