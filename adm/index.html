@@ -19,8 +19,8 @@
     />
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/adm/css/adm.css" />
 
     <!-- Scripts -->
     <script
@@ -30,78 +30,45 @@
     ></script>
 
     <!-- Custom JS -->
-    <script src="js/scripts.js" defer></script>
+    <script src="/adm/js/adm.js" defer></script>
     
   </head>
 <body>
   <!-- HEADER -->
     <header>
+      <a class="navbar-brand d-block" href="/index.html">
+              <img
+                src="/assets/media/logo/Logo.png"
+                alt="PD Delivery V2"
+                id="logoMobile"
+              />
+        </a>
       <nav class="navbar navbar-expand-lg">
-        
-          <search class="containerSearch">
-            <a class="navbar-brand d-block" href="/index.html">
+        <a class="navbar-brand d-block" href="/index.html">
               <img
                 src="/assets/media/logo/Logo.png"
                 alt="PD Delivery V2"
                 id="logo"
               />
-            </a>
-
-            <form
-              action="/busca/busca-produto.html"
-              class="d-flex position-relative inputForm"
-            >
-              <input
-                type="text"
-                name="query"
-                class="form-control pe-5"
-                placeholder="Buscar..."
-                aria-label="Pesquisar produtos"
-              />
-              <button class="btn" type="submit" id="button-search-desktop">
-                <i class="bi bi-search"></i>
-              </button>
-            </form>
-
-            <ul class="navbar-nav align-items-center">
-
-              <li class= "nav-item d-block">
-                <a href="/pedidos/index.html" class="nav-link"
-                  ><i class="bi bi-box-seam"></i
-                ></a>
-              </li>
-
-              <li class="nav-item position-relative">
-                <a href="/carrinho/index.html" class="nav-link"
-                  ><i class="bi bi-cart3"></i
-                ></a>
-                <span class="cart-badge">0</span>
-              </li>
-
-              <li class="nav-item d-block iconProfile">
-                <a href="/perfil/perfil.html" class="nav-link"
-                  ><i class="bi bi-person"></i
-                ></a>
-              </li>
-
-              <li class="nav-item d-block logoutLink">
-                <a
-                  href="/index.html"
-                  class="btn nav-link logoutBtn"
-                  style="
-                    cursor: pointer;
-                    border: none;
-                    background: none;
-                    padding: 0.5rem 0.75rem;
-                    "
-                >
-                  <i class="bi bi-box-arrow-right"></i>
-                </a>
-              </li>
-            </ul>
-          </search>
+        </a>
+        <p class="navLink active">Gerenciar Pedidos</p>
+        <p class="navLink">Gerenciar Produtos</p>
       </nav>
     </header>
-  </div>
+    <main>
+      <section id="gerenciarPedidos" class="visible">
+        <h2 class="title">Gerenciar Pedidos</h2>
+      </section>
+      <section id="gerenciarProdutos" class="hidden">
+        <h2 class="title">Gerenciar Produtos</h2>
+      </section>
+    </main>
+    <footer>
+      <p class="textCenter copy">&copy; 2024 PD Delivery V2. Todos os direitos reservados.</p>
+      <div class="navLinks">
+        <p class="navLink active">Gerenciar Pedidos</p>
+        <p class="navLink">Gerenciar Produtos</p>
+      </div>
+    </footer>
 </body>
 </html>
