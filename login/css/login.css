@@ -13,30 +13,34 @@ h1 {
 }
 
 
-.login-card,
+.registroCard,
 .loginCard {
-    width: 50%;
+    width: 60%;
     text-align: center;
-    padding: 48px 32px;
+    padding: 32px 32px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 24px;
-    justify-content: center;
+    gap: 16px;
+    justify-content: flex-start;
     overflow-y: auto;
     max-height: 100vh;
+}
+
+.loginCard {
+    justify-content: center;
 }
 
 .loginPage .textCenter {
     vertical-align: center;
 }
 
-.loginCard {
+.loginCard, .registroCard {
     gap: 24px;
 }
 
 .loginImage {
-    width: 50%;
+    width: 40%;
     height: 100vh;
     object-fit: cover;
     object-position: center;
@@ -87,9 +91,9 @@ h1 {
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    gap: 1.2rem;
+    gap: 0.8rem;
 }
 
 .regForm input {
@@ -99,6 +103,12 @@ h1 {
     background: transparent;
     color: var(--txt);
     font-size: 1.2rem;
+    margin-bottom: 0;
+}
+
+.regForm input.inputError {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 0 1px rgba(220, 53, 69, 0.18);
 }
 
 .passwordWithEye {
@@ -236,18 +246,28 @@ h1 {
 .passwordRequirements {
     width: 100%;
     max-width: 560px;
-    margin-top: -12px;
-    margin-bottom: 24px;
-    padding: 12px 16px;
+    margin-top: -4px;
+    margin-bottom: 8px;
+    padding: 8px 12px;
     background-color: var(--bg, rgba(0, 0, 0, 0.02));
     border: none;
     border-left: 3px solid var(--primary);
     border-radius: 4px;
 }
 
+.inputError {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 0 1px rgba(220, 53, 69, 0.18);
+}
+
+.formFeedback.is-error {
+    margin-top: -4px;
+    margin-bottom: 4px;
+}
+
 .passwordWithEye {
     height: 50px;
-    margin-bottom: 20px;
+    margin-bottom: 0;
 }
 
 .passwordWithEye input {
@@ -261,12 +281,12 @@ h1 {
 }
 
 .requirement {
-    font-size: 12px;
+    font-size: 11px;
     color: var(--txtMuted);
-    margin: 6px 0;
+    margin: 3px 0;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
 }
 
 .requirement i {
@@ -282,7 +302,7 @@ h1 {
     color: #28a745;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 991px) {
     .loginPage {
         flex-direction: column;
         padding: 24px;
@@ -297,7 +317,8 @@ h1 {
     }
 
     .login-card,
-    .loginCard {
+    .loginCard,
+    .registroCard {
         width: 100%;
         max-width: 560px;
         margin: 0 auto;
@@ -308,8 +329,8 @@ h1 {
     }
 
     .logo {
-        width: 165px;
-        margin-bottom: 36px;
+        width: 120px;
+        margin-bottom: 20px;
     }
 
     .modalRecuperarSenha {
@@ -338,7 +359,10 @@ h1 {
     .bg {
         padding: 75px;
     }
+        
 }
+
+
 
 .formRows {
     display: flex;
@@ -367,8 +391,7 @@ h1 {
     .bg {
         padding: 24px;
     }
-
-    .loginCard {
+    .loginCard, .registroCard {
         padding: 0;
     }
 }
