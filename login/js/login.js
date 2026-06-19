@@ -42,62 +42,60 @@ function clearAllErrors() {
   formFeedback.classList.remove('is-error');
 }
 
-document.getElementById('abrirModalTermos').addEventListener('click', function(event) {
+const abrirModalTermosButton = document.getElementById('abrirModalTermos');
+if (abrirModalTermosButton && modalTermos) {
+  abrirModalTermosButton.addEventListener('click', function(event) {
     event.preventDefault();
     modalTermos.classList.add('is-open');
-});
+  });
+}
 
-document.getElementById('abrirModalSenha').addEventListener('click', function(event) {
+const abrirModalSenhaButton = document.getElementById('abrirModalSenha');
+if (abrirModalSenhaButton && modalSenha) {
+  abrirModalSenhaButton.addEventListener('click', function(event) {
     event.preventDefault();
     modalSenha.classList.add('is-open');
-});
+  });
+}
 
-verSenha.addEventListener('click', function() {
-    const passwordInput = document.getElementById('loginPassword');
-    if (passwordInput.type === 'password') {
-        passwordInput.type = 'text';
-        verSenha.classList.remove('bi-eye-slash');
-        verSenha.classList.add('bi-eye');
+if (verSenha && loginPasswordInput) {
+  verSenha.addEventListener('click', function() {
+    if (loginPasswordInput.type === 'password') {
+      loginPasswordInput.type = 'text';
+      verSenha.classList.remove('bi-eye-slash');
+      verSenha.classList.add('bi-eye');
     } else {
-        passwordInput.type = 'password';
-        verSenha.classList.remove('bi-eye');
-        verSenha.classList.add('bi-eye-slash');
+      loginPasswordInput.type = 'password';
+      verSenha.classList.remove('bi-eye');
+      verSenha.classList.add('bi-eye-slash');
     }
-});
+  });
+}
 
-loginButton.addEventListener('click', async function(event) {
+if (loginButton) {
+  loginButton.addEventListener('click', async function(event) {
     event.preventDefault();
     validarLogin()
 
     try{
-        loading.classList.remove("hide")
-        const result = await loginCliente(login.value.trim(), document.getElementById('loginPassword').value)
-        loading.classList.add("hide")
-        location.href="/"
-        
+      if (loading) {
+      loading.classList.remove("hide")
+      }
+      const result = await loginCliente(loginInput.value.trim(), document.getElementById('loginPassword').value)
+      if (loading) {
+      loading.classList.add("hide")
+      }
+      location.href="/"
+          
     } catch(e){
-        loading.classList.add("hide")
-        alert(e.message)
+      if (loading) {
+      loading.classList.add("hide")
+      }
+      alert(e.message)
     }
-});
-
-function validarLogin() {
-    const valorLogin = login.value.trim();
-
-    if (valorLogin.includes('@')) {
-        if (!validarEmail(valorLogin)) {
-            alert('Por favor, insira um Email ou CPF válido.');
-            return false;
-        }
-    } else {
-        if (!validarCPF(valorLogin)) {
-            alert('Por favor, insira um CPF ou Emailválido.');
-            return false;
-        }
-    }
-    //adicionar a função de verificação da API aqui
-    return true;
+  });
 }
+
 
 function setFieldError(input, isInvalid) {
   if (!input) {
@@ -197,7 +195,7 @@ async function cadastrarUsuario() {
   const senha = document.getElementById('login-password').value.trim();
 
   const client = {
-    name: nome,
+    nome: nome,
     email: email,
     password: senha,
     celphone: telefone,
@@ -264,6 +262,7 @@ async function validarFormulario(event) {
 
   try {
     await cadastrarUsuario();
+    location.href = "/login/login.html";
     form.reset();
     formFeedback.textContent = 'Cadastro realizado com sucesso.';
     formFeedback.classList.remove('is-error');
