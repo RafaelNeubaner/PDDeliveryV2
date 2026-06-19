@@ -13,6 +13,8 @@
  * @property {Endereco} endereco
  */
 
+import {handlerCreateClient, handlerUpdateClient, handlerGetClient, handlerSignInClient} from "./handlerAPI.js";
+
 /**
  * 
  * @typedef {Object} Endereco
@@ -50,14 +52,16 @@ async function createClient(client){
 
 
     // Requisição para a API
-    const response = await fetch("/api/createClient",{
-        method: "POST",
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(client)
-    })
+    // const response = await fetch("/api/createClient",{
+    //     method: "POST",
+    //     headers: {
+    //         'Accept': 'application/json',
+    //         'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify(client)
+    // })
+
+    return await handlerCreateClient(client)
 
     return await response.json()
 }
@@ -69,13 +73,18 @@ async function createClient(client){
  * @returns {Client}
  */
 async function getClient(id){
-    const response = await fetch("/api/getClient?id="+id, {
-        method: "GET",
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-    })
+    // const response = await fetch("/api/getClient?id="+id, {
+    //     method: "GET",
+    //     headers: {
+    //         'Accept': 'application/json',
+    //         'Content-Type': 'application/json'
+    //     },
+    // })
+
+    const response = await handlerGetClient(id)
+
+    return response
+
 
     if (response.status != 200){
         return null
@@ -98,14 +107,16 @@ async function signInClient(credenciais){
     if(!credenciais.identifier || credenciais.identifier === "") throw Error("Identificador vazio")
     if(!credenciais.password || credenciais.password === "") throw Error("Senha vazia")
 
-    const response = await fetch("/api/signInClient", {
-        method: "POST",
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(credenciais),
-    })
+    // const response = await fetch("/api/signInClient", {
+    //     method: "POST",
+    //     headers: {
+    //         'Accept': 'application/json',
+    //         'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify(credenciais),
+    // })
+
+    return await signInClient(credenciais)
 
     if (response.status===200){
         return await response.json() 
@@ -121,16 +132,21 @@ async function signInClient(credenciais){
  * @returns {Client}
  */
 async function editClient(clientID, updateData){
-    const response = await fetch("/api/editClient", {
-        method: "POST",
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            client_id: clientID,
-            data: updateData
-        }),
+    // const response = await fetch("/api/editClient", {
+    //     method: "POST",
+    //     headers: {
+    //         'Accept': 'application/json',
+    //         'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify({
+    //         client_id: clientID,
+    //         data: updateData
+    //     }),
+    // })
+
+    return await handlerUpdateClient({
+        client_id: clientID,
+        data: updateData
     })
 
     if(response.status !== 200) throw Error("Ocorreu um erro ao atualizar os dados")
