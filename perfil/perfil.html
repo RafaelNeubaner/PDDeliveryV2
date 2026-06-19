@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PD Delivery V2</title>
+    <link rel="icon" href="assets/media/icons/fav-icon.png" type="image/png" />
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="css/perfil.css" />
+
+    <!-- Scripts -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Custom JS -->
+    <script type="module" src="../js/requiredAuthentication.js"></script>
+    <script type="module" src="js/perfil.js"></script>
+    <script src="../js/scripts.js" defer></script>
+    
+  </head>
+<body>
+  <!-- HEADER -->
+    <header>
+      <nav class="navbar navbar-expand-lg">
+        
+          <search class="containerSearch">
+            <a class="navbar-brand d-block" href="/index.html">
+              <img
+                src="/assets/media/logo/Logo.png"
+                alt="PD Delivery V2"
+                id="logo"
+              />
+            </a>
+
+            <form
+              action="/busca/busca-produto.html"
+              class="d-flex position-relative inputForm"
+            >
+              <input
+                type="text"
+                name="query"
+                class="form-control pe-5"
+                placeholder="Buscar..."
+                aria-label="Pesquisar produtos"
+              />
+              <button class="btn" type="submit" id="button-search-desktop">
+                <i class="bi bi-search"></i>
+              </button>
+            </form>
+
+            <ul class="navbar-nav align-items-center">
+
+              <li class= "nav-item d-block">
+                <a href="/pedidos/index.html" class="nav-link"
+                  ><i class="bi bi-box-seam"></i
+                ></a>
+              </li>
+
+              <li class="nav-item position-relative">
+                <a href="/carrinho/index.html" class="nav-link"
+                  ><i class="bi bi-cart3"></i
+                ></a>
+                <span class="cart-badge">0</span>
+              </li>
+
+              <li class="nav-item d-block iconProfile">
+                <a href="/adm/index.html" class="nav-link"
+                  ><i class="bi bi-person"></i
+                ></a>
+              </li>
+
+              <li class="nav-item d-block logoutLink">
+                <a
+                  href="/index.html"
+                  class="btn nav-link logoutBtn"
+                  style="
+                    cursor: pointer;
+                    border: none;
+                    background: none;
+                    padding: 0.5rem 0.75rem;
+                    "
+                >
+                  <i class="bi bi-box-arrow-right"></i>
+                </a>
+              </li>
+            </ul>
+          </search>
+      </nav>
+    </header>
+
+    <main>
+        <form>
+          <section>
+            <div>
+              <fieldset>
+                <legend>Dados Pessoais</legend>
+                <input type="text" placeholder="Nome" id="nomeInp" name="nome">
+                <input type="text" placeholder="CPF" id="cpfInp" name="cpf">
+                <input type="text" placeholder="Telefone" id="celInp" name="celphone">
+                <input type="text" placeholder="Email" id="emailInp" name="email">
+              </fieldset>
+              <fieldset>
+                <legend>Dados de Acesso</legend>
+                <input type="text" placeholder="Nova Senha" id="newPasswordInp">
+                <input type="text" placeholder="Confirmar Senha" id="confirmPasswordInp">
+              </fieldset>
+            </div>
+            <div>
+              <fieldset>
+                <legend>Dados de Entrega</legend>
+                <input type="text" placeholder="CEP" id="cepInp" name="cep">
+                <input type="text" placeholder="Rua" id="ruaInp" name="rua">
+                <input type="text" placeholder="Bairro" id="bairroInp" name="bairro">
+                <input type="text" placeholder="Cidade" id="cidadeInp" name="cidade">
+                <input type="text" placeholder="Estado" id="estadoInp" name="name">
+                <div>
+                  <input type="text" placeholder="Número" id="numeroInp" name="name">
+                  <input type="text" placeholder="Complemento">
+                </div>
+              </fieldset>
+            </div>
+          </section>
+          <button type="button" class="btnPrimary saveBtn">Salvar</button>
+        </form>
+    </main>
+
+    <div class="loading hide">
+        <div class="spinner-content">
+          <div class="spinner-border text-light" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </div>
+</body>
+</html>
