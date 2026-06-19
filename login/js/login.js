@@ -262,7 +262,7 @@ async function validarFormulario(event) {
 
   try {
     await cadastrarUsuario();
-    location.href = "/login/login.html";
+    location.href = "/login/index.html";
     form.reset();
     formFeedback.textContent = 'Cadastro realizado com sucesso.';
     formFeedback.classList.remove('is-error');
