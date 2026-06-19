@@ -116,7 +116,7 @@ async function signInClient(credenciais){
     //     body: JSON.stringify(credenciais),
     // })
 
-    return await signInClient(credenciais)
+    return await handlerSignInClient(credenciais)
 
     if (response.status===200){
         return await response.json() 

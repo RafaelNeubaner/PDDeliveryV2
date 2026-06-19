@@ -1,5 +1,5 @@
 
-import { createClient } from '/js/services/useClients.js';
+import { loginCliente } from '../../js/services/useAuth.js';
 const loading = document.querySelector(".loading")
 
 const modalTermos = document.getElementById('termosModal');
@@ -78,6 +78,7 @@ if (loginButton) {
     validarLogin()
 
     try{
+    console.log("entrou no try")
       if (loading) {
       loading.classList.remove("hide")
       }
@@ -91,6 +92,7 @@ if (loginButton) {
       if (loading) {
       loading.classList.add("hide")
       }
+      console.log(e)
       alert(e.message)
     }
   });
