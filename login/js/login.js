@@ -28,7 +28,6 @@ const requiredInputs = [
   'loginCep',
   'loginEndereco',
   'loginNumero',
-
   'loginBairro',
   'loginCidade',
   'loginEstado',
