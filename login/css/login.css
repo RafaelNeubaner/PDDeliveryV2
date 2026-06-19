@@ -2,7 +2,7 @@
     min-height: 100vh;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: stretch;
     padding: 0;
     overflow: hidden;
@@ -44,7 +44,7 @@ h1 {
 }
 
 .logo {
-    width: 168px;
+    width: 10vw;
     height: auto;
     filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.2));
 }
@@ -126,6 +126,10 @@ h1 {
 .btnPrimary {
     padding: 14px 58px;
     font-size: 18px;
+}
+
+.cardLabel{
+    font-size: 15px;
 }
 
 .termsModal,
