@@ -21,6 +21,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/home.css" />
 
     <!-- Scripts -->
     <script
@@ -30,7 +31,7 @@
     ></script>
 
     <!-- Custom JS -->
-    <script type="module" src="./js/requiredAuthentication.js"></script>
+    <!-- <script type="module" src="./js/requiredAuthentication.js"></script> -->
     <script src="js/scripts.js" defer></script>
     
   </head>
@@ -103,6 +104,85 @@
           </search>
       </nav>
     </header>
+
+    <main>
+
+    <!-- HERO -->
+    <section id="hero" class="container-fluid mx-auto">
+      <section class="carrossel-wrap">
+        <input type="radio" name="carrossel" id="r1" class="carrossel-radio" />
+        <input type="radio" name="carrossel" id="r2" class="carrossel-radio" />
+        <input type="radio" name="carrossel" id="r3" class="carrossel-radio" />
+        <div class="carrossel">
+          <div class="slides_dots">
+            <div class="slides_autoplay">
+              <article class="slide" id="slide1">
+                <a
+                  href="#"
+                  aria-label="Ir para página do produto"
+                >
+                  <img
+                    src="/assets/media/images/tela-principal/slide-01.png"
+                    alt="Slide 1"
+                    style="object-position: 50% 0%"
+                    class="d-none d-lg-block d-sm-block"
+                  />
+                  <img
+                    src="/assets/media/images/tela-principal/slide-01-mobile.png"
+                    alt="Slide 1"
+                    style="object-position: 50% 0%"
+                    class="d-block d-lg-none d-sm-none"
+                  />
+                </a>
+              </article>
+              <article class="slide">
+                <a
+                  href="#"
+                  aria-label="Ir para página do produto"
+                >
+                  <img
+                    src="/assets/media/images/tela-principal/slide-02.png"
+                    alt="Slide 2"
+                    class="d-none d-lg-block d-sm-block"
+                  />
+                  <img
+                    src="/assets/media/images/tela-principal/slide-02-mobile.png"
+                    alt="Slide 2"
+                    style="object-position: 50% 0%"
+                    class="d-block d-lg-none d-sm-none"
+                  />
+                </a>
+              </article>
+              <article class="slide">
+                <a
+                  href="#"
+                  aria-label="Ir para página do produto"
+                >
+                  <img
+                    src="/assets/media/images/tela-principal/slide-03.png"
+                    alt="Slide 3"
+                    class="d-none d-lg-block d-sm-block"
+                  />
+                  <img
+                    src="/assets/media/images/tela-principal/slide-03-mobile.png"
+                    alt="Slide 3"
+                    style="object-position: 50% 0%"
+                    class="d-block d-lg-none d-sm-none"
+                  />
+                </a>
+              </article>
+            </div>
+          </div>
+        </div>
+        <div class="dots">
+          <label for="r1" class="dot" aria-label="Ir para slide 1"></label>
+          <label for="r2" class="dot" aria-label="Ir para slide 2"></label>
+          <label for="r3" class="dot" aria-label="Ir para slide 3"></label>
+        </div>
+      </section>
+    </section>
+
+    </main>
   </div>
 </body>
 </html>
