@@ -27,7 +27,7 @@
     <script src="/js/users/isNotAuthenticated.js" type="module"></script>
     <script src="/login/js/login.js" type="module" defer></script>
       <script src="/js/darkmode.js"></script>
-    <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
+      <!--<script src="../js/requiredAuthentication.js" type="module"></script>-->    <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
   </head>
   <body>
     <main class="loginPage textCenter">
@@ -42,7 +42,7 @@
           />
         </a>
 
-        <h1 class="mainTitle textCenter">Entre na sua conta</h1>
+        <h1 class="title textCenter">Entre na sua conta</h1>
 
         <form class="login-form" autocomplete="on">
           <!-- <label for="login-user">Email</label> -->
@@ -68,17 +68,25 @@
             <i class="bi bi-eye-slash" id="verSenha"></i>
           </div>
           <div class="loginLinks">
-            <a href="#" class="termos subTitleCard" id="abrirModalTermos">Termos e Condições</a>
-            <a href="#" class="link subTitleCard " id="abrirModalSenha">Esqueceu a senha?</a>
+            <a href="#" class="termos cardLabel" id="abrirModalTermos">Termos e Condições</a>
+            <a href="#" class="link cardLabel" id="abrirModalSenha">Esqueceu a senha?</a>
           </div>
-            <button type="submit" class="btnPrimary" id="loginButton">Login</button>
+            <button type="button" class="btnPrimary" id="loginButton">Login</button>
         </form>
 
-        <p class="subTitleCard">
+        <p class="cardLabel">
           Não tem conta?
-          <a href="/login/cadastro.html" class="link subTitleCard">Cadastre-se</a>
+          <a href="./cadastro.html" class="link cardLabel">Cadastre-se</a>
         </p>
       </section>
+
+      <div class="loading hide">
+        <div class="spinner-content">
+          <div class="spinner-border text-light" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </div>
 
       <article class="termsModal" id="termosModal">
         <div class="termsModalContent bg">

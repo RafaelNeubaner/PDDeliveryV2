@@ -1,4 +1,6 @@
+
 import { createClient } from '/js/services/useClients.js';
+const loading = document.querySelector(".loading")
 
 const modalTermos = document.getElementById('termosModal');
 const modalSenha = document.getElementById('modalRecuperarSenha');
@@ -34,10 +36,68 @@ const requiredInputs = [
   'login-confirm-password',
 ].map((id) => document.getElementById(id));
 
+<<<<<<< login/js/login.js
 function clearAllErrors() {
   requiredInputs.forEach((input) => setFieldError(input, false));
   formFeedback.textContent = '';
   formFeedback.classList.remove('is-error');
+=======
+document.getElementById('abrirModalTermos').addEventListener('click', function(event) {
+    event.preventDefault();
+    modalTermos.classList.add('is-open');
+});
+
+document.getElementById('abrirModalSenha').addEventListener('click', function(event) {
+    event.preventDefault();
+    modalSenha.classList.add('is-open');
+});
+
+verSenha.addEventListener('click', function() {
+    const passwordInput = document.getElementById('loginPassword');
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        verSenha.classList.remove('bi-eye-slash');
+        verSenha.classList.add('bi-eye');
+    } else {
+        passwordInput.type = 'password';
+        verSenha.classList.remove('bi-eye');
+        verSenha.classList.add('bi-eye-slash');
+    }
+});
+
+loginButton.addEventListener('click', async function(event) {
+    event.preventDefault();
+    validarLogin()
+
+    try{
+        loading.classList.remove("hide")
+        const result = await loginCliente(login.value.trim(), document.getElementById('loginPassword').value)
+        loading.classList.add("hide")
+        location.href="/"
+        
+    } catch(e){
+        loading.classList.add("hide")
+        alert(e.message)
+    }
+});
+
+function validarLogin() {
+    const valorLogin = login.value.trim();
+
+    if (valorLogin.includes('@')) {
+        if (!validarEmail(valorLogin)) {
+            alert('Por favor, insira um Email ou CPF válido.');
+            return false;
+        }
+    } else {
+        if (!validarCPF(valorLogin)) {
+            alert('Por favor, insira um CPF ou Emailválido.');
+            return false;
+        }
+    }
+    //adicionar a função de verificação da API aqui
+    return true;
+>>>>>>> login/js/login.js
 }
 
 function setFieldError(input, isInvalid) {
