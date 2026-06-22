@@ -92,7 +92,7 @@ function changePasswordStatus(comp){
 async function saveData(){
     if(!validarEmail(emailInp.value)) return alert("Email inválido")
     if(!validarCPF(cpfInp.value)) return alert("CPF Inválido")
-    if(!validarTelefone(cellInp)) return alert("Telefone inválido")
+    if(!validarTelefone(cellInp.value)) return alert("Telefone inválido")
     const userUpdated = {
         id: user.id,
         nome: nameInp.value ?? user.nome,
