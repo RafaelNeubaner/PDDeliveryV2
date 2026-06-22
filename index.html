@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
@@ -21,6 +21,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/footer.css" />
     <link rel="stylesheet" href="css/home.css" />
 
     <!-- Scripts -->
@@ -31,158 +32,193 @@
     ></script>
 
     <!-- Custom JS -->
-    <!-- <script type="module" src="./js/requiredAuthentication.js"></script> -->
+    <script type="module" src="./js/requiredAuthentication.js"></script>
     <script src="js/scripts.js" defer></script>
-    
+    <script type="module" src="/js/components/header.js"></script>
+    <script type="module" src="/js/pages/home.js"></script>
+    <script type="module" src="/js/components/productCard.js"></script>
   </head>
-<body>
-  <!-- HEADER -->
+  <body>
+    <!-- HEADER -->
     <header>
       <nav class="navbar navbar-expand-lg">
-        
-          <search class="containerSearch">
-            <a class="navbar-brand d-block" href="/index.html">
-              <img
-                src="/assets/media/logo/Logo.png"
-                alt="PD Delivery V2"
-                id="logo"
-              />
-            </a>
+        <search class="containerSearch">
+          <a class="navbar-brand d-block" href="/index.html">
+            <img
+              src="/assets/media/logo/Logo.png"
+              alt="PD Delivery V2"
+              id="logo"
+            />
+          </a>
 
-            <form
-              action="/busca/busca-produto.html"
-              class="d-flex position-relative inputForm"
-            >
-              <input
-                type="text"
-                name="query"
-                class="form-control pe-5"
-                placeholder="Buscar..."
-                aria-label="Pesquisar produtos"
-              />
-              <button class="btn" type="submit" id="button-search-desktop">
-                <i class="bi bi-search"></i>
-              </button>
-            </form>
+          <form
+            action="/busca/busca-produto.html"
+            class="d-flex position-relative inputForm"
+          >
+            <input
+              type="text"
+              name="query"
+              class="form-control pe-5"
+              placeholder="Buscar..."
+              aria-label="Pesquisar produtos"
+            />
+            <button class="btn" type="submit" id="button-search-desktop">
+              <i class="bi bi-search"></i>
+            </button>
+          </form>
 
-            <ul class="navbar-nav align-items-center">
+          <ul class="navbar-nav align-items-center">
+            <li class="nav-item d-block">
+              <a href="/pedidos/index.html" class="nav-link"
+                ><i class="bi bi-box-seam"></i
+              ></a>
+            </li>
 
-              <li class= "nav-item d-block">
-                <a href="/pedidos/index.html" class="nav-link"
-                  ><i class="bi bi-box-seam"></i
-                ></a>
-              </li>
+            <li class="nav-item position-relative">
+              <a href="/carrinho/index.html" class="nav-link"
+                ><i class="bi bi-cart3"></i
+              ></a>
+              <span class="cart-badge">0</span>
+            </li>
 
-              <li class="nav-item position-relative">
-                <a href="/carrinho/index.html" class="nav-link"
-                  ><i class="bi bi-cart3"></i
-                ></a>
-                <span class="cart-badge">0</span>
-              </li>
+            <li class="nav-item d-block iconProfile">
+              <a href="/adm/index.html" class="nav-link"
+                ><i class="bi bi-person"></i
+              ></a>
+            </li>
 
-              <li class="nav-item d-block iconProfile">
-                <a href="/adm/index.html" class="nav-link"
-                  ><i class="bi bi-person"></i
-                ></a>
-              </li>
-
-              <li class="nav-item d-block logoutLink">
-                <a
-                  href="/index.html"
-                  class="btn nav-link logoutBtn"
-                  style="
-                    cursor: pointer;
-                    border: none;
-                    background: none;
-                    padding: 0.5rem 0.75rem;
-                    "
-                >
-                  <i class="bi bi-box-arrow-right"></i>
-                </a>
-              </li>
-            </ul>
-          </search>
+            <li class="nav-item d-block logoutLink">
+              <a
+                href="/index.html"
+                class="btn nav-link logoutBtn"
+                style="
+                  cursor: pointer;
+                  border: none;
+                  background: none;
+                  padding: 0.5rem 0.75rem;
+                "
+              >
+                <i class="bi bi-box-arrow-right"></i>
+              </a>
+            </li>
+          </ul>
+        </search>
       </nav>
     </header>
 
-    <main>
-
     <!-- HERO -->
-    <section id="hero" class="container-fluid mx-auto">
-      <section class="carrossel-wrap">
-        <input type="radio" name="carrossel" id="r1" class="carrossel-radio" />
-        <input type="radio" name="carrossel" id="r2" class="carrossel-radio" />
-        <input type="radio" name="carrossel" id="r3" class="carrossel-radio" />
-        <div class="carrossel">
-          <div class="slides_dots">
-            <div class="slides_autoplay">
-              <article class="slide" id="slide1">
-                <a
-                  href="#"
-                  aria-label="Ir para página do produto"
-                >
-                  <img
-                    src="/assets/media/images/tela-principal/slide-01.png"
-                    alt="Slide 1"
-                    style="object-position: 50% 0%"
-                    class="d-none d-lg-block d-sm-block"
-                  />
-                  <img
-                    src="/assets/media/images/tela-principal/slide-01-mobile.png"
-                    alt="Slide 1"
-                    style="object-position: 50% 0%"
-                    class="d-block d-lg-none d-sm-none"
-                  />
-                </a>
-              </article>
-              <article class="slide">
-                <a
-                  href="#"
-                  aria-label="Ir para página do produto"
-                >
-                  <img
-                    src="/assets/media/images/tela-principal/slide-02.png"
-                    alt="Slide 2"
-                    class="d-none d-lg-block d-sm-block"
-                  />
-                  <img
-                    src="/assets/media/images/tela-principal/slide-02-mobile.png"
-                    alt="Slide 2"
-                    style="object-position: 50% 0%"
-                    class="d-block d-lg-none d-sm-none"
-                  />
-                </a>
-              </article>
-              <article class="slide">
-                <a
-                  href="#"
-                  aria-label="Ir para página do produto"
-                >
-                  <img
-                    src="/assets/media/images/tela-principal/slide-03.png"
-                    alt="Slide 3"
-                    class="d-none d-lg-block d-sm-block"
-                  />
-                  <img
-                    src="/assets/media/images/tela-principal/slide-03-mobile.png"
-                    alt="Slide 3"
-                    style="object-position: 50% 0%"
-                    class="d-block d-lg-none d-sm-none"
-                  />
-                </a>
-              </article>
-            </div>
-          </div>
-        </div>
-        <div class="dots">
-          <label for="r1" class="dot" aria-label="Ir para slide 1"></label>
-          <label for="r2" class="dot" aria-label="Ir para slide 2"></label>
-          <label for="r3" class="dot" aria-label="Ir para slide 3"></label>
-        </div>
-      </section>
+    <section
+      id="carouselIndicators"
+      class="carousel slide carousel-fade mLarge"
+      data-bs-ride="carousel"
+      data-bs-touch="true"
+    >
+      <div class="carousel-indicators">
+        <button
+          type="button"
+          data-bs-target="#carouselIndicators"
+          data-bs-slide-to="0"
+          class="active"
+          aria-current="true"
+          aria-label="Slide 1"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#carouselIndicators"
+          data-bs-slide-to="1"
+          aria-label="Slide 2"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#carouselIndicators"
+          data-bs-slide-to="2"
+          aria-label="Slide 3"
+        ></button>
+      </div>
+
+      <div class="carousel-inner">
+        <article class="carousel-item active">
+          <a href="#">
+            <img
+              src="/assets/media/images/tela-principal/slide-01.png"
+              class="w-100 sl-d"
+              alt="banner promocional de comidas brasileiras"
+            />
+            <img
+              src="/assets/media/images/tela-principal/slide-01.png"
+              class="w-100 sl-m"
+              alt="banner promocional de comidas brasileiras"
+            />
+          </a>
+        </article>
+
+        <article class="carousel-item">
+          <a href="#">
+            <img
+              src="/assets/media/images/tela-principal/slide-02.png"
+              class="w-100 sl-d"
+              alt="banner da seleção de pizzas"
+            />
+            <img
+              src="/assets/media/images/tela-principal/slide-02.png"
+              class="w-100 sl-m"
+              alt="banner da seleção de pizzas"
+            />
+          </a>
+        </article>
+
+        <article class="carousel-item">
+          <a href="#">
+            <img
+              src="/assets/media/images/tela-principal/slide-03.png"
+              class="w-100 sl-d"
+              alt="banner da sobremesa do dia"
+            />
+            <img
+              src="/assets/media/images/tela-principal/slide-03.png"
+              class="w-100 sl-m"
+              alt="banner da sobremesa do dia"
+            />
+          </a>
+        </article>
+      </div>
+
+      <button
+        class="carousel-control-prev d-none d-md-flex"
+        type="button"
+        data-bs-target="#carouselIndicators"
+        data-bs-slide="prev"
+      >
+        <!-- <i class="bi bi-chevron-left"  aria-hidden="true"></i> -->
+        <span class="visually-hidden">Anterior</span>
+      </button>
+
+      <button
+        class="carousel-control-next d-none d-md-flex"
+        type="button"
+        data-bs-target="#carouselIndicators"
+        data-bs-slide="next"
+      >
+        <!-- <i class="bi bi-chevron-right"  aria-hidden="true"></i> -->
+        <span class="visually-hidden">Próximo</span>
+      </button>
     </section>
 
+    <main>
+      <!-- OFERTAS SEMANA -->
+      <section id="ofertas" class="ofertas">
+        <h2 class="title">Ofertas da Semana</h2>
+
+        <div id="cardapio" class="containerCardapio row">
+          <!-- CARD PRODUTO -->
+        </div>
+      </section>
     </main>
-  </div>
-</body>
+
+    <footer class="bgSecondary">
+      <p class="textCenter">
+        © PD Delivery V2 2026 | Desenvolvido por Pablo, Pedro e Rafael.
+      </p>
+    </footer>
+  </body>
 </html>
