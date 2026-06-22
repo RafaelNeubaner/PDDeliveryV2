@@ -45,6 +45,7 @@ main legend{
 main input, .password{
     width: 100%;
     max-width: 300px;
+    height: 40px;
 }
 
 @media (min-width: 576px){

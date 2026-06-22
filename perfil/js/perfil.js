@@ -1,6 +1,7 @@
 import { getUserAuthenticated } from "../../js/services/useAuth.js"
 import { getLocationByCEP } from "../../js/services/useCep.js"
 import { createClient, updateClient } from "../../js/services/useClients.js"
+import { validarCPF, validarEmail, validarSenha, validarTelefone } from "../../login/js/verifiers.js"
 
 const loading = document.querySelector(".loading")
 const nameInp = document.getElementById("nomeInp")
@@ -59,6 +60,8 @@ async function changePassword(){
         return alert("As senhas precisa ser idênticas")
     }
 
+    if(!validarSenha(newPasswordInp.value)) return alert("A senha precisa ter no mínimo 6 caracteres")
+
     loading.classList.remove("hide")
     user = await updateClient(user.id, {
         ...user,
@@ -72,6 +75,7 @@ passwordCont.querySelector("i").addEventListener('click', (ev)=>{changePasswordS
 confirmPasswordCont.querySelector("i").addEventListener('click', (ev)=>{changePasswordStatus(confirmPasswordCont)})
 
 function changePasswordStatus(comp){
+    
     let input = comp.querySelector("input")
     let icon = comp.querySelector("i")
     if(input.type==="password"){
@@ -86,6 +90,9 @@ function changePasswordStatus(comp){
 }
 
 async function saveData(){
+    if(!validarEmail(emailInp.value)) return alert("Email inválido")
+    if(!validarCPF(cpfInp.value)) return alert("CPF Inválido")
+    if(!validarTelefone(cellInp)) return alert("Telefone inválido")
     const userUpdated = {
         id: user.id,
         nome: nameInp.value ?? user.nome,

@@ -131,7 +131,7 @@ async function signInClient(credenciais){
  * @param {Object} updateData 
  * @returns {Client}
  */
-async function editClient(clientID, updateData){
+async function updateClient(clientID, updateData){
     // const response = await fetch("/api/editClient", {
     //     method: "POST",
     //     headers: {

@@ -1,12 +1,12 @@
-import {signOut} from "../services/useClients.js"
-import {cartApi} from "./carrinho/useCart.js"
+import {logout} from "../services/useAuth.js"
+//import {cartApi} from "./carrinho/useCart.js"
 
 document.querySelectorAll(".logoutBtn").forEach(btn=>{
     btn.addEventListener("click", (event)=>{
         event.preventDefault()
-        signOut()
+        logout()
         window.location.href = "/login/index.html"
     })
 })
 
-cartApi.atualizarBadgeGlobal()
+//cartApi.atualizarBadgeGlobal()
