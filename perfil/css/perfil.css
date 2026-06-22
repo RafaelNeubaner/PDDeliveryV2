@@ -23,7 +23,7 @@ main section{
     flex-direction: column;
 }
 
-main form fieldset, main form div{
+main form fieldset, main form > section  div{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -31,7 +31,7 @@ main form fieldset, main form div{
     width: 100%;
 }
 
-main form button{
+main form > button{
     width: 100px;
     align-self: flex-end;
 }
@@ -42,7 +42,7 @@ main legend{
     font-weight: 600;
 }
 
-main input{
+main input, .password{
     width: 100%;
     max-width: 300px;
 }
@@ -53,4 +53,17 @@ main input{
         justify-content: space-around;
         flex-direction: row;
     }
+}
+
+.password{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+}
+
+
+.password i{
+    font-size: 20px;
+    cursor: pointer;
 }

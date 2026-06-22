@@ -120,7 +120,7 @@ async function signInClient(credenciais){
  * @param {Object} updateData 
  * @returns {Client}
  */
-async function editClient(clientID, updateData){
+async function updateClient(clientID, updateData){
     const response = await fetch("/api/editClient", {
         method: "POST",
         headers: {
@@ -140,4 +140,4 @@ async function editClient(clientID, updateData){
     return client
 }
 
-export { createClient, getClient, signInClient, editClient }
+export { createClient, getClient, signInClient, updateClient }
