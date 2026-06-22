@@ -12,8 +12,8 @@ export default async function handler(req, res){
     })
 
     const checkExist = await checkExistResponse.json()
-
-    if(checkExist.length>0) return res.status(409).json("Este [CPF/E-mail] já está vinculado a uma conta existente.")
+    console.log(checkExistResponse.status)
+    if(checkExistResponse.status != 404) return res.status(409).json("Este [CPF/E-mail] já está vinculado a uma conta existente.")
 
     const response = await fetch(`${URL_CLIENTES}`, {
         method: "POST",

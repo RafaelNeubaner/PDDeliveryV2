@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro | PD Delivery V2</title>
+    <link
+      rel="icon"
+      href="/assets/media/icons/favicon.svg"
+      type="image/x-icon"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/login/css/login.css" />
+    <script src="/login/js/login.js" type="module" defer></script>
+    <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
+  </head>
+  <body>
+    <main class="loginPage textCenter" >
+      <img
+        src="/assets/media/images/login/login-img.jpg"
+        alt="Imagem de login"
+        class="loginImage d-none d-lg-block"
+      />
+      <section class="registroCard">
+
+          <img
+            src="/assets/media/logo/Logo.png"
+            alt="PD Delivery V2"
+            id="logo"
+            class="logo"
+          />
+
+
+        <h1 class="title textCenter">Registre-se</h1>
+
+        <form
+          class="regForm"
+          id="registrationForm"
+          autocomplete="on"
+          novalidate
+        >
+          <fieldset>
+            <label class="txtInvisible" for="login-name">Nome do usuário</label>
+            <input
+              id="login-name"
+              name="firstname"
+              type="text"
+              placeholder="Nome do usuário"
+              autocomplete="name"
+              required
+            />
+          </fieldset>
+
+          <div class="formRows">
+            <fieldset>
+              <label class="txtInvisible" for="loginEmail">E-mail</label>
+              <input
+                id="loginEmail"
+                name="usuario"
+                type="email"
+                placeholder="E-mail"
+                autocomplete="email"
+                required
+              />
+            </fieldset>
+
+            <fieldset>
+              <label class="txtInvisible" for="loginCPF">CPF</label>
+              <input
+                id="loginCPF"
+                name="cpf"
+                type="text"
+                placeholder="CPF"
+                autocomplete="off"
+                inputmode="numeric"
+                maxlength="14"
+                required
+              />
+            </fieldset>
+          </div>
+
+          <div class="formRows">
+            <fieldset>
+              <label class="txtInvisible" for="loginNascimento"
+                >Data de nascimento</label
+              >
+              <input
+                id="loginNascimento"
+                name="nascimento"
+                type="date"
+                required
+              />
+            </fieldset>
+
+            <fieldset>
+              <label class="txtInvisible" for="loginTelefone">Telefone</label>
+              <input
+                id="loginTelefone"
+                name="telefone"
+                type="text"
+                placeholder="Telefone"
+                inputmode="numeric"
+                autocomplete="tel"
+                maxlength="15"
+                required
+              />
+            </fieldset>
+          </div>
+
+          <div class="formRows">
+            <fieldset>
+              <label class="txtInvisible" for="loginCep">CEP</label>
+              <input
+                id="loginCep"
+                name="cep"
+                type="text"
+                placeholder="CEP"
+                inputmode="numeric"
+                autocomplete="postal-code"
+                maxlength="9"
+                required
+              />
+            </fieldset>
+
+          <fieldset>
+            <label class="txtInvisible" for="loginEndereco">Rua</label>
+            <input
+              id="loginEndereco"
+              name="endereco"
+              type="text"
+              placeholder="Rua"
+              autocomplete="street-address"
+              required
+            />
+          </fieldset>
+          </div>
+          <div class="formRows">
+            <fieldset>
+              <label class="txtInvisible" for="loginNumero">Número</label>
+              <input
+                id="loginNumero"
+                name="numero"
+                type="text"
+                placeholder="Número"
+                autocomplete="address-line2"
+                required
+              />
+            </fieldset>
+
+            <fieldset>
+              <label class="txtInvisible" for="loginComplemento"
+                >Complemento</label
+              >
+              <input
+                id="loginComplemento"
+                name="complemento"
+                type="text"
+                placeholder="Complemento"
+                autocomplete="address-line3"
+                required
+              />
+            </fieldset>
+          </div>
+
+          <div class="formRows">
+            <fieldset>
+              <label class="txtInvisible" for="loginBairro">Bairro</label>
+              <input
+                id="loginBairro"
+                name="bairro"
+                type="text"
+                placeholder="Bairro"
+                autocomplete="address-level2"
+                required
+              />
+            </fieldset>
+
+            <fieldset>
+              <label class="txtInvisible" for="loginCidade">Cidade</label>
+              <input
+                id="loginCidade"
+                name="cidade"
+                type="text"
+                placeholder="Cidade"
+                autocomplete="address-level2"
+                required
+              />
+            </fieldset>
+          </div>
+
+          <fieldset>
+            <label class="txtInvisible" for="login-password">Senha</label>
+            <div
+              class="passwordWithEye d-flex flex-row align-items-center gap-2 mb-0"
+            >
+              <input
+                id="login-password"
+                name="senha"
+                type="password"
+                placeholder="Senha"
+                autocomplete="new-password"
+                required
+              />
+              <i class="bi bi-eye-slash verSenha"></i>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <label class="txtInvisible" for="login-confirm-password"
+              >Confirmar senha</label
+            >
+            <div
+              class="passwordWithEye d-flex flex-row align-items-center gap-2"
+            >
+              <input
+                id="login-confirm-password"
+                name="confirmarSenha"
+                type="password"
+                placeholder="Confirmar senha"
+                autocomplete="new-password"
+                required
+              />
+              <i class="bi bi-eye-slash verSenha" id="verSenhaConfirmar"></i>
+            </div>
+          </fieldset>
+
+          <p class="formFeedback red" id="formFeedback" aria-live="polite"></p>
+
+          <div class="loginLinks cadastroLinks">
+            <a href="#" class="link subTitleCard" id="abrirModalTermos"
+              >Termos e Condições</a
+            >
+          </div>
+          <button type="submit" class="btnPrimary mb24">Criar Conta</button>
+        </form>
+        <p class="subTitleCard">
+          Já tem conta?
+          <a href="/login/index.html" class="link subTitleCard">Faça o login</a>
+        </p>
+      </section>
+
+      <article class="termsModal" id="termosModal">
+        <div class="termsModalContent bg">
+          <button class="btnOutline sair" id="fecharModalTermos" type="button">
+            X
+          </button>
+          <hgroup>
+            <h2 class="subTitle textCenter">Termos e Condições</h2>
+          </hgroup>
+          <div class="termsBody">
+            <p>
+              1. O uso da plataforma é permitido apenas para fins lícitos e
+              compatíveis com a navegação de compra.
+            </p>
+            <p>
+              2. Os preços, descrições e disponibilidade podem ser alterados sem
+              aviso prévio.
+            </p>
+            <p>
+              3. A conta do usuário é de responsabilidade exclusiva do titular
+              cadastrado.
+            </p>
+            <p>
+              4. A PD Sports pode suspender o acesso em caso de uso indevido,
+              fraude ou violação destas regras.
+            </p>
+          </div>
+        </div>
+      </article>
+    </main>
+    <script>
+      function mascaraCPF(input) {
+        // Remove tudo o que não é dígito
+        let valor = input.value.replace(/\D/g, "");
+
+        // Aplica a formatação progressivamente
+        valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
+        valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
+        valor = valor.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+
+        input.value = valor;
+      }
+
+      function mascaraTelefone(input) {
+        let valor = input.value.replace(/\D/g, ""); // Remove tudo que não é número
+
+        if (valor.length > 10) {
+          // Formato Celular: (00) 00000-0000
+          valor = valor.replace(/^(\d{2})(\d{5})(\d{4}).*/, "($1) $2-$3");
+        } else {
+          // Formato Fixo: (00) 0000-0000
+          valor = valor.replace(/^(\d{2})(\d{4})(\d{4}).*/, "($1) $2-$3");
+        }
+
+        input.value = valor;
+      }
+    </script>
+  </body>
+</html>

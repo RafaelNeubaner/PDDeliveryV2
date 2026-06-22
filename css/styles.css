@@ -358,24 +358,25 @@ p {
 input,
 textarea,
 input.form-control {
-    padding: 10px !important;
+    padding: 0px 10px !important;
     border-radius: 12px !important;
     border: 2px solid var(--txt) !important;
     outline: none;
     background-color: transparent !important;
     color: var(--txt) !important;
     font-size: 1.2rem;
+    max-height: 50px;
 }
 
 input::placeholder,
 textarea::placeholder {
     color: var(--txtMuted-dark) !important;
+    font-size: 1.5rem;
 }
 
 input:focus,
 textarea:focus {
     background-color: var(--text-dark) !important;
-    border: 2px solid var(--primary) !important;
     color: var(--txt) !important;
     box-shadow: 0 0 0 0.2rem rgba(110, 159, 216, 0.25);
 }
@@ -509,4 +510,32 @@ select {
     .mSmall {
         margin-bottom: 12px;
     }
+}
+
+
+.loading{
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left:0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hide{
+    display: none;
+}
+
+.loading .spinner-content{
+    width: 60px;
+    height: 60px;
+    background-color: var(--primary);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
