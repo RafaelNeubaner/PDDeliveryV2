@@ -97,8 +97,8 @@ JSON
 
 ```
 	{
-		"email": "admin@lanchonete.com.br",
-		"senha": "admin"
+		"email": "admin@pddelivery.com",
+		"senha": "adminPdV2"
 	}
 ```
 

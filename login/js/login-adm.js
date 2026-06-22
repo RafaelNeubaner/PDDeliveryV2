@@ -80,7 +80,7 @@ function autenticarLojista() {
         sessionStorage.setItem('lojistaAutenticado', 'true');
         sessionStorage.setItem('lojistaEmail', emailInformado);
 
-        window.location.href = '../dashboard/index.html'; 
+        window.location.href = '../../adm/index.html'; 
         
     } else {
 
