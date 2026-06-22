@@ -25,6 +25,8 @@ const loginPasswordInput = document.getElementById('loginPassword');
 const loginButton = document.getElementById('loginButton');
 const verSenha = document.querySelector('.verSenha');
 const verSenhaConfirmar = document.getElementById('verSenhaConfirmar');
+const telefoneInput = document.getElementById('loginTelefone');
+const cpfInput = document.getElementById('loginCPF');
 
 const requiredInputs = [
   'login-name',
