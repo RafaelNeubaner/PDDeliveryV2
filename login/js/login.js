@@ -74,25 +74,34 @@ if (verSenha && loginPasswordInput) {
 if (loginButton) {
   loginButton.addEventListener('click', async function(event) {
     event.preventDefault();
-    validarLogin()
+    if (!validarLogin(event)) {
+      return;
+    }
 
-    try{
-    console.log("entrou no try")
+    const user = loginInput.value.trim();
+    const password = loginPasswordInput.value.trim();
+    const identifier = loginInput.value.trim();
+    console.log({identifier, password})
+
+    try {
       if (loading) {
-      loading.classList.remove("hide")
+        loading.classList.remove('hide');
       }
-      const result = await loginCliente(loginInput.value.trim(), document.getElementById('loginPassword').value)
+
+      await loginCliente(identifier, password);
+
       if (loading) {
-      loading.classList.add("hide")
+        loading.classList.add('hide');
       }
-      location.href="/"
-          
-    } catch(e){
+
+      location.href = '/';
+    } catch (e) {
       if (loading) {
-      loading.classList.add("hide")
+        loading.classList.add('hide');
       }
-      console.log(e)
-      alert(e.message)
+
+      console.log(e);
+      alert(e.message);
     }
   });
 }
@@ -178,6 +187,32 @@ function formatarCPF(input) {
     .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
 
   input.value = formatted;
+}
+
+function formatarLoginSeForCPF(input) {
+  if (!input) {
+    return;
+  }
+
+  const valorAtual = input.value.trim();
+
+  if (valorAtual.includes('@')) {
+    return;
+  }
+
+  const apenasNumeros = valorAtual.replace(/\D/g, '');
+
+  if (apenasNumeros.length === 0) {
+    return;
+  }
+
+  const cpfFormatado = apenasNumeros
+    .slice(0, 11)
+    .replace(/^(\d{3})(\d)/, '$1.$2')
+    .replace(/^(\d{3}\.\d{3})(\d)/, '$1.$2')
+    .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+
+  input.value = cpfFormatado;
 }
 
 async function cadastrarUsuario() {
@@ -393,5 +428,24 @@ if (loginForm && !loginButton) {
     if (!validarLogin(event)) {
       event.preventDefault();
     }
+  });
+}
+
+if (loginPasswordInput) {
+  loginPasswordInput.addEventListener('input', () => {
+    setFieldError(loginPasswordInput, false);
+  });
+  loginPasswordInput.addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      loginButton.click();
+    }
+  });
+}
+
+if (loginInput) {
+  loginInput.addEventListener('input', () => {
+    formatarLoginSeForCPF(loginInput);
+    setFieldError(loginInput, false);
   });
 }
