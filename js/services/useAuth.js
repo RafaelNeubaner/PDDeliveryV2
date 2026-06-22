@@ -45,5 +45,10 @@ async function registerCliente(client){
     }
 }
 
+async function logout(){
+    localStorage.removeItem(USER_KEY)
+    location.reload()
+}
 
-export {hasUserAuthenticated, getUserAuthenticated, loginCliente, registerCliente}
+
+export {hasUserAuthenticated, getUserAuthenticated, loginCliente, registerCliente, logout}
