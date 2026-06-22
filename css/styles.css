@@ -365,7 +365,7 @@ input.form-control {
     background-color: transparent !important;
     color: var(--txt) !important;
     font-size: 1.2rem;
-    max-height: 45px;
+    max-height: 50px;
 }
 
 input::placeholder,
