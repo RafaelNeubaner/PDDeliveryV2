@@ -1,5 +1,6 @@
 
 import { loginCliente } from '../../js/services/useAuth.js';
+import { createClient } from '../../js/services/useClients.js';
 import {
   formatarTelefone,
   formatarCPF,
