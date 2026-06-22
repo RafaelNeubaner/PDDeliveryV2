@@ -1,4 +1,4 @@
-import {signOut} from "./services/useClients.js"
+import {signOut} from "../services/useClients.js"
 import {cartApi} from "./carrinho/useCart.js"
 
 document.querySelectorAll(".logoutBtn").forEach(btn=>{
