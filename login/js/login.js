@@ -1,119 +1,252 @@
-import { loginCliente } from "../../js/services/useAuth.js";
 
+import { loginCliente } from '../../js/services/useAuth.js';
+import {
+  formatarTelefone,
+  formatarCPF,
+  formatarLoginSeForCPF,
+  validarFormulario,
+  validarLogin,
+  setFieldError,
+} from './verifiers.js';
 const loading = document.querySelector(".loading")
 const modalTermos = document.getElementById('termosModal');
 const modalSenha = document.getElementById('modalRecuperarSenha');
 const fecharModalTermos = document.getElementById('fecharModalTermos');
 const fecharModalSenha = document.getElementById('sairModalSenha');
-const verSenha = document.getElementById('verSenha');
-const login = document.getElementById('loginUser');
-const cpf = document.getElementById('loginUser');
+const abrirModalTermos = document.getElementById('abrirModalTermos');
+const abrirModalSenha = document.getElementById('abrirModalSenha');
+const form = document.getElementById('registrationForm');
+const loginForm = document.querySelector('.login-form');
+const formFeedback = document.getElementById('formFeedback');
+const passwordInput = document.getElementById('login-password');
+const confirmPasswordInput = document.getElementById('login-confirm-password');
+const loginInput = document.getElementById('loginUser');
+const loginPasswordInput = document.getElementById('loginPassword');
 const loginButton = document.getElementById('loginButton');
+const verSenha = document.getElementById('verSenha');
+const verSenhaConfirmar = document.getElementById('verSenhaConfirmar');
 
-fecharModalTermos.addEventListener('click', function() {
-    modalTermos.classList.remove('is-open');
-});
+const requiredInputs = [
+  'login-name',
+  'loginEmail',
+  'loginCPF',
+  'loginNascimento',
+  'loginTelefone',
+  'loginCep',
+  'loginEndereco',
+  'loginNumero',
+  'loginBairro',
+  'loginCidade',
+  'loginEstado',
+  'login-password',
+  'login-confirm-password',
+].map((id) => document.getElementById(id));
 
-fecharModalSenha.addEventListener('click', function() {
-    modalSenha.classList.remove('is-open');
-});
-
-document.getElementById('abrirModalTermos').addEventListener('click', function(event) {
+const abrirModalTermosButton = document.getElementById('abrirModalTermos');
+if (abrirModalTermosButton && modalTermos) {
+  abrirModalTermosButton.addEventListener('click', function(event) {
     event.preventDefault();
     modalTermos.classList.add('is-open');
-});
+  });
+}
 
-document.getElementById('abrirModalSenha').addEventListener('click', function(event) {
+const abrirModalSenhaButton = document.getElementById('abrirModalSenha');
+if (abrirModalSenhaButton && modalSenha) {
+  abrirModalSenhaButton.addEventListener('click', function(event) {
     event.preventDefault();
     modalSenha.classList.add('is-open');
-});
+  });
+}
 
-verSenha.addEventListener('click', function() {
-    const passwordInput = document.getElementById('loginPassword');
-    if (passwordInput.type === 'password') {
-        passwordInput.type = 'text';
-        verSenha.classList.remove('bi-eye-slash');
-        verSenha.classList.add('bi-eye');
+if (verSenha && loginPasswordInput) {
+  verSenha.addEventListener('click', function() {
+    if (loginPasswordInput.type === 'password') {
+      loginPasswordInput.type = 'text';
+      verSenha.classList.remove('bi-eye-slash');
+      verSenha.classList.add('bi-eye');
     } else {
-        passwordInput.type = 'password';
-        verSenha.classList.remove('bi-eye');
-        verSenha.classList.add('bi-eye-slash');
+      loginPasswordInput.type = 'password';
+      verSenha.classList.remove('bi-eye');
+      verSenha.classList.add('bi-eye-slash');
     }
-});
+  });
+}
 
-loginButton.addEventListener('click', async function(event) {
+if (loginButton) {
+  loginButton.addEventListener('click', async function(event) {
     event.preventDefault();
-    validarLogin()
-
-    try{
-        loading.classList.remove("hide")
-        const result = await loginCliente(login.value.trim(), document.getElementById('loginPassword').value)
-        loading.classList.add("hide")
-        location.href="/"
-        
-    } catch(e){
-        loading.classList.add("hide")
-        alert(e.message)
+    if (!validarLogin(event, { loginInput, loginPasswordInput })) {
+      return;
     }
-});
 
-function validarLogin() {
-    const valorLogin = login.value.trim();
+    const user = loginInput.value.trim();
+    const password = loginPasswordInput.value.trim();
+    const identifier = loginInput.value.trim();
+    console.log({identifier, password})
 
-    if (valorLogin.includes('@')) {
-        if (!validarEmail(valorLogin)) {
-            alert('Por favor, insira um Email ou CPF válido.');
-            return false;
-        }
-    } else {
-        if (!validarCPF(valorLogin)) {
-            alert('Por favor, insira um CPF ou Emailválido.');
-            return false;
-        }
+    try {
+      if (loading) {
+        loading.classList.remove('hide');
+      }
+
+      await loginCliente(identifier, password);
+
+      if (loading) {
+        loading.classList.add('hide');
+      }
+
+      location.href = '/';
+    } catch (e) {
+      if (loading) {
+        loading.classList.add('hide');
+      }
+
+      console.log(e);
+      alert(e.message);
     }
-    //adicionar a função de verificação da API aqui
-    return true;
+  });
 }
 
-function validarCPF(cpf) {
-    // Remove tudo que não for número
-    cpf = cpf.replace(/[^\d]+/g, '');
 
-    // Verifica tamanho ou sequência inválida
-    if (cpf.length !== 11 || /^(\d)\1+$/.test(cpf)) {
-        return false;
-    }
+async function cadastrarUsuario() {
+  const nome = document.getElementById('login-name').value.trim();
+  const email = document.getElementById('loginEmail').value.trim();
+  const cpf = document.getElementById('loginCPF').value.trim();
+  const nascimento = document.getElementById('loginNascimento').value.trim();
+  const telefone = document.getElementById('loginTelefone').value.trim();
+  const cep = document.getElementById('loginCep').value.trim();
+  const endereco = document.getElementById('loginEndereco').value.trim();
+  const numero = document.getElementById('loginNumero').value.trim();
+  const complementoInput = document.getElementById('loginComplemento');
+  const bairro = document.getElementById('loginBairro').value.trim();
+  const cidade = document.getElementById('loginCidade').value.trim();
+  const estadoInput = document.getElementById('loginEstado');
+  const senha = document.getElementById('login-password').value.trim();
 
-    // Validação do primeiro dígito
-    let soma = 0;
-    for (let i = 0; i < 9; i++) {
-        soma += parseInt(cpf.charAt(i)) * (10 - i);
-    }
+  const client = {
+    nome: nome,
+    email: email,
+    password: senha,
+    celphone: telefone,
+    cpf: cpf,
+    dateBirth: nascimento,
+    endereco: {
+      cep: cep,
+      rua: endereco,
+      numero: numero,
+      bairro: bairro,
+      complemento: complementoInput ? complementoInput.value.trim() : '',
+      cidade: cidade,
+      estado: estadoInput ? estadoInput.value.trim() : '',
+    },
+  };
 
-    let resto = soma % 11;
-    let digito1 = resto < 2 ? 0 : 11 - resto;
-
-    if (digito1 !== parseInt(cpf.charAt(9))) {
-        return false;
-    }
-
-    // Validação do segundo dígito
-    soma = 0;
-    for (let i = 0; i < 10; i++) {
-        soma += parseInt(cpf.charAt(i)) * (11 - i);
-    }
-
-    resto = soma % 11;
-    let digito2 = resto < 2 ? 0 : 11 - resto;
-
-    if (digito2 !== parseInt(cpf.charAt(10))) {
-        return false;
-    }
-
-    return true;
+  return createClient(client);
 }
 
-function validarEmail(email) {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
+if (fecharModalTermos && modalTermos) {
+  fecharModalTermos.addEventListener('click', () => {
+    modalTermos.classList.remove('is-open');
+  });
+}
+
+if (fecharModalSenha && modalSenha) {
+  fecharModalSenha.addEventListener('click', () => {
+    modalSenha.classList.remove('is-open');
+  });
+}
+
+if (abrirModalTermos && modalTermos) {
+  abrirModalTermos.addEventListener('click', (event) => {
+    event.preventDefault();
+    modalTermos.classList.add('is-open');
+  });
+}
+
+if (abrirModalSenha && modalSenha) {
+  abrirModalSenha.addEventListener('click', (event) => {
+    event.preventDefault();
+    modalSenha.classList.add('is-open');
+  });
+}
+
+if (verSenha && passwordInput) {
+  verSenha.addEventListener('click', () => {
+    const isPassword = passwordInput.type === 'password';
+    passwordInput.type = isPassword ? 'text' : 'password';
+    verSenha.classList.toggle('bi-eye-slash', !isPassword);
+    verSenha.classList.toggle('bi-eye', isPassword);
+  });
+}
+
+if (verSenhaConfirmar && confirmPasswordInput) {
+  verSenhaConfirmar.addEventListener('click', () => {
+    const isPassword = confirmPasswordInput.type === 'password';
+    confirmPasswordInput.type = isPassword ? 'text' : 'password';
+    verSenhaConfirmar.classList.toggle('bi-eye-slash', !isPassword);
+    verSenhaConfirmar.classList.toggle('bi-eye', isPassword);
+  });
+}
+
+
+if (telefoneInput) {
+  telefoneInput.addEventListener('input', () => {
+    formatarTelefone(telefoneInput);
+    setFieldError(telefoneInput, false);
+  });
+}
+
+if (cpfInput) {
+  cpfInput.addEventListener('input', () => {
+    formatarCPF(cpfInput);
+    setFieldError(cpfInput, false);
+  });
+}
+
+if (form) {
+  form.addEventListener('submit', (event) => {
+    validarFormulario(event, {
+      requiredInputs,
+      formFeedback,
+      passwordInput,
+      confirmPasswordInput,
+      form,
+      cadastrarUsuario,
+    });
+  });
+}
+
+if (loginButton) {
+  loginButton.addEventListener('click', (event) => {
+    if (!validarLogin(event, { loginInput, loginPasswordInput })) {
+      event.preventDefault();
+    }
+  });
+}
+
+if (loginForm && !loginButton) {
+  loginForm.addEventListener('submit', (event) => {
+    if (!validarLogin(event, { loginInput, loginPasswordInput })) {
+      event.preventDefault();
+    }
+  });
+}
+
+if (loginPasswordInput) {
+  loginPasswordInput.addEventListener('input', () => {
+    setFieldError(loginPasswordInput, false);
+  });
+  loginPasswordInput.addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      loginButton.click();
+    }
+  });
+}
+
+if (loginInput) {
+  loginInput.addEventListener('input', () => {
+    formatarLoginSeForCPF(loginInput);
+    setFieldError(loginInput, false);
+  });
 }
