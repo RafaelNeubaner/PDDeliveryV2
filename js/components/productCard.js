@@ -12,10 +12,6 @@ export function criaCardProduto(produto) {
           <a href="/detalhes-produto/detalhes-produto.html?id=${produto.id}" class="linkCardProduto">
             <img src="${produto.image}" alt="Imagem do produto ${produto.name}" class="imgProduto">
           </a>
-  
-          <button class="btnFavorito" aria-label="Adicionar aos favoritos" data-id="${produto.id}">
-            <i class="bi bi-heart iconeFavorito"></i>
-          </button>
         </div>
   
         <hgroup class="infoProduto">
