@@ -23,7 +23,7 @@ const confirmPasswordInput = document.getElementById('login-confirm-password');
 const loginInput = document.getElementById('loginUser');
 const loginPasswordInput = document.getElementById('loginPassword');
 const loginButton = document.getElementById('loginButton');
-const verSenha = document.getElementById('verSenha');
+const verSenha = document.querySelector('.verSenha');
 const verSenhaConfirmar = document.getElementById('verSenhaConfirmar');
 
 const requiredInputs = [

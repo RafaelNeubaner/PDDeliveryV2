@@ -115,7 +115,7 @@ h1 {
     position: relative;
 }
 
-#verSenha {
+.verSenha {
     position: absolute;
     right: 16px;
 }
