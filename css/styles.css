@@ -145,6 +145,7 @@ body.darkMode .themeToggle:hover {
     cursor: pointer;
     transition: background-color 0.3s ease;
     display: inline-block;
+    font-size: 16px;
 }
 
 .btnPrimary.disable {
@@ -205,6 +206,7 @@ body.darkMode .themeToggle:hover {
     cursor: pointer;
     transition: background-color 0.3s ease;
     display: inline-block;
+    font-size: 1.6rem;
 }
 
 .btnSecondary:hover {
@@ -229,6 +231,8 @@ body.darkMode .themeToggle:hover {
     transition:
         all 0.1s ease,
         color 0.1s ease;
+
+    font-size: 1.6rem;
 }
 
 .btnSecondaryOutline:hover {
@@ -458,17 +462,19 @@ select {
         font-size: small;
         padding: 8px 12px;
     }
-
+    
     .btnPrimaryOutline {
         padding: 8px 12px;
     }
-
+    
     .btnSecondary {
         padding: 8px 12px;
+        font-size: small;
     }
 
     .btnSecondaryOutline {
         padding: 8px 12px;
+        font-size: small;
     }
 
     .mainTitle {
@@ -498,7 +504,7 @@ select {
     .cardLabel {
         font-size: 12px;
     }
-    
+
     p {
         font-size: 1.4rem;
     }
@@ -513,11 +519,11 @@ select {
 }
 
 
-.loading{
+.loading {
     position: fixed;
     z-index: 999;
     top: 0;
-    left:0;
+    left: 0;
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.6);
@@ -526,11 +532,11 @@ select {
     justify-content: center;
 }
 
-.hide{
+.hide {
     display: none;
 }
 
-.loading .spinner-content{
+.loading .spinner-content {
     width: 60px;
     height: 60px;
     background-color: var(--primary);
