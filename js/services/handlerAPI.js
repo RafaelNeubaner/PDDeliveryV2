@@ -2,18 +2,25 @@ const URL_CLIENTES = "https://6a315f607bc5e1c61265a1c2.mockapi.io/client"
 
 export async function handlerCreateClient(body){
 
-    const checkExistResponse = await fetch(`${URL_CLIENTES}?email=${body.email}`, {
-        method: "GET",
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-    })
-
-    const checkExist = await checkExistResponse.json()
-
-    if(checkExist.length>0) throw Error("Este [CPF/E-mail] já está vinculado a uma conta existente.")
-
+    const checkExistResponseList = await Promise.all([
+        await fetch(`${URL_CLIENTES}?email=${body.email}`, {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        }),
+        await fetch(`${URL_CLIENTES}?cpf=${body.cpf}`, {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        })
+    ]) 
+    
+    if(checkExistResponseList.map(req=> req.status).includes(200)) throw Error("Este [CPF/E-mail] já está vinculado a uma conta existente.")
+        
     const response = await fetch(`${URL_CLIENTES}`, {
         method: "POST",
         headers: {

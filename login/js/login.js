@@ -45,6 +45,8 @@ const requiredInputs = [
   'login-confirm-password',
 ].map((id) => document.getElementById(id));
 
+
+
 const abrirModalTermosButton = document.getElementById('abrirModalTermos');
 if (abrirModalTermosButton && modalTermos) {
   abrirModalTermosButton.addEventListener('click', function(event) {
