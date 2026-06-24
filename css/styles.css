@@ -389,7 +389,7 @@ select {
     padding: 10px !important;
     color: var(--txtMuted) !important;
     border-radius: 12px !important;
-    border: 2px solid var(--secondary) !important;
+    border: 2px solid var(--primary) !important;
     outline: none !important;
     background-color: var(--bg) !important;
 }
@@ -454,6 +454,13 @@ select {
         margin-bottom: 26px;
     }
 
+}
+
+
+@media (max-width: 768px) {
+    main {
+        margin-top: 15rem !important;
+    }
 }
 
 @media (max-width: 576px) {
