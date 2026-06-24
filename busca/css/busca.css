@@ -1,0 +1,133 @@
+#resultadosBusca {
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem;
+    width: 100%;
+    height: 100%;
+    min-height: calc(100vh - 29.7rem);
+}
+
+#gridProdutosBusca {
+    display: flex;
+    justify-content: center;
+    gap: 3.2rem;
+    width: 100%;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.justify-center {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.ContainerBusca {
+    display: flex;
+    flex-direction: row;
+    gap: 3.2rem;
+    width: 100%;
+    height: 100%;
+}
+
+.cardProduto:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.filtros {
+    margin-top: 72px;
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+    gap: 1.6rem;
+    width: 100%;
+    padding: 0 2.4rem;
+}
+
+.filtros ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.6rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ordenarBusca {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-left: auto;
+    white-space: nowrap;
+}
+
+.ordenarBusca span {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--txt);
+}
+
+.ordenarBusca select {
+    min-width: 18rem;
+    border: 3px solid var(--primary);
+    border-radius: 12px;
+    background-color: transparent;
+    color: var(--primary);
+    padding: 8px 12px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .filtros {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0 1.6rem;
+    }
+
+    .filtros ul {
+        width: 100%;
+    }
+
+    .ordenarBusca {
+        justify-content: flex-end;
+        margin-left: 0;
+    }
+}
+
+@media(max-width: 768px) {
+
+    .cardProduto {
+        width: 162px;
+    }
+
+
+    .cardProduto .imgProduto {
+        height: 136px;
+    }
+
+    .cardProduto .infoProduto {
+        padding: 0.8rem;
+    }
+
+    .cardProduto .infoProduto .nomeProduto {
+        font-size: 1.6rem;
+    }
+
+    .cardProduto .infoProduto .precoProduto {
+        margin: 0;
+    }
+
+    .containerCardapio {
+        gap:1.2rem;
+    }
+   
+    .ContainerBusca {
+        flex-direction: column;
+        gap: 1.6rem;
+    }
+}
