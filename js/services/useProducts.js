@@ -13,10 +13,28 @@ export const useProducts = {
       if (!response.ok) throw new Error("Erro ao buscar produtos.");
 
       let products = await response.json();
+      const termoBusca = query.trim().toLowerCase();
 
       if (!queryOptions.isLogista) {
         products = products.filter((p) => p.initialPrice > 0);
       }
+
+      if (termoBusca) {
+        products = products.filter((product) => {
+          const productName = product.name?.toLowerCase() || "";
+          const productCategory = product.category?.toLowerCase() || "";
+          const productDescription = product.description?.toLowerCase() || "";
+          const productDescricao = product.descricao?.toLowerCase() || "";
+
+          return (
+            productName.includes(termoBusca) ||
+            productCategory.includes(termoBusca) ||
+            productDescription.includes(termoBusca) ||
+            productDescricao.includes(termoBusca)
+          );
+        });
+      }
+
       return products;
     } catch (error) {
       console.error("Erro ao buscar produtos:", error);
