@@ -12,6 +12,14 @@ function clearAllErrors(requiredInputs, formFeedback) {
 	formFeedback.classList.remove('is-error');
 }
 
+function validarNomeUsuario(usuario) {
+	if (!usuario) {
+		return false;
+	}
+
+	return true;
+}
+
 function validarEmail(email) {
 	const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 	return regex.test(email);
@@ -53,7 +61,7 @@ function validarTelefone(telefone) {
 }
 
 function validarSenha(senha) {
-	return senha.length >= 6;
+	return (senha.length >= 6 && /[A-Z]/.test(senha) && /[a-z]/.test(senha) && /\d/.test(senha) && /[!@#$%^&*(),.?":{}|<>]/.test(senha));
 }
 
 function validarLoginEmail(email) {
@@ -123,6 +131,14 @@ async function validarFormulario(event, context) {
 
 	event.preventDefault();
 	clearAllErrors(requiredInputs, formFeedback);
+
+	const nomeUsuarioInput = document.getElementById('login-name');
+	if (!validarNomeUsuario(nomeUsuarioInput.value.trim())) {
+		setFieldError(nomeUsuarioInput, true);
+		formFeedback.textContent = 'Nome do usuário é obrigatório.';
+		formFeedback.classList.add('is-error');
+		return;
+	}
 
 	if (!validarEmail(document.getElementById('loginEmail').value.trim())) {
 		const emailInput = document.getElementById('loginEmail');
@@ -224,6 +240,7 @@ function validarLogin(event, context) {
 export {
 	clearAllErrors,
 	setFieldError,
+	validarNomeUsuario,
 	validarEmail,
 	validarCPF,
 	validarTelefone,
