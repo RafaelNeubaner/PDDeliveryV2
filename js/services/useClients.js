@@ -11,6 +11,7 @@
  * @property {string} cpf
  * @property {Date} dateBirth
  * @property {Endereco} endereco
+ * @property {boolean} isAdmin
  */
 
 import {handlerCreateClient, handlerUpdateClient, handlerGetClient, handlerSignInClient} from "./handlerAPI.js";
