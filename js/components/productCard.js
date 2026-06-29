@@ -7,7 +7,7 @@ export function criaCardProduto(produto) {
   const precoDesconto = precoFinal.toFixed(2).replace(".", ",");
 
   return `
-    <article class="cardProduto col-12 col-md-6 col-lg-4">
+    <article class="cardProduto">
         <div class="containerImgProduto">
           <a href="/detalhes-produto/detalhes-produto.html?id=${produto.id}" class="linkCardProduto">
             <img src="${produto.image}" alt="Imagem do produto ${produto.name}" class="imgProduto">
