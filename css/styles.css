@@ -145,7 +145,7 @@ body.darkMode .themeToggle:hover {
     cursor: pointer;
     transition: background-color 0.3s ease;
     display: inline-block;
-    font-size: 16px;
+    font-size: 22px;
 }
 
 .btnPrimary.disable {
@@ -171,6 +171,7 @@ body.darkMode .themeToggle:hover {
     color: var(--primary);
     border: 3px solid var(--primary);
     padding: 8px 22px;
+    font-size: 22px;
     border-radius: 12px;
     cursor: pointer;
     transition:
@@ -206,7 +207,7 @@ body.darkMode .themeToggle:hover {
     cursor: pointer;
     transition: background-color 0.3s ease;
     display: inline-block;
-    font-size: 1.6rem;
+    font-size: 22px;
 }
 
 .btnSecondary:hover {
@@ -232,7 +233,7 @@ body.darkMode .themeToggle:hover {
         all 0.1s ease,
         color 0.1s ease;
 
-    font-size: 1.6rem;
+    font-size: 22px;
 }
 
 .btnSecondaryOutline:hover {
@@ -316,7 +317,7 @@ body.darkMode .themeToggle:hover {
 }
 
 .btnText {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 600;
 }
 
@@ -472,6 +473,7 @@ select {
     
     .btnPrimaryOutline {
         padding: 8px 12px;
+        font-size: small;
     }
     
     .btnSecondary {
