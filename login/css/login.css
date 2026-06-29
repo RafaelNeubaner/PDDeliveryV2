@@ -5,7 +5,7 @@
     justify-content: center;
     align-items: stretch;
     padding: 0;
-    overflow: hidden;
+    overflow:hidden;
 }
 
 h1 {
@@ -302,11 +302,16 @@ h1 {
     color: #28a745;
 }
 
+.link.cardLabel, .termos.cardLabel {
+    margin-top: 24px;
+}
+
 @media (max-width: 991px) {
     .loginPage {
         flex-direction: column;
         padding: 24px;
         overflow: auto;
+        margin-top: 0 !important;
     }
 
     .loginImage {
