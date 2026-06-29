@@ -1,6 +1,7 @@
 import { createClient, getClient, signInClient } from "./useClients.js";
 
 const USER_KEY = "PDDELIVERY_USER_ID"
+const USER_ADMIN_KEY = "PDDELIVERY_USER_ADMIN"
 
 function hasUserAuthenticated(){
     const user_id = localStorage.getItem(USER_KEY)
@@ -21,10 +22,15 @@ async function getUserAuthenticated(){
  * @param {string} password 
  * @returns {import("./useClients").Client}
  */
-async function loginCliente(identifier, password){
+async function login(identifier, password){
     try{
         const user = await signInClient({identifier, password})
         localStorage.setItem(USER_KEY, user.id)
+
+        if(user.isAdmin){
+            localStorage.setItem(USER_ADMIN_KEY, user.isAdmin)
+        }
+
         return user;
     }catch(e){
         throw e;
@@ -51,4 +57,4 @@ async function logout(){
 }
 
 
-export {hasUserAuthenticated, getUserAuthenticated, loginCliente, registerCliente, logout}
+export {hasUserAuthenticated, getUserAuthenticated, login, registerCliente, logout}
