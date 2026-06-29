@@ -1,58 +1,46 @@
+
 /* HERO - carousel */
 
-@media(min-width:577px) {
+@media(min-width: 768px) {
   .sl-d {
     display: block;
-    max-height: 460px;
-    object-fit: contain;
+    aspect-ratio: 11115 / 4053; 
+    object-fit: contain; 
+    max-height: 44rem; 
+    width: 100%;
   }
-
   .sl-m {
     display: none;
   }
 }
 
-
-@media(max-width:767px) {
+/* --- MOBILE --- */
+@media(max-width: 767px) {
   .sl-m {
     display: block;
-    max-height: 350px;
     margin-top: 128px;
+    
+    aspect-ratio: 1574 / 570; 
     object-fit: contain;
+    width: 100%;
   }
-
   .sl-d {
     display: none;
   }
 }
 
-.carousel-control-prev i {
-  background-color: var(--bg-light);
-  color: var(--azul);
-  font-size: 2.2rem;
-  font-weight: 900;
-  border-radius: 20%;
-  padding: 0.5rem;
-}
 
-.carousel-control-next i {
-  background-color: var(--bg-light);
-  color: var(--azul);
-  font-size: 2.2rem;
-  font-weight: 900;
-  border-radius: 20%;
-  padding: 0.5rem;
-}
-
-/* CARD PRODUTO */
 .cardProduto {
   position: relative;
+  background-color: var(--bg-light);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  width: 200px;
-  background-color: var(--bg-light);
+  width: 100%; 
+  height: 100%; 
+  display: flex;
+  flex-direction: column;
   padding: 0;
 }
 
@@ -63,13 +51,16 @@
 
 .cardProduto .imgProduto {
   width: 100%;
-  height: 143px;
+  height: 160px; 
   object-fit: cover;
 }
 
 
 .cardProduto .infoProduto {
-  padding: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; 
 }
 
 .cardProduto .infoProduto .nomeProduto {
@@ -114,7 +105,7 @@
 
 main {
   max-width: 1440px;
-  margin: 0 auto;
+  margin: 0 auto !important;
 }
 
 /* OFERTAS SEMANA */
@@ -129,10 +120,12 @@ main {
   margin: 0;
 }
 
+
 .containerCardapio {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 2.4rem;
+  width: 100%;
 }
 
 @media(max-width: 768px) {
@@ -144,7 +137,7 @@ main {
 @media(max-width: 576px) {
   .ofertas {
     gap: 2.4rem;
-    margin: 0 2.4rem;
+    margin: 0 1.6rem;
   }
 
   .ofertas .title {
@@ -152,6 +145,24 @@ main {
   }
 
   .containerCardapio {
-    gap: 1.2rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.4rem;
+  }
+
+  .cardProduto .imgProduto {
+    height: 120px;
+  }
+
+  .cardProduto .infoProduto {
+    padding: 10px;
+  }
+
+  .cardProduto .infoProduto .nomeProduto {
+    font-size: 1.4rem; 
+  }
+
+  .cardProduto .infoProduto .precoProduto {
+    margin: 0;
+    font-size: 1.4rem;
   }
 }
