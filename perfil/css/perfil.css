@@ -75,3 +75,15 @@ main input, .password{
     transform: translateY(-50%);
     right: 10px;
 }
+
+.requisitosSenha{
+    font-size: 14px;
+}
+
+.requisitosSenha li{
+    color: red;
+}
+
+.requisitosSenha li.validated {
+    color: green;
+}
