@@ -74,13 +74,7 @@ async function changePassword(){
     }
 
     if(!validarSenha(newPasswordInp.value)){
-        if(newPasswordInp.value.length<6){
-            alert("A senha precisa ter no mínimo 6 caracteres")
-        } else if(!/[A-Z]/.test(senha)){
-            alert("A senha precisa ter uma letra maiúscula")
-        } else if(!/[a-z]/.test(senha)){
-            alert("A senha precisa ter uma letra minúscula")
-        }
+        return alert("Falta preencher alguns requisitos da senha")
     }
 
     loading.classList.remove("hide")

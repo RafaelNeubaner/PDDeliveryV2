@@ -107,18 +107,35 @@
     </header>
 
     <main class="d-flex flex-column">
-      <a href="/adm/index.html" class="btnPrimary">Área Administrativa</a>
       <form>
         <section>
           <div>
-            <fieldset>
-              <legend>Dados Pessoais</legend>
-              <input type="text" placeholder="Nome" id="nomeInp" name="nome">
-              <input type="text" placeholder="CPF" id="cpfInp" name="cpf">
-              <input type="tel" placeholder="Telefone" id="celInp" name="celphone">
-              <input type="email" placeholder="Email" id="emailInp" name="email">
-              <input type="date" placeholder="Data de Nascimento" id="birthdayInp" name="birthday">
-            </fieldset>
+
+            <div class="d-flex flex-colummn flex-md-row align-items-start">
+              <fieldset>
+                <legend>Dados Pessoais</legend>
+                <input type="text" placeholder="Nome" id="nomeInp" name="nome">
+                <input type="text" placeholder="CPF" id="cpfInp" name="cpf">
+                <input type="tel" placeholder="Telefone" id="celInp" name="celphone">
+                <input type="email" placeholder="Email" id="emailInp" name="email">
+                <input type="date" placeholder="Data de Nascimento" id="birthdayInp" name="birthday">
+              </fieldset>
+              <fieldset>
+                <legend>Dados de Entrega</legend>
+                <input type="text" placeholder="CEP" id="cepInp" name="cep">
+                <input type="text" placeholder="Rua" id="ruaInp" name="rua">
+                <input type="text" placeholder="Bairro" id="bairroInp" name="bairro">
+                <input type="text" placeholder="Cidade" id="cidadeInp" name="cidade">
+                <input type="text" placeholder="Estado" id="estadoInp" name="estado">
+                <input type="number" placeholder="Número" id="numeroInp" name="numeroRes">
+                <input type="text" placeholder="Complemento" id="complementoInp" name="complemento">
+              </fieldset>
+            </div>
+            
+            <button type="button" class="btnPrimary saveBtn">Salvar</button>
+          </div>
+          <div class="divider"></div>
+          <div>
             <fieldset>
               <legend>Dados de Acesso</legend>
               <div class="passwordCont password">
@@ -142,21 +159,7 @@
               <button type="button" class="btnSecondaryOutline changePassBtn">Alterar Senha</button>
             </fieldset>
           </div>
-          <div>
-            <fieldset>
-              <legend>Dados de Entrega</legend>
-              <input type="text" placeholder="CEP" id="cepInp" name="cep">
-              <input type="text" placeholder="Rua" id="ruaInp" name="rua">
-              <input type="text" placeholder="Bairro" id="bairroInp" name="bairro">
-              <input type="text" placeholder="Cidade" id="cidadeInp" name="cidade">
-              <input type="text" placeholder="Estado" id="estadoInp" name="estado">
-              <input type="number" placeholder="Número" id="numeroInp" name="numeroRes">
-              <input type="text" placeholder="Complemento" id="complementoInp" name="complemento">
-              
-            </fieldset>
-          </div>
         </section>
-        <button type="button" class="btnPrimary saveBtn">Salvar</button>
       </form>
     </main>
 
