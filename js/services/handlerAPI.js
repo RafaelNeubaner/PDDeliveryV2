@@ -19,7 +19,7 @@ export async function handlerCreateClient(body){
         })
     ]) 
     
-    if(checkExistResponseList.map(req=> req.status).includes(200)) throw Error("Este [CPF/E-mail] já está vinculado a uma conta existente.")
+    if(checkExistResponseList.map(req=> req.status).includes(200) && checkExistResponseList.map(async req => await req.json()).filter(e=> e.length > 0).length > 0) throw Error("Este [CPF/E-mail] já está vinculado a uma conta existente.")
         
     const response = await fetch(`${URL_CLIENTES}`, {
         method: "POST",

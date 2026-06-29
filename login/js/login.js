@@ -1,5 +1,5 @@
 
-import { loginCliente } from '../../js/services/useAuth.js';
+import { login } from '../../js/services/useAuth.js';
 import { createClient } from '../../js/services/useClients.js';
 import {
   formatarTelefone,
@@ -94,13 +94,17 @@ if (loginButton) {
         loading.classList.remove('hide');
       }
 
-      await loginCliente(identifier, password);
+      var userLogin = await login(identifier, password);
 
       if (loading) {
         loading.classList.add('hide');
       }
 
-      location.href = '/';
+      if(userLogin.isAdmin){
+        location.href = '/adm/index.html'
+      }else{
+        location.href = '/';
+      }
     } catch (e) {
       if (loading) {
         loading.classList.add('hide');
@@ -144,6 +148,7 @@ async function cadastrarUsuario() {
       cidade: cidade,
       estado: estadoInput ? estadoInput.value.trim() : '',
     },
+    isAdmin: false
   };
 
   return createClient(client);
