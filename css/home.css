@@ -4,6 +4,7 @@
   .sl-d {
     display: block;
     width: 100%;
+   aspect-ratio: 11117 /4058;
     max-height: 440px;
     object-fit: cover; 
     object-position: center center;
