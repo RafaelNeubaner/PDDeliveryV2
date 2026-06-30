@@ -3,12 +3,11 @@
 @media(min-width: 768px) {
   .sl-d {
     display: block;
-    aspect-ratio: 11115 / 4053;
-    object-fit: contain;
-    max-height: 44rem;
     width: 100%;
+    max-height: 440px;
+    object-fit: cover; 
+    object-position: center center;
   }
-
   .sl-m {
     display: none;
   }
@@ -17,11 +16,11 @@
 @media(max-width: 767px) {
   .sl-m {
     display: block;
+    width: 100%;
     margin-top: 128px;
 
     aspect-ratio: 1574 / 570;
-    object-fit: contain;
-    width: 100%;
+    object-fit: cover;
   }
 
   .sl-d {
@@ -29,6 +28,13 @@
   }
 }
 
+.carousel-inner {
+  max-width: 1184px;
+  margin: 0 auto; 
+  background-color: var(--bg-light); 
+}
+
+/* CARD PRODUTO */
 
 .cardProduto {
   position: relative;
@@ -79,10 +85,6 @@
 
 @media(max-width: 576px) {
 
-  .cardProduto {
-    width: 162px;
-  }
-
   .cardProduto .imgProduto {
     height: 120px;
   }
@@ -122,7 +124,7 @@ main {
 
 .containerCardapio {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 2.4rem;
   width: 100%;
 }
