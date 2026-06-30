@@ -56,7 +56,7 @@
           </a>
 
           <form
-            action="/busca/busca-produto.html"
+            action="/busca/index.html"
             class="d-flex position-relative inputForm"
           >
             <input
@@ -137,7 +137,7 @@
                         Salitre</small
                       >
                     </p>
-                    <p class="precoProduto">R$ 99,99</p>
+                    <p class="precoProduto txtDark">R$ 99,99</p>
                   </hgroup>
                 </div>
   
@@ -201,32 +201,16 @@
 
           </section>
 
-          <button class="btnSecondary">Adicionar mais produtos</button>
+          <button class="btnSecondary d-none d-lg-block" onclick="window.location.href='/index.html'">Adicionar mais produtos</button>
+          
 
         </section>
 
         <!-- SUBTOTAL -->
         <aside class="resumo">
-          <h4>Subtotal: <span class="subtotal">R$ 8,97</span></h4>
-          <h4>Taxa de serviço: <span class="taxaServico">R$ 0,99</span></h4>
+          <h3>Subtotal: <span class="subtotal">R$ 8,97</span></h3>
+          <h3>Taxa de serviço: <span class="taxaServico">R$ 0,99</span></h3>
 
-          <!-- FRETE -->
-          <template id="tempFreteOption">
-            <li class="freteItem d-flex gap-3">
-              <input type="radio" name="freteOption" class="freteOption" />
-              <img src="" alt="" />
-              <label
-                for=""
-                class="d-flex flex-row w-100 align-items-center justify-content-between"
-              >
-                <h4></h4>
-                <p></p>
-              </label>
-            </li>
-          </template>
-
-          <ul class="fretesOptions d-flex flex-column gap-4"></ul>
-          <!-- FIM FRETE -->
 
           <form class="formDesconto d-flex gap-3">
             <input
@@ -237,13 +221,12 @@
             <button class="btnPrimary">Aplicar</button>
           </form>
 
-          <!-- <h4>Entrega: <span class="precoFrete">R$ 0,00</span></h4> -->
-          <h4>Desconto: <span class="precoDesconto">- R$ --,--</span></h4>
+          <h3>Desconto: <span class="precoDesconto">- R$ --,--</span></h3>
           <h4>Total: <span class="precoTotal subTitleCard">R$ 99,99</span></h4>
 
           <button class="btnPrimary finalizar-compra">Finalizar Compra</button>
+          <button class="btnSecondary d-block d-lg-none" onclick="window.location.href='/index.html'">Adicionar mais produtos</button>
         </aside>
-
 
         <article class="modalCompraConcluida">
           <i class="bi bi-check-circle" style="color: green"></i>
@@ -258,7 +241,7 @@
       </div>
     </main>
 
-    <footer class="bgSecondary">
+    <footer>
       <p class="textCenter">
         © PD Delivery V2 2026 | Desenvolvido por Pablo, Pedro e Rafael.
       </p>
