@@ -14,7 +14,7 @@ const elements = {
   detail: document.getElementById("produtoDetalhe"),
   error: document.getElementById("produtoErro"),
   titleName: document.querySelector("#produtoNomeTitulo"),
-  summaryName: document.querySelector(".produtoNomeResumo"),
+  summaryName: document.querySelector(".produtoCompra .produtoNomeResumo"),
   image: document.getElementById("produtoImagem"),
   description: document.getElementById("produtoDescricao"),
   additionsList: document.getElementById("listaAdicionais"),
