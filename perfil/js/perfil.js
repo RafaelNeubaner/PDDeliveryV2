@@ -47,6 +47,19 @@ cepInp.addEventListener("change", async (ev)=>{
     updateEndereco(location)
 })
 
+newPasswordInp.addEventListener("input", (ev)=>{
+    setRequisitoSenhaValidated(document.querySelector(".letraMaiuscula"), /[A-Z]/.test(ev.target.value))
+    setRequisitoSenhaValidated(document.querySelector(".letraMinuscula"), /[a-z]/.test(ev.target.value))
+    setRequisitoSenhaValidated(document.querySelector(".numero"), /\d/.test(ev.target.value))
+    setRequisitoSenhaValidated(document.querySelector(".caractereEspecial"), /[!@#$%^&*(),.?":{}|<>]/.test(ev.target.value))
+    setRequisitoSenhaValidated(document.querySelector(".qtdCaracteres"), ev.target.value.length>=6)
+    setRequisitoSenhaValidated(document.querySelector(".senhasCoincidem"), ev.target.value.length >= 6 && ev.target.value === confirmPasswordInp.value)
+})
+
+confirmPasswordInp.addEventListener("input", (ev)=>{
+    setRequisitoSenhaValidated(document.querySelector(".senhasCoincidem"), ev.target.value.length >= 6 && ev.target.value === newPasswordInp.value)
+})
+
 async function changePassword(){
     if (   !newPasswordInp.value 
         || newPasswordInp.value == "" 
@@ -60,7 +73,9 @@ async function changePassword(){
         return alert("As senhas precisa ser idênticas")
     }
 
-    if(!validarSenha(newPasswordInp.value)) return alert("A senha precisa ter no mínimo 6 caracteres")
+    if(!validarSenha(newPasswordInp.value)){
+        return alert("Falta preencher alguns requisitos da senha")
+    }
 
     loading.classList.remove("hide")
     user = await updateClient(user.id, {
@@ -144,4 +159,17 @@ function updateEndereco(location){
     bairroInp.value = location.bairro
     cidadeInp.value = location.localidade
     estadoInp.value = location.estado
+}
+
+function setRequisitoSenhaValidated(comp, validated){
+    if(validated){
+        comp.classList.add("validated")
+        comp.querySelector("i").classList.remove("bi-x-circle")
+        comp.querySelector("i").classList.add("bi-check-circle")
+    }else{
+        comp.classList.remove("validated")
+        comp.querySelector("i").classList.add("bi-x-circle")
+        comp.querySelector("i").classList.remove("bi-check-circle")
+    }
+
 }
