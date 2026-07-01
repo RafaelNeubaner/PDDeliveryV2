@@ -1,6 +1,7 @@
 #resultadosBusca {
     display: flex;
     flex-direction: column;
+    align-items: start;
     gap: 3.2rem;
     width: 100%;
     height: 100%;
@@ -10,7 +11,7 @@
 #gridProdutosBusca {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
-    align-items: stretch;
+    align-items: start;
     gap: 2.4rem;
     width: 100%;
     margin: 0 auto;
@@ -151,6 +152,7 @@
     .ContainerBusca {
         flex-direction: column;
         gap: 1.6rem;
+        padding: 0 2.4rem !important;
     }
 }
 

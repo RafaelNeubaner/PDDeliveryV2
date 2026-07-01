@@ -130,10 +130,13 @@ function renderProducts(products, searchTerm) {
 
   if (products.length === 0) {
       gridProdutosBusca.innerHTML = `<p class="col-12 text-center">Nenhum produto encontrado para sua busca. Tente utilizar outros termos ou limpar os filtros.</p>`;
+      gridProdutosBusca.style.display="flex"
       resultadosBusca.classList.add("justify-center");
     return;
   }
 
+  gridProdutosBusca.style.display="grid"
+  resultadosBusca.classList.remove("justify-center");
   products.forEach((produto) => {
     const cardProduto = criaCardProduto(produto);
     gridProdutosBusca.insertAdjacentHTML("beforeend", cardProduto);
@@ -223,6 +226,7 @@ async function loadSearchProducts() {
 
   if (!searchTerm) {
       gridProdutosBusca.innerHTML = `<p class="col-12 text-center">Nenhum termo de busca fornecido.</p>`;
+      gridProdutosBusca.style.display="flex"
       resultadosBusca.classList.add("justify-center");
     return;
   }
@@ -233,6 +237,7 @@ async function loadSearchProducts() {
     renderFilteredProducts();
   } catch (error) {
     console.error("Erro ao buscar produtos:", error);
+    gridProdutosBusca.style.display="flex"
     gridProdutosBusca.innerHTML = `<p class="col-12 text-center">Ocorreu um erro ao buscar produtos. Por favor, tente novamente mais tarde.</p>`;
     resultadosBusca.classList.add("justify-center");
   }
