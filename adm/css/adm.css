@@ -125,6 +125,63 @@ footer .navLinks {
     display: none;
 }
 
+.produtosContainer{
+    width: 100%;
+    max-width: 1000px;
+    padding: 20px;
+}
+
+.cardProdutoAdm{
+    display: flex;
+    gap: 30px;
+    width: 100%;
+    background-color: var(--bg);
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+.cardProdutoAdm img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.cardProdutoAdm .contentText{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.cardProdutoAdm .contentText h4{
+    font-size: 20px;
+}
+
+.cardProdutoAdm .contentText span{
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.cardProdutoAdm .buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.cardProdutoAdm .buttons button{
+    font-size: 14px;
+}
+
+.cardProdutoAdm .buttons i{
+    font-size: 25px;
+    color: var(--primary);
+    cursor: pointer;
+}
+
 @media (max-width: 992px) {
     header {
         position: fixed;

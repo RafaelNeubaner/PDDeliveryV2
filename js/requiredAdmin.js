@@ -1,4 +1,4 @@
-import { getUserAuthenticated } from "./services/useAuth";
+import { getUserAuthenticated } from "./services/useAuth.js";
 
 var user = await getUserAuthenticated()
 

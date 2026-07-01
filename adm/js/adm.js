@@ -1,5 +1,8 @@
 import { useProducts } from "../../js/services/useProducts.js"
 
+const cardProdutoTemp = document.querySelector(".cardProdutoTemp")
+const produtosContainer = document.querySelector(".produtosContainer")
+
 addEventListener('DOMContentLoaded', function () {
     const navLinks = document.querySelectorAll('.navLink');
     const pedidosSection = document.getElementById('gerenciarPedidos');
@@ -25,4 +28,7 @@ addEventListener('DOMContentLoaded', function () {
 });
 
 const produtos = await useProducts.findProdutos()
-console.log(produtos)
+
+
+produtos.map((prod, index)=> createProdutoCard())
+

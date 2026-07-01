@@ -70,18 +70,20 @@
           <button class="btnPrimary">Criar Produto</button>
         </div>
         <div class="produtosContainer">
-          <article>
-            <img src="https://s2-casaejardim.glbimg.com/W1fPyFbY1VJ1LZrOLa6-cwgVD10=/0x0:1400x933/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_a0b7e59562ef42049f4e191fe476fe7d/internal_photos/bs/2024/k/g/fQetnlRqCCgARUUVXwXQ/receita-pao-queijo-carne-louca-acem-mococa.jpg" alt="">
-            <div>
-              <h4 class="titleProduto">Pão de Queijo Recheado com Lombo</h4>
-              <span class="priceProduto">R$24,50</span>
-            </div>
-            <div>
-              <i class="bi bi-eye"></i>
-              <button class="btnSecondaryOutline">Editar</button>
-              <button class="btnPrimary">Excluir</button>
-            </div>
-          </article>
+          <template class="cardProdutoTemp">
+            <article class="cardProdutoAdm">
+              <img src="https://s2-casaejardim.glbimg.com/W1fPyFbY1VJ1LZrOLa6-cwgVD10=/0x0:1400x933/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_a0b7e59562ef42049f4e191fe476fe7d/internal_photos/bs/2024/k/g/fQetnlRqCCgARUUVXwXQ/receita-pao-queijo-carne-louca-acem-mococa.jpg" alt="">
+              <div class="contentText">
+                <h4 class="titleProduto">Pão de Queijo Recheado com Lombo</h4>
+                <span class="priceProduto">R$24,50</span>
+              </div>
+              <div class="buttons">
+                <i class="bi bi-eye"></i>
+                <button class="btnSecondaryOutline">Editar</button>
+                <button class="btnPrimary">Excluir</button>
+              </div>
+            </article>
+          </template>
         </div>
       </section>
     </main>
