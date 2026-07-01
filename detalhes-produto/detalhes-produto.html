@@ -115,7 +115,9 @@
         <article class="produtoImagemInfo">
           <h1 id="produtoNomeTitulo" class="title"></h1>
           <img id="produtoImagem" class="produtoImagem" src="" alt="" />
+          <h2 class="produtoNomeResumo displayNoneDesktop"></h2>
           <div id="produtoDescricao" class="produtoDescricao"></div>
+          
         </article>
 
         <section class="produtoAdicionais">
@@ -124,10 +126,9 @@
 
         <aside class="produtoCompra">
           <div class="produtoBadges" id="produtoBadges"></div>
-
-          <h2 id="produtoNomeResumo" class="cardTitle"></h2>
+          <h2 id="produtoNomeResumo" class="cardTitle produtoNomeResumo displayNone"></h2>
+          <div class="group">
           <p id="produtoPreco" class="produtoPreco"></p>
-
           <div class="quantidadeProduto" aria-label="Quantidade do produto">
             <button type="button" id="diminuirProduto" aria-label="Diminuir">
               <i class="bi bi-dash"></i>
@@ -137,7 +138,7 @@
               <i class="bi bi-plus"></i>
             </button>
           </div>
-
+          </div>
           <button type="button" id="comprarAgora" class="btnPrimary btnComprar">
             Comprar agora
           </button>
@@ -156,7 +157,7 @@
       </section>
     </main>
 
-    <footer>
+    <footer class="d-none d-lg-block">
       <p class="textCenter">
         © PD Delivery V2 2026 | Desenvolvido por Pablo, Pedro e Rafael.
       </p>

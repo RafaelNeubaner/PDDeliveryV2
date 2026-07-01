@@ -13,8 +13,8 @@ const elements = {
   loading: document.getElementById("produtoLoading"),
   detail: document.getElementById("produtoDetalhe"),
   error: document.getElementById("produtoErro"),
-  titleName: document.getElementById("produtoNomeTitulo"),
-  summaryName: document.getElementById("produtoNomeResumo"),
+  titleName: document.querySelector("#produtoNomeTitulo"),
+  summaryName: document.querySelector(".produtoNomeResumo"),
   image: document.getElementById("produtoImagem"),
   description: document.getElementById("produtoDescricao"),
   additionsList: document.getElementById("listaAdicionais"),
@@ -113,7 +113,7 @@ function renderAdditions() {
             <strong class="adicionalNome">
               ${addition.title}${addition.description ? ` (${addition.description})` : ""}
             </strong>
-            <p class="adicionalPreco">${formatCurrency(addition.additionalPrice)}</p>
+            <p class="adicionalPreco">${formatCurrency(addition.aditionalPrice)}</p>
           </div>
           <div class="controleAdicional" data-index="${index}">
             <button type="button" data-action="decrease" aria-label="Remover ${addition.title}">
@@ -126,14 +126,15 @@ function renderAdditions() {
           </div>
         </article>
       `,
-    )
+      
+  )
     .join("");
 }
 
 function calculateUnitTotal() {
   const additionsTotal = state.additions.reduce(
     (total, addition) =>
-      total + Number(addition.additionalPrice || 0) * addition.quantity,
+      total + Number(addition.aditionalPrice || 0) * addition.quantity,
     0,
   );
 
@@ -175,8 +176,8 @@ function buildCartItem() {
       title: addition.title,
       name: addition.title,
       image: addition.image,
-      additionalPrice: Number(addition.additionalPrice || 0),
-      price: Number(addition.additionalPrice || 0),
+      additionalPrice: Number(addition.aditionalPrice || 0),
+      price: Number(addition.aditionalPrice || 0),
       description: addition.description || "",
       quantity: addition.quantity,
     }));
@@ -297,6 +298,7 @@ async function loadProduct() {
 
   try {
     const product = await useProducts.getProdutoById(id);
+    console.log("Produto carregado:", product);
     renderProduct(product);
   } catch (error) {
     console.error("Erro ao carregar produto:", error);

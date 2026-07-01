@@ -236,9 +236,21 @@ footer {
   margin-top: auto;
 }
 
+.displayNone {
+  display: none !important;
+}
+
+.displayNoneDesktop {
+  display: none !important;
+}
+
 @media (max-width: 992px) {
   .produtoPage {
     padding: 6.4rem 2.4rem 3.2rem;
+  }
+
+  .displayNoneDesktop {
+    display: block !important;
   }
 
   .produtoDetalhe {
@@ -251,11 +263,33 @@ footer {
   .produtoCompra {
     padding-top: 0;
   }
-}
 
-@media (max-width: 768px) {
-  .produtoPage {
-    margin-top: 15rem !important;
+  #produtoNomeTitulo {
+    display:none;
+  }
+
+  .produtoBadges{
+    position: absolute;
+    top: 21.6%;
+    right: 16.5%;
+  }
+
+  .produtoCompra {
+    border-top: 1px solid #000;
+    padding-top: 1.6rem;
+  }
+
+  #produtoNomeResumo {
+    display: none;
+  }
+  
+  .group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    vertical-align: middle;
+    align-items: center;
+    gap: 0.8rem;
   }
 }
 
