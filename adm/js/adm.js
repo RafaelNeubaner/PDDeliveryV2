@@ -1,3 +1,5 @@
+import { useProducts } from "../../js/services/useProducts.js"
+
 addEventListener('DOMContentLoaded', function () {
     const navLinks = document.querySelectorAll('.navLink');
     const pedidosSection = document.getElementById('gerenciarPedidos');
@@ -21,3 +23,6 @@ addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+const produtos = await useProducts.findProdutos()
+console.log(produtos)

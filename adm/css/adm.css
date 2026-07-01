@@ -69,6 +69,7 @@ section {
     align-items: center;
     justify-content: center;
     display: flex;
+    flex-direction: column;
 }
 
 .visible {
@@ -79,13 +80,54 @@ section {
     display: none;
 }
 
+.searchProdutos, .containerInput{
+    display: flex;
+    width: 100%;
+    gap: 30px;
+    padding: 10px;
+    justify-content: center;
+}
+
+@media (max-width: 768px){
+    .searchProdutos{
+        flex-direction: column;
+    }
+}
+
+.containerInput, .searchProdutos input{
+    flex: 1;
+    max-width: 700px;
+    padding: 0;
+    height: 50px;
+}
+
+.searchProdutos button {
+    height: 50px;
+}
+
+.searchProdutos input{
+    padding-left: 40px !important; 
+}
+
+.containerInput{
+    position: relative;
+}
+
+.containerInput i{
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+
 footer .navLinks {
     display: none;
 }
 
 @media (max-width: 992px) {
     header {
-        position:relative;
+        position: fixed;
         width: 100%;
         height: auto;
         flex-direction: row;
