@@ -37,8 +37,6 @@
     <script type="module" src="./js/requiredAuthentication.js"></script>
     <script src="js/scripts.js" defer></script>
     <script type="module" src="/js/components/header.js"></script>
-    <script type="module" src="/js/pages/home.js"></script>
-    <script type="module" src="/js/components/productCard.js"></script>
 
     <script type="module" src="/carrinho/js/carrinho.js"></script>
   </head>
@@ -122,6 +120,7 @@
 
           <!-- ITENS CARRINHO -->
           <section class="itensCarrinho">
+            <template class="itemCarrinhoTemp">
               <article class="item" data-id="">
                 <div class="cardInfo">
                   <img
@@ -159,51 +158,11 @@
                   <p class="subTotal red subTitleCard">R$ 99,99</p>
                 </div>
               </article>
-              
-              <article class="item" data-id="">
-                <div class="cardInfo">
-                  <img
-                    src="/assets/media/images/carrinho/produto.png"
-                    alt="imagem do produto"
-                  />
-                  <hgroup class="detalhesItem">
-                    <h3 class="cardTitle">Filé Mignon ao Salitre (300g)</h3>
-                    <p class="adicionais">
-                      Adicionais:
-                      <small
-                        >Arroz Branco, Batatas Rústicas, Legumes Salte, Molho ao
-                        Salitre</small
-                      >
-                    </p>
-                    <p class="precoProduto">R$ 99,99</p>
-                  </hgroup>
-                </div>
-  
-                <div class="d-flex justify-content-between">
-                  <div class="controleQtd d-flex">
-                    <div class="controle">
-                      <button class="decremento btnOutline">
-                        <i class="bi bi-dash"></i>
-                      </button>
-                      <span class="quantity">1</span>
-                      <button class="incremento btnOutline">
-                        <i class="bi bi-plus"></i>
-                      </button>
-                    </div>
-                    <button class="remover btnOutline">
-                      <i class="bi bi-trash"></i>
-                    </button>
-                  </div>
-                  <p class="subTotal red subTitleCard">R$ 99,99</p>
-                </div>
-              </article>
-  
-
+            </template>
           </section>
 
-          <button class="btnSecondary d-none d-lg-block">Adicionar mais produtos</button>
+          <button class="btnSecondary addProdutos d-none d-lg-block">Adicionar mais produtos</button>
           
-
         </section>
 
         <!-- SUBTOTAL -->

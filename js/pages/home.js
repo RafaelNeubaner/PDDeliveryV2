@@ -1,4 +1,5 @@
 import { criaCardProduto } from "../components/productCard.js";
+import { cartApi } from "../services/useCarrinho.js";
 import { useProducts } from "../services/useProducts.js";
 
 // Função para carregar o cardápio de produtos em oferta
@@ -38,3 +39,8 @@ async function carregarCardapio() {
 }
 
 carregarCardapio();
+
+
+document.querySelectorAll(".cardProduto").forEach((e => e.addEventListener((ev)=>{
+  cartApi.addToCart({}, 1)
+})))
