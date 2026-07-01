@@ -152,6 +152,7 @@
     .ContainerBusca {
         flex-direction: column;
         gap: 1.6rem;
+        padding: 0 2.4rem !important;
     }
 }
 
