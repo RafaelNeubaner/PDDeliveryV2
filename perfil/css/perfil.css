@@ -103,3 +103,9 @@ main input, .password{
     width: 1px;
     background-color: black;
 }
+
+
+.inputContainer input {
+  min-width: 120px !important;
+  max-width: 145px !important;
+}
