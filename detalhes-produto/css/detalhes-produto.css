@@ -1,0 +1,274 @@
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.produtoPage {
+  width: 100%;
+  max-width: 1184px;
+  margin: 0 auto;
+  padding: 7.2rem 6.4rem 4rem;
+}
+
+.produtoDetalhe {
+  display: grid;
+  grid-template-columns: minmax(280px, 1.1fr) minmax(260px, 0.95fr) minmax(220px, 0.75fr);
+  column-gap: 4.8rem;
+  row-gap: 2.4rem;
+  align-items: start;
+}
+
+.voltarProduto {
+  grid-column: 1 / -1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  width: fit-content;
+  color: var(--txt);
+  font-size: 1.4rem;
+  text-decoration: none;
+}
+
+.voltarProduto:hover {
+  color: var(--primary);
+}
+
+.produtoImagemInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.produtoImagemInfo .title {
+  margin: 0;
+  color: var(--txt);
+}
+
+.produtoImagem {
+  width: 100%;
+  aspect-ratio: 1 / 1.04;
+  max-height: 410px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.produtoDescricao {
+  color: var(--txt);
+}
+
+.produtoDescricao p {
+  margin-bottom: 0.8rem !important;
+  line-height: 1.25;
+}
+
+.produtoDescricao ul {
+  margin: 1rem 0 0;
+  padding-left: 1.8rem;
+}
+
+.produtoDescricao li {
+  font-size: 1.4rem;
+  margin-bottom: 0.7rem;
+}
+
+.produtoAdicionais {
+  padding-top: 4.7rem;
+}
+
+.listaAdicionais {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.adicionalItem {
+  display: grid;
+  grid-template-columns: 5rem 1fr auto;
+  gap: 1rem;
+  align-items: center;
+}
+
+.adicionalItem img {
+  width: 5rem;
+  height: 5rem;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.adicionalInfo {
+  min-width: 0;
+}
+
+.adicionalNome {
+  display: block;
+  color: var(--txt);
+  font-size: 1.4rem;
+  line-height: 1.15;
+}
+
+.adicionalPreco {
+  color: var(--txt);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-top: 0.4rem;
+}
+
+.controleAdicional,
+.quantidadeProduto {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-light);
+  border: 1px solid #dddddd;
+  border-radius: 7px;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
+  min-width: 5.8rem;
+  height: 3rem;
+  overflow: hidden;
+}
+
+.controleAdicional button,
+.quantidadeProduto button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--primary);
+  font-size: 1.2rem;
+}
+
+.controleAdicional span,
+.quantidadeProduto span {
+  min-width: 1.4rem;
+  color: var(--txtDark);
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.produtoCompra {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  padding-top: 4.7rem;
+}
+
+.produtoBadges {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.8rem;
+  min-height: 2.4rem;
+}
+
+.badgeProduto {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  width: fit-content;
+  border-radius: 5px;
+  padding: 0.4rem 0.6rem;
+  color: var(--primary);
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.badgeDesconto {
+  background-color: var(--tertiary);
+}
+
+.badgeCategoria {
+  border: 1px dashed var(--primary);
+  background-color: transparent;
+}
+
+.produtoCompra .cardTitle {
+  margin: 0;
+  color: var(--txt);
+}
+
+.produtoPreco {
+  color: var(--txt);
+  font-size: 1.5rem;
+}
+
+.quantidadeProduto {
+  align-self: flex-start;
+  min-width: 7.4rem;
+  height: 3.6rem;
+}
+
+.btnComprar,
+.btnAdicionar {
+  width: 100%;
+  border-radius: 8px;
+  font-size: 1.6rem;
+  text-align: center;
+}
+
+.btnComprar {
+  margin-top: 0.8rem;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.25);
+}
+
+.btnAdicionar {
+  display: flex;
+  justify-content: space-around;
+  gap: 1.6rem;
+  background-color: transparent;
+  padding: 0.9rem 1.6rem;
+}
+
+.produtoStatus {
+  display: flex;
+  min-height: 40rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
+  text-align: center;
+}
+
+footer {
+  margin-top: auto;
+}
+
+@media (max-width: 992px) {
+  .produtoPage {
+    padding: 6.4rem 2.4rem 3.2rem;
+  }
+
+  .produtoDetalhe {
+    grid-template-columns: 1fr;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .produtoAdicionais,
+  .produtoCompra {
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .produtoPage {
+    margin-top: 15rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .produtoPage {
+    padding-inline: 1.6rem;
+  }
+
+  .produtoImagem {
+    max-height: none;
+  }
+
+  .adicionalItem {
+    grid-template-columns: 4.8rem 1fr auto;
+  }
+}
