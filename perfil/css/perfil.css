@@ -36,7 +36,7 @@ main form fieldset, main form > section  div{
 }
 
 fieldset{
-    width: fit-content;
+    width: 100%;
 }
 
 main form > button{
@@ -58,7 +58,7 @@ main input, .password{
     height: 40px;
 }
 
-@media (min-width: 576px){
+@media (min-width: 676px){
     main section{
         display: flex;
         justify-content: center;
