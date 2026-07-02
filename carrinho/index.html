@@ -143,15 +143,15 @@
                 <div class="d-flex justify-content-between">
                   <div class="controleQtd d-flex">
                     <div class="controle">
-                      <button class="decremento btnOutline">
+                      <button class="decremento btnPrimaryOutline">
                         <i class="bi bi-dash"></i>
                       </button>
                       <span class="quantity">1</span>
-                      <button class="incremento btnOutline">
+                      <button class="incremento btnPrimaryOutline">
                         <i class="bi bi-plus"></i>
                       </button>
                     </div>
-                    <button class="remover btnOutline">
+                    <button class="remover btnPrimaryOutline">
                       <i class="bi bi-trash"></i>
                     </button>
                   </div>
@@ -181,15 +181,15 @@
                 <div class="d-flex justify-content-between">
                   <div class="controleQtd d-flex">
                     <div class="controle">
-                      <button class="decremento btnOutline">
+                      <button class="decremento btnPrimaryOutline">
                         <i class="bi bi-dash"></i>
                       </button>
                       <span class="quantity">1</span>
-                      <button class="incremento btnOutline">
+                      <button class="incremento btnPrimaryOutline">
                         <i class="bi bi-plus"></i>
                       </button>
                     </div>
-                    <button class="remover btnOutline">
+                    <button class="remover btnPrimaryOutline">
                       <i class="bi bi-trash"></i>
                     </button>
                   </div>
@@ -227,11 +227,89 @@
           <button class="btnSecondary d-block d-lg-none" onclick="window.location.href='/index.html'">Adicionar mais produtos</button>
         </aside>
 
+        <section class="checkoutModal" id="checkoutModal" aria-hidden="true">
+          <div class="checkoutModalBackdrop" data-action="close"></div>
+
+          <article class="checkoutModalCard">
+            <button type="button" class="checkoutClose" id="checkoutClose" aria-label="Fechar checkout">
+              <i class="bi bi-x-lg"></i>
+            </button>
+
+            <form class="checkoutForm" id="checkoutForm">
+              <h2>Endereço de Entrega</h2>
+
+              <div class="checkoutGrid checkoutGridCep">
+                <input type="text" id="checkoutCep" placeholder="CEP" inputmode="numeric" maxlength="9" />
+              </div>
+
+              <div class="checkoutGrid checkoutGridThree">
+                <input type="text" id="checkoutRua" placeholder="Rua" />
+                <input type="text" id="checkoutNumero" placeholder="Número" />
+                <input type="text" id="checkoutBairro" placeholder="Bairro" />
+              </div>
+
+              <div class="checkoutGrid checkoutGridOne">
+                <input type="text" id="checkoutCidade" placeholder="Cidade" />
+              </div>
+
+              <div class="checkoutGrid checkoutGridTwo">
+                <input type="text" id="checkoutEstado" placeholder="Estado" />
+                <input type="text" id="checkoutComplemento" placeholder="Complemento" />
+              </div>
+
+              <h2>Forma de Pagamento</h2>
+
+              <div class="paymentOptions">
+                <label class="paymentOption">
+                  <input type="radio" name="paymentMethod" value="pix" id="paymentPix" />
+                  <span>Pix</span>
+                </label>
+
+                <label class="paymentOption">
+                  <input type="radio" name="paymentMethod" value="credit" id="paymentCredit" checked />
+                  <span>Cartão de Crédito</span>
+                </label>
+              </div>
+
+              <div class="cardFields" id="cardFields">
+                <input type="text" id="checkoutCardNumber" placeholder="Nº do Cartão" />
+                <div class="checkoutGrid checkoutGridTwo">
+                  <input type="text" id="checkoutCardExpiry" placeholder="Data Vencimento" />
+                  <input type="text" id="checkoutCardCvv" placeholder="CVV" />
+                </div>
+              </div>
+
+              <div class="checkoutFooter">
+                <span class="checkoutFooterBadge" id="checkoutPromoBadge">15%</span>
+
+                <div class="checkoutSummary">
+                  <div class="checkoutSummaryRow">
+                    <span>Frete</span>
+                    <strong id="checkoutFrete">R$ --,--</strong>
+                  </div>
+
+                  <div class="checkoutSummaryRow checkoutSummaryTotal">
+                    <div class="checkoutTotalGroup">
+                      <span>Total</span>
+                      <strong id="checkoutTotal">R$ --,--</strong>
+                    </div>
+                    <strong id="checkoutItemCount">0 qtd</strong>
+                  </div>
+                </div>
+
+                <button type="submit" class="btnPrimary checkoutSubmit" id="checkoutSubmit">
+                  Finalizar pedido
+                </button>
+              </div>
+            </form>
+          </article>
+        </section>
+
         <article class="modalCompraConcluida">
           <i class="bi bi-check-circle" style="color: green"></i>
           <h3 class="subTitleCard">Obrigado por comprar conosco!</h3>
           <div>
-            <a href="/index.html" class="btnOutline">Voltar a tela Inicial</a>
+            <a href="/index.html" class="btnPrimaryOutline">Voltar a tela Inicial</a>
             <a href="/perfil/meus-pedidos.html" class="btnPrimary"
               >Meus Pedidos</a
             >
