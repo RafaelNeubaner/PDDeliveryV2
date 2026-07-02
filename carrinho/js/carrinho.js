@@ -7,6 +7,8 @@ const discountElement = document.querySelector(".precoDesconto");
 const totalElement = document.querySelector(".precoTotal");
 const serviceTaxElement = document.querySelector(".taxaServico");
 const finishButton = document.querySelector(".finalizar-compra");
+let discount = 0;
+
 
 function formatCurrency(value) {
   return Number(value || 0).toLocaleString("pt-BR", {
@@ -105,7 +107,6 @@ function renderSummary(cart) {
     0,
   );
   const serviceTax = cart.length > 0 ? 0.99 : 0;
-  const discount = 0;
   const total = subtotal + serviceTax - discount;
 
   subtotalElement.textContent = formatCurrency(subtotal);
@@ -153,6 +154,33 @@ finishButton?.addEventListener("click", () => {
   localStorage.removeItem("carrinho");
   cartContainer?.classList.add("checkout-completed");
   updateBadges([]);
+});
+
+const desconto = document.getElementById("descontoInput");
+const descontoButton = document.getElementById("descontoButton");
+const descontoForm = descontoButton?.closest("form");
+
+descontoForm?.addEventListener("submit", (event) => {
+  event.preventDefault();
+});
+
+descontoButton?.addEventListener("click", (event) => {
+  event.preventDefault();
+
+  const discountCode = desconto.value.trim();
+
+  if (discountCode === "PROMO10") {
+    discount = 10;
+    alert("Cupom aplicado! Você recebeu R$ 10,00 de desconto.");
+    desconto.classList.remove("inputError");
+  } else {
+    discount = 0;
+    alert("Cupom inválido.");
+    desconto.classList.add("inputError");
+  }
+
+
+  renderCart();
 });
 
 renderCart();

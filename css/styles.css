@@ -360,6 +360,16 @@ p {
     color: var(--primary);
 }
 
+.regForm input.inputError {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 0 1px rgba(220, 53, 69, 0.18);
+}
+
+.inputError {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 0 1px rgba(220, 53, 69, 0.18);
+}
+
 input,
 textarea,
 input.form-control {
