@@ -84,6 +84,8 @@ async function changePassword(){
     })
     updateFields(user)
     loading.classList.add("hide")
+
+    alert("Senha alterada com sucesso!");
 }
 
 passwordCont.querySelector("i").addEventListener('click', (ev)=>{changePasswordStatus(passwordCont)})
@@ -102,6 +104,7 @@ function changePasswordStatus(comp){
         icon.classList.add("bi-eye")
         icon.classList.remove("bi-eye-slash")
     }
+
 }
 
 async function saveData(){
@@ -135,6 +138,8 @@ async function saveData(){
     newPasswordInp.value=""
     confirmPasswordInp.value=""
     loading.classList.add("hide")
+
+    alert("Dados atualizados com sucesso!");
 }
 
 function updateFields(user){
