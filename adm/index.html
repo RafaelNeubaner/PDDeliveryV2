@@ -37,23 +37,25 @@
 <body>
   <!-- HEADER -->
     <header>
-      <a class="navbar-brand d-block" href="/index.html">
-              <img
-                src="/assets/media/logo/Logo.png"
-                alt="PD Delivery V2"
-                id="logoMobile"
-              />
-        </a>
+      <img
+        src="/assets/media/logo/Logo.png"
+        alt="PD Delivery V2"
+        id="logoMobile"
+      />
       <nav class="navbar navbar-expand-lg">
-        <a class="navbar-brand d-block" href="/index.html">
-              <img
-                src="/assets/media/logo/Logo.png"
-                alt="PD Delivery V2"
-                id="logo"
-              />
-        </a>
-        <p class="navLink active">Gerenciar Pedidos</p>
-        <p class="navLink">Gerenciar Produtos</p>
+        <div>
+          <img
+            src="/assets/media/logo/Logo.png"
+            alt="PD Delivery V2"
+            id="logo"
+          />
+          <p class="navLink active">Gerenciar Pedidos</p>
+          <p class="navLink">Gerenciar Produtos</p>
+        </div>
+        <span class="logoutButton">
+          <i class="bi bi-box-arrow-left"></i>
+          <span>Logout</span>
+        </span>
       </nav>
     </header>
     <main>
@@ -72,13 +74,18 @@
         <div class="produtosContainer">
           <template class="cardProdutoTemp">
             <article class="cardProdutoAdm">
-              <img src="https://s2-casaejardim.glbimg.com/W1fPyFbY1VJ1LZrOLa6-cwgVD10=/0x0:1400x933/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_a0b7e59562ef42049f4e191fe476fe7d/internal_photos/bs/2024/k/g/fQetnlRqCCgARUUVXwXQ/receita-pao-queijo-carne-louca-acem-mococa.jpg" alt="">
-              <div class="contentText">
-                <h4 class="titleProduto">Pão de Queijo Recheado com Lombo</h4>
-                <span class="priceProduto">R$24,50</span>
+              <div class="produtoDetails">
+                <img src="https://s2-casaejardim.glbimg.com/W1fPyFbY1VJ1LZrOLa6-cwgVD10=/0x0:1400x933/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_a0b7e59562ef42049f4e191fe476fe7d/internal_photos/bs/2024/k/g/fQetnlRqCCgARUUVXwXQ/receita-pao-queijo-carne-louca-acem-mococa.jpg" alt="">
+                <div class="contentText">
+                  <h4 class="titleProduto">Pão de Queijo Recheado com Lombo</h4>
+                  <span class="priceProduto">R$24,50</span>
+                </div>
               </div>
               <div class="buttons">
-                <i class="bi bi-eye"></i>
+                <span class="visualizar">
+                  <i class="bi bi-eye"></i>
+                  <span>Visualizar</span>
+                </span>
                 <button class="btnSecondaryOutline">Editar</button>
                 <button class="btnPrimary">Excluir</button>
               </div>
@@ -87,12 +94,6 @@
         </div>
       </section>
     </main>
-    <footer>
-      <p class="textCenter copy">&copy; 2024 PD Delivery V2. Todos os direitos reservados.</p>
-      <div class="navLinks">
-        <p class="navLink active">Gerenciar Pedidos</p>
-        <p class="navLink">Gerenciar Produtos</p>
-      </div>
-    </footer>
+    
 </body>
 </html>

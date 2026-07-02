@@ -1,3 +1,4 @@
+import { logout } from "../../js/services/useAuth.js";
 import { useProducts } from "../../js/services/useProducts.js"
 
 const cardProdutoTemp = document.querySelector(".cardProdutoTemp")
@@ -34,11 +35,19 @@ document.getElementById("searchInput").addEventListener("input", async (ev)=>{
     renderProdutos()
 })
 
+document.querySelector(".logoutButton").addEventListener("click", async (ev)=>{
+    logout()
+    location.href="/"
+})
+
 var produtos = await useProducts.findProdutos()
 renderProdutos()
 
 function renderProdutos(){
     produtosContainer.innerHTML = ""
+    if(produtos.length<=0){
+        produtosContainer.innerHTML = "<h3>Nenhum produto cadastrado</h3>"
+    }
     produtos.forEach((prod, index)=> createProdutoCard(prod, index))
 }
 
@@ -49,7 +58,7 @@ function createProdutoCard(prod, index){
     produtoComp.setAttribute("id", `prod-${prod.id}`)
     produtoComp.querySelector("img").src = prod.image
     produtoComp.querySelector(".titleProduto").textContent = prod.name
-    produtoComp.querySelector(".priceProduto").textContent = `R$ ${prod.initialPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`
+    produtoComp.querySelector(".priceProduto").textContent = `${prod.initialPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`
 
     produtosContainer.appendChild(produtoComp)
 }

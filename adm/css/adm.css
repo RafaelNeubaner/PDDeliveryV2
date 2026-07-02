@@ -1,237 +1,321 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  width: 100vw;
+  overflow: hidden;
+}
+
 header {
-    position: fixed;
-    top:0;
-    left:0;
-    width: 20%;
-    background-color: var(--bg-header);
-    color: var(--txt);
-    width: 25vh;
-    height: 100vh;
-    align-items:flex-start;
-    justify-content: center;
-    display: flex;
-    gap: 1rem;
-    padding: 5rem 1rem;
-    z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 25vh;
+  background-color: var(--bg-header);
+  color: var(--txt);
+  height: 100vh;
+  align-items: flex-start;
+  justify-content: center;
+  display: flex;
+  gap: 1rem;
+  padding: 5rem 1rem;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 header img {
-    width: 130px;
-    height: auto;
-    padding-bottom: 5rem;
+  width: 130px;
+  height: auto;
+  padding-bottom: 5rem;
 }
 
 nav {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    gap: 1rem;
-    border-radius: 4px;
-    background-color: var(--bg-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  gap: 1rem;
+  border-radius: 4px;
+  background-color: var(--bg-light);
+  height: 100%;
+}
+
+nav > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #logoMobile {
-    display: none;
+  display: none;
 }
 
 .navLink {
-    color: var(--txt);
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    width: 100%;
-    text-align: center;
+  color: var(--txt);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  width: 100%;
+  text-align: center;
 }
 
 .navLink:hover {
-    background-color: var(--primary);
-    color: var(--txtLight);
-    cursor: pointer;
+  background-color: var(--primary);
+  color: var(--txtLight);
+  cursor: pointer;
 }
 
 .navLink.active {
-    background-color: var(--primary);
-    color: var(--txtLight);
+  background-color: var(--primary);
+  color: var(--txtLight);
 }
 
 main {
-    margin-left: 15%;
-    padding: 2rem;
-    height: 100vh;
+  flex: 1;
+  width: calc(100vw - 25vh);
+  margin-left: 25vh;
+  padding: 2rem;
+  height: 100vh;
+  min-height: 0;
+  overflow-y: auto;
 }
 
 section {
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .visible {
-    display: flex;
+  display: flex;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
-.searchProdutos, .containerInput{
-    display: flex;
-    width: 100%;
-    gap: 30px;
-    padding: 10px;
-    justify-content: center;
+.searchProdutos,
+.containerInput {
+  display: flex;
+  width: 100%;
+  gap: 30px;
+  padding: 10px;
+  justify-content: center;
 }
 
-@media (max-width: 768px){
-    .searchProdutos{
-        flex-direction: column;
-    }
+@media (max-width: 768px) {
+  .searchProdutos {
+    flex-direction: column;
+  }
 }
 
-.containerInput, .searchProdutos input{
-    flex: 1;
-    max-width: 700px;
-    padding: 0;
-    height: 50px;
+.logoutButton {
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.containerInput,
+.searchProdutos input {
+  flex: 1;
+  max-width: 700px;
+  padding: 0;
+  height: 50px;
 }
 
 .searchProdutos button {
-    height: 50px;
+  height: 50px;
 }
 
-.searchProdutos input{
-    padding-left: 40px !important; 
+.searchProdutos input {
+  padding-left: 40px !important;
 }
 
-.containerInput{
-    position: relative;
+.containerInput {
+  position: relative;
 }
 
-.containerInput i{
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 20px;
+.containerInput i {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
 }
 
 footer .navLinks {
-    display: none;
+  display: none;
 }
 
-.produtosContainer{
-    width: 100%;
-    max-width: 1000px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.produtosContainer {
+  width: 100%;
+  max-width: 1000px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
 
-.cardProdutoAdm{
-    display: flex;
-    gap: 30px;
-    width: 100%;
-    background-color: var(--bg);
-    border-radius: 12px;
-    padding: 15px;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+.cardProdutoAdm {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+  background-color: var(--bg);
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
 }
 
-.cardProdutoAdm img{
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 8px;
+.cardProdutoAdm .produtoDetails {
+  display: flex;
+  flex: 1;
+  gap: 30px;
 }
 
-.cardProdutoAdm .contentText{
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.cardProdutoAdm img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
-.cardProdutoAdm .contentText h4{
-    font-size: 20px;
+.cardProdutoAdm .contentText {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.cardProdutoAdm .contentText span{
-    font-size: 20px;
-    font-weight: 800;
-    color: var(--primary);
+.cardProdutoAdm .contentText h4 {
+  font-size: 20px;
 }
 
-.cardProdutoAdm .buttons{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
+.cardProdutoAdm .contentText span {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--primary);
 }
 
-.cardProdutoAdm .buttons button{
-    font-size: 14px;
+.cardProdutoAdm .buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
 }
 
-.cardProdutoAdm .buttons i{
-    font-size: 25px;
-    color: var(--primary);
-    cursor: pointer;
+.cardProdutoAdm .buttons .visualizar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.cardProdutoAdm .buttons .visualizar span {
+  display: none;
+}
+
+.cardProdutoAdm .buttons button {
+  font-size: 14px;
+}
+
+.cardProdutoAdm .buttons i {
+  font-size: 25px;
+  color: var(--primary);
+  cursor: pointer;
 }
 
 @media (max-width: 992px) {
-    header {
-        position: fixed;
-        width: 100%;
-        height: auto;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        padding: 1rem;
-    }
+  header {
+    position: fixed;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
 
-    nav {
-        display: none !important;
-    }
+  nav {
+    display: none !important;
+  }
 
-    #logoMobile {
-        display: block;
-        width: 100px;
-        padding-bottom: 0;
-        padding: 1rem;
-    }
+  #logoMobile {
+    display: block;
+    width: 100px;
+    padding-bottom: 0;
+    padding: 1rem;
+  }
 
-    main {
-        margin-left: 0;
-        margin-bottom: 8vh;
-    }
+  main {
+    margin-left: 0;
+    width: 100%;
+    height: calc(100vh - 8vh);
+    margin-bottom: 8vh;
+    padding-bottom: 10rem;
+  }
 
-    .navLinks {
-        display: flex;
-        gap: 1rem;
-        margin-top: 1rem;
-        padding: 0.5rem 5rem;
-    }
+  .navLinks {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding: 0.5rem 5rem;
+  }
 
-    .copy {
-        display: none;
-    }
+  .copy {
+    display: none;
+  }
 
-    footer{
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        height: 8vh;
-        width: 100%;
-        background-color: var(--bg-header);
-        color: var(--txt);
-        box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.3);
-    }
+  footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 8vh;
+    width: 100%;
+    background-color: var(--bg-header);
+    color: var(--txt);
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.3);
+  }
 
+  .cardProdutoAdm {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .cardProdutoAdm img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .cardProdutoAdm .contentText h4,
+  .cardProdutoAdm .contentText span {
+    font-size: 16px;
+  }
+
+  .cardProdutoAdm .contentText span {
+    font-weight: 500;
+  }
+
+  .cardProdutoAdm .buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .cardProdutoAdm .buttons .visualizar span {
+    display: block;
+    font-size: 16px;
+    color: var(--primary);
+  }
+
+  .cardProdutoAdm .buttons button,
+  .cardProdutoAdm .buttons i {
+    width: 100%;
+    text-align: center;
+  }
 }
