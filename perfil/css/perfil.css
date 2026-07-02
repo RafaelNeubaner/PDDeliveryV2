@@ -1,9 +1,15 @@
-main{
+main {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100vw;
     min-height: calc(100vh - 120px);
+    padding: 20px;
+}
+
+a.btnPrimary {
+    align-self: flex-end;
+    margin-right: 5vw;
 }
 
 main form {
@@ -17,46 +23,54 @@ main form {
     gap: 20px
 }
 
-main section{
+main section {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 50px;
     flex-direction: column;
 }
 
-main form fieldset, main form > section  div{
+main form fieldset,
+main form>section div {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 32px;
+}
+
+fieldset {
     width: 100%;
 }
 
-main form > button{
+main form>button {
     width: 100px;
     align-self: flex-end;
 }
 
-main legend{
+main legend {
     text-align: center;
     font-size: 24px;
     font-weight: 600;
+    width: fit-content;
 }
 
-main input, .password{
+main input,
+.password {
     width: 100%;
+    min-width: 250px;
     max-width: 300px;
     height: 40px;
 }
 
-@media (min-width: 576px){
-    main section{
+@media (min-width: 676px) {
+    main section {
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
         flex-direction: row;
     }
 }
 
-.password{
+.password {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -67,11 +81,50 @@ main input, .password{
     position: relative;
 }
 
-.password i{
+.password i {
     font-size: 20px;
     cursor: pointer;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     right: 10px;
+}
+
+.requisitosSenha {
+    font-size: 14px;
+    width: fit-content;
+}
+
+.requisitosSenha li {
+    color: red;
+}
+
+.requisitosSenha li.validated {
+    color: green;
+}
+
+.divider {
+    width: 1px;
+    background-color: black;
+}
+
+@media(max-width: 676px) {
+    .saveBtn {
+        width: 300px;
+
+    }
+
+    .divider {
+        height: 1px;
+        width: 300px;
+        align-self: center;
+        background-color: black;
+    }
+
+}
+
+
+.inputContainer input {
+    min-width: 120px !important;
+    max-width: 145px !important;
 }
