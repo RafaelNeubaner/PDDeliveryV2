@@ -114,13 +114,13 @@
           <li class="btnPrimaryOutline promocao" data-filter="promocao">Promoções</li>
           <li class="btnPrimaryOutline sobremesa" data-filter="sobremesa">Sobremesas</li>
           <li class="btnPrimaryOutline bebidas" data-filter="bebidas">Bebidas</li>
-          <li class="btnPrimaryOutline brasileira" data-filter="brasileira">Culinária Brasileira</li>
+          <li class="btnPrimaryOutline brasileira" data-filter="brasileira">Tradicional Brasileira</li>
         </ul>
 
         <label class="ordenarBusca">
           <span>Ordenar por</span>
           <select id="ordenarBusca" name="ordenar">
-            <option value="">Ordenar por</option>
+            <option value="" disabled selected>Selecione um filtro</option>
             <option value="maior-preco">Maior preço</option>
             <option value="menor-preco">Menor preço</option>
             <option value="maior-desconto">Maior desconto</option>
@@ -128,7 +128,7 @@
           </select>
         </label>
       </section>
-    <div class="container mt-5 ContainerBusca">
+    <div class="container mt-5 p-0  ContainerBusca">
         <section class="col-lg-9" id="resultadosBusca">
           <div
             id="gridProdutosBusca"
