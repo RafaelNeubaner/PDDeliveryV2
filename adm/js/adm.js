@@ -1,3 +1,11 @@
+import { logout } from "../../js/services/useAuth.js";
+import { useProducts } from "../../js/services/useProducts.js"
+
+const cardProdutoTemp = document.querySelector(".cardProdutoTemp")
+const produtosContainer = document.querySelector(".produtosContainer")
+
+
+
 addEventListener('DOMContentLoaded', function () {
     const navLinks = document.querySelectorAll('.navLink');
     const pedidosSection = document.getElementById('gerenciarPedidos');
@@ -21,3 +29,37 @@ addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+document.getElementById("searchInput").addEventListener("input", async (ev)=>{
+    produtos = await useProducts.findProdutos(ev.target.value)
+    renderProdutos()
+})
+
+document.querySelector(".logoutButton").addEventListener("click", async (ev)=>{
+    logout()
+    location.href="/"
+})
+
+var produtos = await useProducts.findProdutos()
+renderProdutos()
+
+function renderProdutos(){
+    produtosContainer.innerHTML = ""
+    if(produtos.length<=0){
+        produtosContainer.innerHTML = "<h3>Nenhum produto cadastrado</h3>"
+    }
+    produtos.forEach((prod, index)=> createProdutoCard(prod, index))
+}
+
+
+function createProdutoCard(prod, index){
+    const produtoComp = cardProdutoTemp.content.cloneNode(true).firstElementChild
+
+    produtoComp.setAttribute("id", `prod-${prod.id}`)
+    produtoComp.querySelector("img").src = prod.image
+    produtoComp.querySelector(".titleProduto").textContent = prod.name
+    produtoComp.querySelector(".priceProduto").textContent = `${prod.initialPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`
+
+    produtosContainer.appendChild(produtoComp)
+}
+
