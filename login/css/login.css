@@ -40,7 +40,7 @@ h1 {
 }
 
 .loginImage {
-    width: 40%;
+    width: 50%;
     height: 100vh;
     object-fit: cover;
     object-position: center;
@@ -60,7 +60,7 @@ h1 {
 
 .login-form {
     width: 100%;
-    max-width: 560px;
+    max-width: 368px;
     text-align: center;
 }
 
@@ -355,7 +355,7 @@ h1 {
     }
 
     .btnPrimary {
-        padding: 12px 24px;
+        padding: 12px 15%;
         font-size: small;
     }
 }
