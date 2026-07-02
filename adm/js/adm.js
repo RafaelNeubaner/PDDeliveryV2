@@ -3,6 +3,8 @@ import { useProducts } from "../../js/services/useProducts.js"
 const cardProdutoTemp = document.querySelector(".cardProdutoTemp")
 const produtosContainer = document.querySelector(".produtosContainer")
 
+
+
 addEventListener('DOMContentLoaded', function () {
     const navLinks = document.querySelectorAll('.navLink');
     const pedidosSection = document.getElementById('gerenciarPedidos');
@@ -27,8 +29,28 @@ addEventListener('DOMContentLoaded', function () {
     });
 });
 
-const produtos = await useProducts.findProdutos()
+document.getElementById("searchInput").addEventListener("input", async (ev)=>{
+    produtos = await useProducts.findProdutos(ev.target.value)
+    renderProdutos()
+})
+
+var produtos = await useProducts.findProdutos()
+renderProdutos()
+
+function renderProdutos(){
+    produtosContainer.innerHTML = ""
+    produtos.forEach((prod, index)=> createProdutoCard(prod, index))
+}
 
 
-produtos.map((prod, index)=> createProdutoCard())
+function createProdutoCard(prod, index){
+    const produtoComp = cardProdutoTemp.content.cloneNode(true).firstElementChild
+
+    produtoComp.setAttribute("id", `prod-${prod.id}`)
+    produtoComp.querySelector("img").src = prod.image
+    produtoComp.querySelector(".titleProduto").textContent = prod.name
+    produtoComp.querySelector(".priceProduto").textContent = `R$ ${prod.initialPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`
+
+    produtosContainer.appendChild(produtoComp)
+}
 

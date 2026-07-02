@@ -129,6 +129,9 @@ footer .navLinks {
     width: 100%;
     max-width: 1000px;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .cardProdutoAdm{
