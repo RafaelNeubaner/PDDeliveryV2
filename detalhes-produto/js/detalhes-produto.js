@@ -14,7 +14,7 @@ const elements = {
   detail: document.getElementById("produtoDetalhe"),
   error: document.getElementById("produtoErro"),
   titleName: document.querySelector("#produtoNomeTitulo"),
-  summaryName: document.querySelector(".produtoCompra .produtoNomeResumo"),
+  summaryNames: document.querySelectorAll(".produtoNomeResumo"),
   image: document.getElementById("produtoImagem"),
   description: document.getElementById("produtoDescricao"),
   additionsList: document.getElementById("listaAdicionais"),
@@ -273,7 +273,9 @@ function renderProduct(product) {
   }));
 
   elements.titleName.textContent = product.name;
-  elements.summaryName.textContent = product.name;
+  elements.summaryNames.forEach((summaryName) => {
+    summaryName.textContent = product.name;
+  });
   elements.image.src = product.image;
   elements.image.alt = `Imagem do produto ${product.name}`;
   elements.description.innerHTML = renderDescription(product.descricao || product.description);
