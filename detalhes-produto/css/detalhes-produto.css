@@ -13,7 +13,10 @@ body {
 
 .produtoDetalhe {
   display: grid;
-  grid-template-columns: minmax(280px, 1.1fr) minmax(260px, 0.95fr) minmax(220px, 0.75fr);
+  grid-template-columns: minmax(280px, 1.1fr) minmax(260px, 0.95fr) minmax(
+      220px,
+      0.75fr
+    );
   column-gap: 4.8rem;
   row-gap: 2.4rem;
   align-items: start;
@@ -23,15 +26,24 @@ body {
   grid-column: 1 / -1;
   display: inline-flex;
   align-items: center;
+  justify-content: space-between;
   gap: 0.8rem;
-  width: fit-content;
+  width: 100%;
+}
+
+.voltarProduto a {
   color: var(--txt);
   font-size: 1.4rem;
   text-decoration: none;
 }
 
-.voltarProduto:hover {
+.voltarProduto a:hover {
   color: var(--primary);
+}
+
+.voltarProduto div {
+  display: flex;
+  align-items: center;
 }
 
 .produtoImagemInfo {
@@ -50,7 +62,7 @@ body {
   aspect-ratio: 1 / 1.04;
   max-height: 410px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 20px;
 }
 
 .produtoDescricao {
@@ -240,12 +252,11 @@ footer {
   display: none !important;
 }
 
-.displayNoneDesktop {
-  display: none !important;
-}
 
-.displayNoneMobile {
-  display: block !important;
+@media (min-width: 993px){
+  .displayNoneDesktop {
+    display: none !important;
+  }
 }
 
 @media (max-width: 992px) {
@@ -255,10 +266,6 @@ footer {
 
   .produtoPage {
     padding: 6.4rem 2.4rem 3.2rem;
-  }
-
-  .displayNoneDesktop {
-    display: block !important;
   }
 
   .produtoDetalhe {
@@ -273,13 +280,7 @@ footer {
   }
 
   #produtoNomeTitulo {
-    display:none;
-  }
-
-  .produtoBadges{
-    position: absolute;
-    top: 21.6%;
-    right: 16.5%;
+    display: none;
   }
 
   .produtoCompra {
@@ -290,7 +291,7 @@ footer {
   #produtoNomeResumo {
     display: none;
   }
-  
+
   .group {
     display: flex;
     flex-direction: row;

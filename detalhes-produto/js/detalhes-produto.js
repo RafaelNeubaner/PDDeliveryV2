@@ -1,8 +1,5 @@
 import { useProducts } from "/js/services/useProducts.js";
 
-const CART_KEY = "pdDeliveryCart";
-const LEGACY_CART_KEY = "carrinho";
-
 const state = {
   product: null,
   quantity: 1,
@@ -18,7 +15,7 @@ const elements = {
   image: document.getElementById("produtoImagem"),
   description: document.getElementById("produtoDescricao"),
   additionsList: document.getElementById("listaAdicionais"),
-  badges: document.getElementById("produtoBadges"),
+  badges: document.querySelectorAll(".produtoBadges"),
   price: document.getElementById("produtoPreco"),
   productQuantity: document.getElementById("quantidadeProduto"),
   decreaseProduct: document.getElementById("diminuirProduto"),
@@ -29,6 +26,7 @@ const elements = {
 };
 
 function formatCurrency(value) {
+  if(value===0) return "Grátis"
   return Number(value || 0).toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL",
@@ -94,7 +92,7 @@ function renderBadges(product) {
     `);
   }
 
-  elements.badges.innerHTML = badges.join("");
+  elements.badges.forEach(badge=>badge.innerHTML = badges.join(""))
 }
 
 function renderAdditions() {
@@ -106,26 +104,37 @@ function renderAdditions() {
 
   elements.additionsList.innerHTML = state.additions
     .map(
-      (addition, index) => `
-        <article class="adicionalItem">
-          <img src="${addition.image}" alt="Imagem de ${addition.title}" />
-          <div class="adicionalInfo">
-            <strong class="adicionalNome">
-              ${addition.title}${addition.description ? ` (${addition.description})` : ""}
-            </strong>
-            <p class="adicionalPreco">${formatCurrency(addition.aditionalPrice)}</p>
-          </div>
-          <div class="controleAdicional" data-index="${index}">
-            <button type="button" data-action="decrease" aria-label="Remover ${addition.title}">
-              <i class="bi bi-dash"></i>
-            </button>
-            <span>${addition.quantity}</span>
-            <button type="button" data-action="increase" aria-label="Adicionar ${addition.title}">
-              <i class="bi bi-plus"></i>
-            </button>
-          </div>
-        </article>
-      `,
+      (addition, indexFullOption) => {
+        var content = `<h4 class="subTitleCard">${addition.title}</h4>`
+        content += addition.options.map((option, index)=>
+          `
+          <article class="adicionalItem" data-index="${indexFullOption}-${index}">
+            <img src="${option.image}" alt="Imagem de ${option.title}" />
+            <div class="adicionalInfo">
+              <strong class="adicionalNome">
+                ${option.title}${option.description ? ` (${option.description})` : ""}
+              </strong>
+              <p class="adicionalPreco">${formatCurrency(option.aditionalPrice)}</p>
+            </div>
+            ${
+              addition.multiSelection ?
+            `<div class="controleAdicional" data-index="${indexFullOption}-${index}">
+              <button type="button" data-action="decrease" aria-label="Remover ${option.title}">
+                <i class="bi bi-dash"></i>
+              </button>
+              <span>${option.quantity}</span>
+              <button type="button" data-action="increase" aria-label="Adicionar ${option.title}">
+                <i class="bi bi-plus"></i>
+              </button>
+            <div>`
+            :`<input type='radio' id="optional-${indexFullOption}-${index}" name="additional-${indexFullOption}" value="${index}" ${ option===addition.selected ? "checked" : ""}>`
+          }
+          </article>
+        `
+      ).join("")
+
+      return content;
+    },
       
   )
     .join("");
@@ -134,7 +143,7 @@ function renderAdditions() {
 function calculateUnitTotal() {
   const additionsTotal = state.additions.reduce(
     (total, addition) =>
-      total + Number(addition.aditionalPrice || 0) * addition.quantity,
+      total + addition.options.reduce((totalItem, curr)=> totalItem+((curr.quantity || 0)*curr.aditionalPrice), 0),
     0,
   );
 
@@ -146,29 +155,7 @@ function updateTotals() {
   elements.total.textContent = formatCurrency(calculateUnitTotal() * state.quantity);
 }
 
-function updateCartBadge() {
-  const cart = getCart();
-  const totalItems = cart.reduce((total, item) => total + Number(item.quantity || 0), 0);
-
-  document.querySelectorAll(".cart-badge").forEach((badge) => {
-    badge.textContent = totalItems;
-  });
-}
-
-function getCart() {
-  try {
-    return JSON.parse(localStorage.getItem(CART_KEY)) || [];
-  } catch {
-    return [];
-  }
-}
-
-function saveCart(cart) {
-  localStorage.setItem(CART_KEY, JSON.stringify(cart));
-  localStorage.setItem(LEGACY_CART_KEY, JSON.stringify(cart));
-  updateCartBadge();
-}
-
+/**TODO: reestruturar lógica de seleção dos adicionais para nova estrutura */
 function buildCartItem() {
   const selectedAdditions = state.additions
     .filter((addition) => addition.quantity > 0)
@@ -202,31 +189,25 @@ function buildCartItem() {
   };
 }
 
-function getItemSignature(item) {
-  const additions = (item.additions || [])
-    .map((addition) => `${addition.title}:${addition.quantity}`)
-    .sort()
-    .join("|");
 
-  return `${item.productId}|${additions}`;
-}
+/** Utilizar o useCarrinho.js para gerenciar o carrinho */
 
-function addToCart() {
-  const cart = getCart();
-  const item = buildCartItem();
-  const existingItem = cart.find(
-    (cartItem) => getItemSignature(cartItem) === getItemSignature(item),
-  );
+// function addToCart() {
+//   const cart = getCart();
+//   const item = buildCartItem();
+//   const existingItem = cart.find(
+//     (cartItem) => getItemSignature(cartItem) === getItemSignature(item),
+//   );
 
-  if (existingItem) {
-    existingItem.quantity += item.quantity;
-    existingItem.total = existingItem.unitTotal * existingItem.quantity;
-  } else {
-    cart.push(item);
-  }
+//   if (existingItem) {
+//     existingItem.quantity += item.quantity;
+//     existingItem.total = existingItem.unitTotal * existingItem.quantity;
+//   } else {
+//     cart.push(item);
+//   }
 
-  saveCart(cart);
-}
+//   saveCart(cart);
+// }
 
 function setupEvents() {
   elements.decreaseProduct.addEventListener("click", () => {
@@ -241,36 +222,61 @@ function setupEvents() {
 
   elements.additionsList.addEventListener("click", (event) => {
     const button = event.target.closest("button[data-action]");
-    if (!button) return;
+    if (!button) {
+      const adicional = event.target.closest("article.adicionalItem");
+
+      const dataId = adicional.dataset.index
+      const [indexAdditional, indexOption] = dataId.split("-")
+      const addition = state.additions[Number(indexAdditional)];
+
+      addition.selected = addition.options[indexOption]
+      renderAdditions();
+      updateTotals();
+      console.log(state.additions)
+      return;
+    };
 
     const control = button.closest(".controleAdicional");
-    const addition = state.additions[Number(control.dataset.index)];
+    const dataId = control.dataset.index
+    const [indexAdditional, indexOption] = dataId.split("-")
+    const addition = state.additions[Number(indexAdditional)];
 
     if (button.dataset.action === "increase") {
-      addition.quantity += 1;
-    } else {
-      addition.quantity = Math.max(0, addition.quantity - 1);
+      addition.options[indexOption].quantity += 1;
+    } else if (button.dataset.action === "decrease") {
+      addition.options[indexOption].quantity = Math.max(0, addition.options[indexOption].quantity - 1);
     }
 
+    console.log(state.additions)
     renderAdditions();
     updateTotals();
   });
 
-  elements.addCart.addEventListener("click", addToCart);
+  
 
-  elements.buyNow.addEventListener("click", () => {
-    addToCart();
-    window.location.href = "/carrinho/index.html";
-  });
+  //elements.addCart.addEventListener("click", addToCart);
+
+  // elements.buyNow.addEventListener("click", () => {
+  //   addToCart();
+  //   window.location.href = "/carrinho/index.html";
+  // });
 }
 
 function renderProduct(product) {
   state.product = product;
   state.quantity = 1;
-  state.additions = getProductOptions(product).map((option) => ({
-    ...option,
-    quantity: 0,
-  }));
+  state.additions = product.options.map((additional) => {
+    additional.options = additional.options.map((option)=>({
+      ...option,
+      quantity: additional.multiSelection ? 0 : null
+    }))
+
+    return {
+    ...additional,
+    selected: additional.multiSelection ? null : additional.required ? additional.options[0] : null
+  }});
+
+  console.log(state.additions)
 
   elements.titleName.textContent = product.name;
   elements.summaryNames.forEach((summaryName) => {
@@ -310,5 +316,5 @@ async function loadProduct() {
 }
 
 setupEvents();
-updateCartBadge();
+//updateCartBadge();
 loadProduct();

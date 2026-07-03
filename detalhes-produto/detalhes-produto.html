@@ -104,13 +104,17 @@
         <div class="spinner-border text-danger" role="status">
           <span class="visually-hidden">Carregando produto...</span>
         </div>
+        <div class="produtoBadges"></div>
       </div>
 
       <section id="produtoDetalhe" class="produtoDetalhe d-none">
-        <a href="javascript:history.back()" class="voltarProduto">
-          <i class="bi bi-arrow-left-circle"></i>
-          <span>Voltar</span>
-        </a>
+        <div class="voltarProduto">
+          <a href="javascript:history.back()">
+            <i class="bi bi-arrow-left-circle"></i>
+            <span>Voltar</span>
+          </a>
+          <div class="produtoBadges displayNoneDesktop"></div>
+        </div>
 
         <article class="produtoImagemInfo">
           <h1 id="produtoNomeTitulo" class="title"></h1>
@@ -125,7 +129,7 @@
         </section>
 
         <aside class="produtoCompra">
-          <div class="produtoBadges" id="produtoBadges"></div>
+          <div class="produtoBadges displayNoneMobile"></div>
           <h2 id="produtoNomeResumo" class="cardTitle produtoNomeResumo displayNoneMobile"></h2>
           <div class="group">
           <p id="produtoPreco" class="produtoPreco"></p>
