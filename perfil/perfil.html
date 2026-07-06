@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
@@ -35,75 +35,72 @@
     <script type="module" src="../js/requiredOnlyClient.js"></script>
     <script type="module" src="js/perfil.js"></script>
     <script src="../js/scripts.js" defer></script>
-    
   </head>
-<body>
-  <!-- HEADER -->
+  <body>
+    <!-- HEADER -->
     <header>
       <nav class="navbar navbar-expand-lg">
-        
-          <search class="containerSearch">
-            <a class="navbar-brand d-block" href="/index.html">
-              <img
-                src="/assets/media/logo/Logo.png"
-                alt="PD Delivery V2"
-                id="logo"
-              />
-            </a>
+        <search class="containerSearch">
+          <a class="navbar-brand d-block" href="/index.html">
+            <img
+              src="/assets/media/logo/Logo.png"
+              alt="PD Delivery V2"
+              id="logo"
+            />
+          </a>
 
-            <form
-              action="/busca/index.html"
-              class="d-flex position-relative inputForm"
-            >
-              <input
-                type="text"
-                name="query"
-                class="form-control pe-5"
-                placeholder="O que você está procurando?"
-                aria-label="Pesquisar produtos"
-              />
-              <button class="btn" type="submit" id="button-search-desktop">
-                <i class="bi bi-search"></i>
-              </button>
-            </form>
+          <form
+            action="/busca/index.html"
+            class="d-flex position-relative inputForm"
+          >
+            <input
+              type="text"
+              name="query"
+              class="form-control pe-5"
+              placeholder="O que você está procurando?"
+              aria-label="Pesquisar produtos"
+            />
+            <button class="btn" type="submit" id="button-search-desktop">
+              <i class="bi bi-search"></i>
+            </button>
+          </form>
 
-            <ul class="navbar-nav align-items-center">
+          <ul class="navbar-nav align-items-center">
+            <li class="nav-item d-block">
+              <a href="/pedidos/index.html" class="nav-link"
+                ><i class="bi bi-box-seam"></i
+              ></a>
+            </li>
 
-              <li class= "nav-item d-block">
-                <a href="/pedidos/index.html" class="nav-link"
-                  ><i class="bi bi-box-seam"></i
-                ></a>
-              </li>
+            <li class="nav-item position-relative">
+              <a href="/carrinho/index.html" class="nav-link"
+                ><i class="bi bi-cart3"></i
+              ></a>
+              <span class="cart-badge">0</span>
+            </li>
 
-              <li class="nav-item position-relative">
-                <a href="/carrinho/index.html" class="nav-link"
-                  ><i class="bi bi-cart3"></i
-                ></a>
-                <span class="cart-badge">0</span>
-              </li>
+            <li class="nav-item d-block iconProfile">
+              <a href="/adm/index.html" class="nav-link"
+                ><i class="bi bi-person"></i
+              ></a>
+            </li>
 
-              <li class="nav-item d-block iconProfile">
-                <a href="/adm/index.html" class="nav-link"
-                  ><i class="bi bi-person"></i
-                ></a>
-              </li>
-
-              <li class="nav-item d-block logoutLink">
-                <a
-                  href="/index.html"
-                  class="btn nav-link logoutBtn"
-                  style="
-                    cursor: pointer;
-                    border: none;
-                    background: none;
-                    padding: 0.5rem 0.75rem;
-                    "
-                >
-                  <i class="bi bi-box-arrow-right"></i>
-                </a>
-              </li>
-            </ul>
-          </search>
+            <li class="nav-item d-block logoutLink">
+              <a
+                href="/index.html"
+                class="btn nav-link logoutBtn"
+                style="
+                  cursor: pointer;
+                  border: none;
+                  background: none;
+                  padding: 0.5rem 0.75rem;
+                "
+              >
+                <i class="bi bi-box-arrow-right"></i>
+              </a>
+            </li>
+          </ul>
+        </search>
       </nav>
     </header>
 
@@ -111,30 +108,80 @@
       <form>
         <section>
           <div>
-
             <div class="d-flex flex-colummn flex-lg-row align-items-start">
               <fieldset>
                 <legend>Dados Pessoais</legend>
-                <input type="text" placeholder="Nome" id="nomeInp" name="nome">
-                <input type="text" placeholder="CPF" id="cpfInp" name="cpf" disabled>
-                <input type="tel" placeholder="Telefone" id="celInp" name="celphone">
-                <input type="email" placeholder="Email" id="emailInp" name="email">
-                <input type="date" placeholder="Data de Nascimento" id="birthdayInp" name="birthday">
+                <input
+                  type="text"
+                  placeholder="Nome"
+                  id="nomeInp"
+                  name="nome"
+                />
+                <input
+                  type="text"
+                  placeholder="CPF"
+                  id="cpfInp"
+                  name="cpf"
+                  disabled
+                />
+                <input
+                  type="tel"
+                  placeholder="Telefone"
+                  id="celInp"
+                  name="celphone"
+                />
+                <input
+                  type="email"
+                  placeholder="Email"
+                  id="emailInp"
+                  name="email"
+                />
+                <input
+                  type="date"
+                  placeholder="Data de Nascimento"
+                  id="birthdayInp"
+                  name="birthday"
+                />
               </fieldset>
               <fieldset>
                 <legend>Dados de Entrega</legend>
-                <input type="text" placeholder="CEP" id="cepInp" name="cep">
-                <input type="text" placeholder="Rua" id="ruaInp" name="rua">
-                <input type="text" placeholder="Bairro" id="bairroInp" name="bairro">
-                <input type="text" placeholder="Cidade" id="cidadeInp" name="cidade">
-                <input type="text" placeholder="Estado" id="estadoInp" name="estado">
+                <input type="text" placeholder="CEP" id="cepInp" name="cep" />
+                <input type="text" placeholder="Rua" id="ruaInp" name="rua" />
+                <input
+                  type="text"
+                  placeholder="Bairro"
+                  id="bairroInp"
+                  name="bairro"
+                />
+                <input
+                  type="text"
+                  placeholder="Cidade"
+                  id="cidadeInp"
+                  name="cidade"
+                />
+                <input
+                  type="text"
+                  placeholder="Estado"
+                  id="estadoInp"
+                  name="estado"
+                />
                 <ul class="inputContainer list-unstyled d-flex gap-3">
-                  <input type="number" placeholder="Número" id="numeroInp" name="numeroRes">
-                  <input type="text" placeholder="Complemento" id="complementoInp" name="complemento">
+                  <input
+                    type="number"
+                    placeholder="Número"
+                    id="numeroInp"
+                    name="numeroRes"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Complemento"
+                    id="complementoInp"
+                    name="complemento"
+                  />
                 </ul>
               </fieldset>
             </div>
-            
+
             <button type="button" class="btnPrimary saveBtn">Salvar</button>
           </div>
           <div class="divider"></div>
@@ -142,24 +189,47 @@
             <fieldset>
               <legend>Dados de Acesso</legend>
               <div class="passwordCont password">
-                <input type="password" placeholder="Nova Senha" id="newPasswordInp">
+                <input
+                  type="password"
+                  placeholder="Nova Senha"
+                  id="newPasswordInp"
+                />
                 <i class="bi bi-eye"></i>
               </div>
               <div class="confirmPasswordCont password">
-                <input type="password" placeholder="Confirmar Senha" id="confirmPasswordInp">
+                <input
+                  type="password"
+                  placeholder="Confirmar Senha"
+                  id="confirmPasswordInp"
+                />
                 <i class="bi bi-eye"></i>
               </div>
               <div class="requisitosSenha">
                 <ul>
-                  <li class="letraMaiuscula"><i class="bi bi-x-circle"></i> 1 Letra maiúscula (A-Z)</li>
-                  <li class="letraMinuscula"><i class="bi bi-x-circle"></i> 1 Letra minúscula (a-z)</li>
-                  <li class="numero"><i class="bi bi-x-circle"></i> 1 número (0-9)</li>
-                  <li class="caractereEspecial"><i class="bi bi-x-circle"></i> 1 caractere especial (!@#$%^&*(),.?)</li>
-                  <li class="qtdCaracteres"><i class="bi bi-x-circle"></i> No mínimo 6 caracteres</li>
-                  <li class="senhasCoincidem"><i class="bi bi-x-circle"></i> Senhas Coincidem</li>
+                  <li class="letraMaiuscula">
+                    <i class="bi bi-x-circle"></i> 1 Letra maiúscula (A-Z)
+                  </li>
+                  <li class="letraMinuscula">
+                    <i class="bi bi-x-circle"></i> 1 Letra minúscula (a-z)
+                  </li>
+                  <li class="numero">
+                    <i class="bi bi-x-circle"></i> 1 número (0-9)
+                  </li>
+                  <li class="caractereEspecial">
+                    <i class="bi bi-x-circle"></i> 1 caractere especial
+                    (!@#$%^&*(),.?)
+                  </li>
+                  <li class="qtdCaracteres">
+                    <i class="bi bi-x-circle"></i> No mínimo 6 caracteres
+                  </li>
+                  <li class="senhasCoincidem">
+                    <i class="bi bi-x-circle"></i> Senhas Coincidem
+                  </li>
                 </ul>
               </div>
-              <button type="button" class="btnSecondaryOutline changePassBtn">Alterar Senha</button>
+              <button type="button" class="btnSecondaryOutline changePassBtn">
+                Alterar Senha
+              </button>
             </fieldset>
           </div>
         </section>
@@ -167,11 +237,11 @@
     </main>
 
     <div class="loading">
-        <div class="spinner-content">
-          <div class="spinner-border text-light" role="status">
-            <span class="visually-hidden">Loading...</span>
-          </div>
+      <div class="spinner-content">
+        <div class="spinner-border text-light" role="status">
+          <span class="visually-hidden">Loading...</span>
         </div>
       </div>
-</body>
+    </div>
+  </body>
 </html>
