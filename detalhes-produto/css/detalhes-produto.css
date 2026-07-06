@@ -330,6 +330,11 @@ footer {
     display: none !important;
   }
 
+  #addToCartAlert{
+    width: calc(100vw - 40px);
+    top: 80px;
+  }
+
   .produtoPage {
     padding: 6.4rem 2.4rem 3.2rem;
   }
