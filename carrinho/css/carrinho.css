@@ -383,6 +383,7 @@ ul {
 .checkoutModal.is-open {
   display: flex;
   z-index: 1000;
+  overflow-y: hidden;
 }
 
 .modalCompraConcluida.is-open {
