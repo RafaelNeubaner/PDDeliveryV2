@@ -289,6 +289,15 @@ body {
   text-align: center;
 }
 
+#addToCartAlert{
+  width: 100%;
+  max-width: 500px;
+  position: fixed;
+  top: 140px;
+  right: 20px;
+  z-index: 1000;
+}
+
 footer {
   margin-top: auto;
 }

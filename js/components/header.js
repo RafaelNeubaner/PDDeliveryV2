@@ -1,5 +1,5 @@
 import {logout} from "../services/useAuth.js"
-//import {cartApi} from "./carrinho/useCart.js"
+import {cartApi} from "../services/useCarrinho.js"
 
 const searchPlaceholderMedia = window.matchMedia("(max-width: 556px)")
 const searchPlaceholderDefault = "O que você está procurando?"
@@ -29,4 +29,4 @@ document.querySelectorAll(".logoutBtn").forEach(btn=>{
     })
 })
 
-//cartApi.atualizarBadgeGlobal()
+cartApi.atualizarBadgeGlobal()
