@@ -382,6 +382,7 @@ ul {
 
 .checkoutModal.is-open {
   display: flex;
+  z-index: 1000;
 }
 
 .modalCompraConcluida.is-open {
@@ -396,7 +397,8 @@ ul {
 
 .checkoutModalCard {
   position: relative;
-  z-index: 1;
+  z-index: 900;
+  margin-top: 0;
   width: min(88vw, 540px);
   max-height: 88vh;
   overflow: auto;
