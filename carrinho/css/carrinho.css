@@ -363,7 +363,7 @@ ul {
   display: none;
   align-items: center;
   justify-content: center;
-  z-index: 900;
+  z-index: 5;
 }
 
 .checkoutModal.is-open {
