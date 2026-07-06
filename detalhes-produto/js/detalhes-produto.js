@@ -1,7 +1,5 @@
 import { useProducts } from "/js/services/useProducts.js";
-
-const CART_KEY = "pdDeliveryCart";
-const LEGACY_CART_KEY = "carrinho";
+import {cartApi} from "../../js/services/useCarrinho.js"
 
 const state = {
   product: null,
@@ -208,28 +206,6 @@ function updateTotals() {
   elements.total.textContent = formatCurrency(calculateUnitTotal() * state.quantity);
 }
 
-function updateCartBadge() {
-  const cart = getCart();
-  const totalItems = cart.reduce((total, item) => total + Number(item.quantity || 0), 0);
-
-  document.querySelectorAll(".cart-badge").forEach((badge) => {
-    badge.textContent = totalItems;
-  });
-}
-
-function getCart() {
-  try {
-    return JSON.parse(localStorage.getItem(CART_KEY)) || [];
-  } catch {
-    return [];
-  }
-}
-
-function saveCart(cart) {
-  localStorage.setItem(CART_KEY, JSON.stringify(cart));
-  localStorage.setItem(LEGACY_CART_KEY, JSON.stringify(cart));
-  updateCartBadge();
-}
 
 function buildCartItem() {
   const selectedAdditions = [];
@@ -274,7 +250,6 @@ function buildCartItem() {
   const unitTotal = calculateUnitTotal();
 
   return {
-    id: `${state.product.id}-${Date.now()}`,
     productId: state.product.id,
     name: state.product.name,
     category: state.product.category,
@@ -301,20 +276,24 @@ function getItemSignature(item) {
 }
 
 function addToCart() {
-  const cart = getCart();
   const item = buildCartItem();
-  const existingItem = cart.find(
-    (cartItem) => getItemSignature(cartItem) === getItemSignature(item),
-  );
 
-  if (existingItem) {
-    existingItem.quantity += item.quantity;
-    existingItem.total = existingItem.unitTotal * existingItem.quantity;
-  } else {
-    cart.push(item);
-  }
+  const alertCont = document.getElementById("addToCartAlert")
+  const wrapper = document.createElement('div')
+  wrapper.innerHTML = [
+    `<div class="alert alert-success alert-dismissible" role="alert">`,
+    `   <div>Produto adicionado ao Carrinho!</div>`,
+    '</div>'
+  ].join('')
+  
+  alertCont.append(wrapper)
 
-  saveCart(cart);
+  setTimeout(()=>{
+    wrapper.innerHTML=""
+  }, 3000)
+
+  cartApi.addToCart(item, 1)
+  cartApi.atualizarBadgeGlobal()
 }
 
 function setupEvents() {
@@ -422,5 +401,4 @@ async function loadProduct() {
 }
 
 setupEvents();
-updateCartBadge();
 loadProduct();

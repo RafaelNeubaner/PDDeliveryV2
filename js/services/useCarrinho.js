@@ -2,44 +2,38 @@
 const CART_STORAGE_KEY = "pd-delivery-cart";
 
 /**
+ * 
  * @typedef {object} ProductCart
  * 
- * @property {string} cartId
- * @property {number} id
- * @property {string} nome
- * @property {string} descricao
- * @property {string} preco
+ * @property {Adicional[]} additions
+ * @property {Adicional[]} adicionais
+ * @property {number} basePrice
+ * @property {string} category
+ * @property {string} description
+ * @property {number} discount
+ * @property {string} id
  * @property {string} image
- * @property {Opcoes[]} opcoesSelecionadas
- * @property {number} quantidade
+ * @property {string} name
+ * @property {string} productId
+ * @property {number} quantity
+ * @property {number} total
+ * @property {number} unitTotal
  */
 
 /**
- * @typedef {object} Opcoes
  * 
- * @property {boolean} multiselected
- * @property {boolean} required
- * @property {string} title
- * @property {Adicional[]} adicionaisSelecionados
- */
-
-/**
  * @typedef {object} Adicional
  * 
- * @property {number} aditionalPrice
+ * @property {number} additionalPrice
  * @property {string} description
+ * @property {String} groupTitle
  * @property {string} image
+ * @property {string} name
+ * @property {number} price
+ * @property {number} quantity
  * @property {string} title
- * @property {number} quantidade
  */
 
-
-/**
- * Transforma o texto na tela do valor em número
- * @param {string} valorTexto 
- * 
- * @returns {number}
- */
 function parseValor(valorTexto) {
   const normalizado = String(valorTexto || "0")
     .replace(/[^\d,.-]/g, "")
@@ -83,39 +77,43 @@ function setCartStorage(cart) {
  * @returns {string}
  */
 function buildCartItemKey(item) {
-  return `${item.id}::${item.opcoesSelecionadas.map((e=>e.title+e.adicionaisSelecionados.map(f=>f.title).join(","))).join(":") || ""}`;
+  return `${item.productId}::${item.additions.map(e=>`${e.title}x${e.quantity}`).join(":") || ""}`.trim();
 }
 
 export const cartApi = {
   parseProduto,
   parseValor,
   getCart: () => getCartStorage(),
+  getByCartId: (id)=>{
+    return cartApi.getCart().find((cartItem) => cartItem.id === id)
+  },
   saveCart: (cart) => setCartStorage(cart),
   addToCart: (produto, quantidade = 1) => {
+    console.log(produto)
     const cart = getCartStorage();
     const itemKey = buildCartItemKey(produto);
     const index = cart.findIndex((item) => buildCartItemKey(item) === itemKey);
 
     if (index >= 0) {
-      cart[index].qtd += quantidade;
+      cart[index].quantity += quantidade;
     } else {
-      cart.push({ ...produto, qtd: quantidade, cartKey: itemKey });
+      cart.push({ ...produto, quantity: quantidade, id: itemKey });
     }
 
     setCartStorage(cart);
     return cart;
   },
-  removeFromCart: (id, quantidade = 1, variant = "") => {
+  removeFromCart: (item, quantidade = 1) => {
     const cart = getCartStorage();
-    const itemKey = buildCartItemKey({ id, variant });
+    const itemKey = buildCartItemKey(item);
     const index = cart.findIndex((item) => buildCartItemKey(item) === itemKey);
 
     if (index === -1) {
       return cart;
     }
 
-    cart[index].qtd -= quantidade;
-    if (cart[index].qtd <= 0) {
+    cart[index].quantity -= quantidade;
+    if (cart[index].quantity <= 0) {
       cart.splice(index, 1);
     }
 
@@ -126,11 +124,24 @@ export const cartApi = {
     setCartStorage([]);
   },
   getTotalItens: () =>
-    getCartStorage().reduce((total, item) => total + (item.qtd || 0), 0),
+    getCartStorage().reduce((total, item) => total + (item.quantity || 0), 0),
   atualizarBadgeGlobal: () => {
     const total = String(cartApi.getTotalItens());
+    console.log(total)
     document.querySelectorAll(".cart-badge").forEach((badge) => {
       badge.textContent = total;
     });
   },
+  getCartSubtotal: ()=>{
+    return getCartStorage().reduce(
+      (total, item) => total + Number(item.unitTotal || item.basePrice || 0) * item.quantity,
+      0,
+    );
+  },
+  getCheckoutTotal: ()=>{
+    const subtotal = getCartSubtotal();
+    const serviceTax = getCart().length > 0 ? 0.99 : 0;
+
+    return subtotal + serviceTax + Number(checkoutFreightValue || 0) - discount;
+  }
 };
