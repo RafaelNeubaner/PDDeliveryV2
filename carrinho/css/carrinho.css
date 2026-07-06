@@ -63,9 +63,6 @@ footer {
 }
 
 #carrinho.empty-cart .carrinho-vazio {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--txtDark);
   text-align: center;
 }
 
@@ -384,6 +381,10 @@ ul {
 }
 
 .checkoutModal.is-open {
+  display: flex;
+}
+
+.modalCompraConcluida.is-open {
   display: flex;
 }
 

@@ -9,7 +9,7 @@ const totalElement = document.querySelector(".precoTotal");
 const serviceTaxElement = document.querySelector(".taxaServico");
 const finishButton = document.querySelector(".finalizar-compra");
 let discount = 0;
-
+const modalCompraConcluida = document.querySelector(".modalCompraConcluida");
 const checkoutModal = document.getElementById("checkoutModal");
 const checkoutForm = document.getElementById("checkoutForm");
 const checkoutClose = document.getElementById("checkoutClose");
@@ -170,7 +170,7 @@ function renderItems(cart) {
 
   if (cart.length === 0) {
     itemsContainer.innerHTML =
-      '<p class="carrinho-vazio">Seu carrinho está vazio.</p>';
+      '<p class="title carrinho-vazio">Seu carrinho está vazio.</p>';
     return;
   }
 
@@ -302,6 +302,7 @@ checkoutModal?.addEventListener("click", (event) => {
 checkoutForm?.addEventListener("submit", (event) => {
   event.preventDefault();
   showOrderCompleted();
+  modalCompraConcluida?.classList.add("is-open");
 });
 
 paymentPix?.addEventListener("change", toggleCardFields);
