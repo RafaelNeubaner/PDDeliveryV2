@@ -34,7 +34,7 @@
 
     <!-- Custom JS -->
     <script type="module" src="/js/requiredAuthentication.js"></script>
-    <script type="module" src="./js/requiredOnlyClient.js"></script>
+    <script type="module" src="../js/requiredOnlyClient.js"></script>
     <script src="/js/scripts.js" defer></script>
     <script type="module" src="/js/components/header.js"></script>
     <script type="module" src="/js/components/productCard.js"></script>
@@ -83,38 +83,46 @@
               <span class="cart-badge">0</span>
             </li>
 
-              <li class="nav-item d-block iconProfile">
-                <a href="/perfil/perfil.html" class="nav-link"
-                  ><i class="bi bi-person"></i
-                ></a>
-              </li>
+            <li class="nav-item d-block iconProfile">
+              <a href="/perfil/perfil.html" class="nav-link"
+                ><i class="bi bi-person"></i
+              ></a>
+            </li>
 
-              <li class="nav-item d-block logoutLink">
-                <a
-                  href="/index.html"
-                  class="btn nav-link logoutBtn"
-                  style="
-                    cursor: pointer;
-                    border: none;
-                    background: none;
-                    padding: 0.5rem 0.75rem;
-                    "
-                >
-                  <i class="bi bi-box-arrow-right"></i>
-                </a>
-              </li>
-            </ul>
-          </search>
+            <li class="nav-item d-block logoutLink">
+              <a
+                href="/index.html"
+                class="btn nav-link logoutBtn"
+                style="
+                  cursor: pointer;
+                  border: none;
+                  background: none;
+                  padding: 0.5rem 0.75rem;
+                "
+              >
+                <i class="bi bi-box-arrow-right"></i>
+              </a>
+            </li>
+          </ul>
+        </search>
       </nav>
     </header>
 
     <main>
       <section class="filtros">
         <ul>
-          <li class="btnPrimaryOutline promocao" data-filter="promocao">Promoções</li>
-          <li class="btnPrimaryOutline sobremesa" data-filter="sobremesa">Sobremesas</li>
-          <li class="btnPrimaryOutline bebidas" data-filter="bebidas">Bebidas</li>
-          <li class="btnPrimaryOutline brasileira" data-filter="brasileira">Tradicional Brasileira</li>
+          <li class="btnPrimaryOutline promocao" data-filter="promocao">
+            Promoções
+          </li>
+          <li class="btnPrimaryOutline sobremesa" data-filter="sobremesa">
+            Sobremesas
+          </li>
+          <li class="btnPrimaryOutline bebidas" data-filter="bebidas">
+            Bebidas
+          </li>
+          <li class="btnPrimaryOutline brasileira" data-filter="brasileira">
+            Tradicional Brasileira
+          </li>
         </ul>
 
         <label class="ordenarBusca">
@@ -128,13 +136,9 @@
           </select>
         </label>
       </section>
-    <div class="container mt-5 p-0  ContainerBusca">
+      <div class="container mt-5 p-0 ContainerBusca">
         <section class="col-lg-9" id="resultadosBusca">
-          <div
-            id="gridProdutosBusca"
-            class="row containerCardapio row"
-          >
-
+          <div id="gridProdutosBusca" class="row containerCardapio row">
             <div class="col-12 text-center py-5 w-100" id="loadingBusca">
               <div class="spinner-border text-danger" role="status">
                 <span class="visually-hidden">Carregando produtos...</span>
@@ -142,7 +146,7 @@
             </div>
           </div>
         </section>
-    </div>
+      </div>
     </main>
 
     <footer>

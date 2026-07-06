@@ -34,9 +34,9 @@
     ></script>
 
     <!-- Custom JS -->
-    <script type="module" src="./js/requiredAuthentication.js"></script>
-    <script type="module" src="./js/requiredOnlyClient.js"></script>
-    <script src="js/scripts.js" defer></script>
+    <script type="module" src="/js/requiredAuthentication.js"></script>
+    <script type="module" src="/js/requiredOnlyClient.js"></script>
+    <script src="/js/scripts.js" defer></script>
     <script type="module" src="/js/components/header.js"></script>
 
     <script type="module" src="/carrinho/js/carrinho.js"></script>
@@ -110,9 +110,7 @@
     </header>
 
     <main>
-      <div
-        id="carrinho"
-      >
+      <div id="carrinho">
         <section class="listaCarrinho">
           <h1 class="title">
             Carrinho ( <span class="cart-badge">qtd</span> )
@@ -121,88 +119,89 @@
 
           <!-- ITENS CARRINHO -->
           <section class="itensCarrinho">
-              <article class="item" data-id="">
-                <div class="cardInfo">
-                  <img
-                    src="/assets/media/images/carrinho/produto.png"
-                    alt="imagem do produto"
-                  />
-                  <hgroup class="detalhesItem">
-                    <h3 class="cardTitle">Filé Mignon ao Salitre (300g)</h3>
-                    <p class="adicionais">
-                      Adicionais:
-                      <small
-                        >Arroz Branco, Batatas Rústicas, Legumes Salte, Molho ao
-                        Salitre</small
-                      >
-                    </p>
-                    <p class="precoProduto txtDark">R$ 99,99</p>
-                  </hgroup>
-                </div>
-  
-                <div class="d-flex justify-content-between">
-                  <div class="controleQtd d-flex">
-                    <div class="controle">
-                      <button class="decremento btnOutline">
-                        <i class="bi bi-dash"></i>
-                      </button>
-                      <span class="quantity">1</span>
-                      <button class="incremento btnOutline">
-                        <i class="bi bi-plus"></i>
-                      </button>
-                    </div>
-                    <button class="remover btnOutline">
-                      <i class="bi bi-trash"></i>
-                    </button>
-                  </div>
-                  <p class="subTotal red subTitleCard">R$ 99,99</p>
-                </div>
-              </article>
-              
-              <article class="item" data-id="">
-                <div class="cardInfo">
-                  <img
-                    src="/assets/media/images/carrinho/produto.png"
-                    alt="imagem do produto"
-                  />
-                  <hgroup class="detalhesItem">
-                    <h3 class="cardTitle">Filé Mignon ao Salitre (300g)</h3>
-                    <p class="adicionais">
-                      Adicionais:
-                      <small
-                        >Arroz Branco, Batatas Rústicas, Legumes Salte, Molho ao
-                        Salitre</small
-                      >
-                    </p>
-                    <p class="precoProduto">R$ 99,99</p>
-                  </hgroup>
-                </div>
-  
-                <div class="d-flex justify-content-between">
-                  <div class="controleQtd d-flex">
-                    <div class="controle">
-                      <button class="decremento btnOutline">
-                        <i class="bi bi-dash"></i>
-                      </button>
-                      <span class="quantity">1</span>
-                      <button class="incremento btnOutline">
-                        <i class="bi bi-plus"></i>
-                      </button>
-                    </div>
-                    <button class="remover btnOutline">
-                      <i class="bi bi-trash"></i>
-                    </button>
-                  </div>
-                  <p class="subTotal red subTitleCard">R$ 99,99</p>
-                </div>
-              </article>
-  
+            <article class="item" data-id="">
+              <div class="cardInfo">
+                <img
+                  src="/assets/media/images/carrinho/produto.png"
+                  alt="imagem do produto"
+                />
+                <hgroup class="detalhesItem">
+                  <h3 class="cardTitle">Filé Mignon ao Salitre (300g)</h3>
+                  <p class="adicionais">
+                    Adicionais:
+                    <small
+                      >Arroz Branco, Batatas Rústicas, Legumes Salte, Molho ao
+                      Salitre</small
+                    >
+                  </p>
+                  <p class="precoProduto txtDark">R$ 99,99</p>
+                </hgroup>
+              </div>
 
+              <div class="d-flex justify-content-between">
+                <div class="controleQtd d-flex">
+                  <div class="controle">
+                    <button class="decremento btnPrimaryOutline">
+                      <i class="bi bi-dash"></i>
+                    </button>
+                    <span class="quantity">1</span>
+                    <button class="incremento btnPrimaryOutline">
+                      <i class="bi bi-plus"></i>
+                    </button>
+                  </div>
+                  <button class="remover btnPrimaryOutline">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
+                <p class="subTotal red subTitleCard">R$ 99,99</p>
+              </div>
+            </article>
+
+            <article class="item" data-id="">
+              <div class="cardInfo">
+                <img
+                  src="/assets/media/images/carrinho/produto.png"
+                  alt="imagem do produto"
+                />
+                <hgroup class="detalhesItem">
+                  <h3 class="cardTitle">Filé Mignon ao Salitre (300g)</h3>
+                  <p class="adicionais">
+                    Adicionais:
+                    <small
+                      >Arroz Branco, Batatas Rústicas, Legumes Salte, Molho ao
+                      Salitre</small
+                    >
+                  </p>
+                  <p class="precoProduto">R$ 99,99</p>
+                </hgroup>
+              </div>
+
+              <div class="d-flex justify-content-between">
+                <div class="controleQtd d-flex">
+                  <div class="controle">
+                    <button class="decremento btnPrimaryOutline">
+                      <i class="bi bi-dash"></i>
+                    </button>
+                    <span class="quantity">1</span>
+                    <button class="incremento btnPrimaryOutline">
+                      <i class="bi bi-plus"></i>
+                    </button>
+                  </div>
+                  <button class="remover btnPrimaryOutline">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
+                <p class="subTotal red subTitleCard">R$ 99,99</p>
+              </div>
+            </article>
           </section>
 
-          <button class="btnSecondary d-none d-lg-block" onclick="window.location.href='/index.html'">Adicionar mais produtos</button>
-          
-
+          <button
+            class="btnSecondary d-none d-lg-block"
+            onclick="window.location.href = '/index.html'"
+          >
+            Adicionar mais produtos
+          </button>
         </section>
 
         <!-- SUBTOTAL -->
@@ -210,34 +209,166 @@
           <h3>Subtotal: <span class="subtotal">R$ 8,97</span></h3>
           <h3>Taxa de serviço: <span class="taxaServico">R$ 0,99</span></h3>
 
-
           <form class="formDesconto d-flex gap-3">
             <input
               type="text"
               placeholder="Cupom de desconto"
               id="descontoInput"
             />
-            <button class="btnPrimary">Aplicar</button>
+            <button class="btnPrimary" id="descontoButton" type="button">
+              Aplicar
+            </button>
           </form>
 
           <h3>Desconto: <span class="precoDesconto">- R$ --,--</span></h3>
           <h4>Total: <span class="precoTotal subTitleCard">R$ 99,99</span></h4>
 
           <button class="btnPrimary finalizar-compra">Finalizar Compra</button>
-          <button class="btnSecondary d-block d-lg-none" onclick="window.location.href='/index.html'">Adicionar mais produtos</button>
+          <button
+            class="btnSecondary d-block d-lg-none"
+            onclick="window.location.href = '/index.html'"
+          >
+            Adicionar mais produtos
+          </button>
         </aside>
 
-        <article class="modalCompraConcluida">
+        <section class="checkoutModal" id="checkoutModal" aria-hidden="true">
+          <div class="checkoutModalBackdrop" data-action="close"></div>
+
+          <article class="checkoutModalCard">
+            <button
+              type="button"
+              class="checkoutClose"
+              id="checkoutClose"
+              aria-label="Fechar checkout"
+            >
+              <i class="bi bi-x-lg"></i>
+            </button>
+
+            <form class="checkoutForm" id="checkoutForm">
+              <h2>Endereço de Entrega</h2>
+
+              <div class="checkoutGrid checkoutGridCep">
+                <input
+                  type="text"
+                  id="checkoutCep"
+                  placeholder="CEP"
+                  inputmode="numeric"
+                  maxlength="9"
+                />
+              </div>
+
+              <div class="checkoutGrid checkoutGridThree">
+                <input type="text" id="checkoutRua" placeholder="Rua" />
+                <input type="text" id="checkoutNumero" placeholder="Número" />
+                <input type="text" id="checkoutBairro" placeholder="Bairro" />
+              </div>
+
+              <div class="checkoutGrid checkoutGridOne">
+                <input type="text" id="checkoutCidade" placeholder="Cidade" />
+              </div>
+
+              <div class="checkoutGrid checkoutGridTwo">
+                <input type="text" id="checkoutEstado" placeholder="Estado" />
+                <input
+                  type="text"
+                  id="checkoutComplemento"
+                  placeholder="Complemento"
+                />
+              </div>
+
+              <h2>Forma de Pagamento</h2>
+
+              <div class="paymentOptions">
+                <label class="paymentOption">
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="pix"
+                    id="paymentPix"
+                  />
+                  <span>Pix</span>
+                </label>
+
+                <label class="paymentOption">
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="credit"
+                    id="paymentCredit"
+                    checked
+                  />
+                  <span>Cartão de Crédito</span>
+                </label>
+              </div>
+
+              <div class="cardFields" id="cardFields">
+                <input
+                  type="text"
+                  id="checkoutCardNumber"
+                  placeholder="Nº do Cartão"
+                />
+                <div class="checkoutGrid checkoutGridTwo">
+                  <input
+                    type="text"
+                    id="checkoutCardExpiry"
+                    placeholder="Data Vencimento"
+                  />
+                  <input type="text" id="checkoutCardCvv" placeholder="CVV" />
+                </div>
+              </div>
+
+              <div class="checkoutFooter">
+                <span class="checkoutFooterBadge" id="checkoutPromoBadge"
+                  >15%</span
+                >
+
+                <div class="checkoutSummary">
+                  <div class="checkoutSummaryRow">
+                    <span>Frete</span>
+                    <strong id="checkoutFrete">R$ --,--</strong>
+                  </div>
+
+                  <div class="checkoutSummaryRow checkoutSummaryTotal">
+                    <div class="checkoutTotalGroup">
+                      <span>Total</span>
+                      <strong class="checkoutTotal displayNoneDesktop"
+                        >R$ --,--</strong
+                      >
+                    </div>
+                    <strong class="checkoutTotal displayNoneMobile"
+                      >R$ --,--</strong
+                    >
+                    <strong id="checkoutItemCount" class="displayNoneDesktop"
+                      >0 qtd</strong
+                    >
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  class="btnPrimary checkoutSubmit"
+                  id="checkoutSubmit"
+                >
+                  Finalizar pedido
+                </button>
+              </div>
+            </form>
+          </article>
+        </section>
+      </div>
+      <article class="modalCompraConcluida">
           <i class="bi bi-check-circle" style="color: green"></i>
           <h3 class="subTitleCard">Obrigado por comprar conosco!</h3>
           <div>
-            <a href="/index.html" class="btnOutline">Voltar a tela Inicial</a>
+            <a href="/index.html" class="btnPrimaryOutline"
+              >Voltar a tela Inicial</a
+            >
             <a href="/perfil/meus-pedidos.html" class="btnPrimary"
               >Meus Pedidos</a
             >
           </div>
         </article>
-      </div>
     </main>
 
     <footer>
