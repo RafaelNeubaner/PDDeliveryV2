@@ -25,7 +25,7 @@ const paymentPix = document.getElementById("paymentPix");
 const paymentCredit = document.getElementById("paymentCredit");
 const cardFields = document.getElementById("cardFields");
 const checkoutFrete = document.getElementById("checkoutFrete");
-const checkoutTotal = document.getElementById("checkoutTotal");
+const checkoutTotal = document.querySelectorAll(".checkoutTotal");
 const checkoutItemCount = document.getElementById("checkoutItemCount");
 const checkoutPromoBadge = document.getElementById("checkoutPromoBadge");
 
@@ -88,7 +88,9 @@ function updateCheckoutSummary() {
   }
 
   if (checkoutTotal) {
-    checkoutTotal.textContent = formatCurrency(subtotal + (cart.length > 0 ? 0.99 : 0) + Number(checkoutFreightValue || 0) - discount);
+    for (const totalElement of checkoutTotal) {
+      totalElement.textContent = formatCurrency(subtotal + (cart.length > 0 ? 0.99 : 0) + Number(checkoutFreightValue || 0) - discount);
+    }
   }
 
   if (checkoutItemCount) {
