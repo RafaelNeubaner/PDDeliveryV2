@@ -115,7 +115,7 @@ function closeCheckoutModal() {
 }
 
 function showOrderCompleted() {
-  clearCart();
+  cartApi.clearCart();
   closeCheckoutModal();
   cartContainer?.classList.add("checkout-completed");
 }
