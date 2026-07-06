@@ -110,8 +110,8 @@ body.darkMode .themeToggle:hover {
 }
 
 .bgTertiary {
-    background-color: var(--tertiary);
-    color: var(--txt);
+    background-color: var(--azul);
+    color: var(--txtLight);
 }
 
 .bgHeader {
@@ -171,6 +171,7 @@ body.darkMode .themeToggle:hover {
     color: var(--primary);
     border: 3px solid var(--primary);
     padding: 8px 22px;
+    font-size: 16px;
     border-radius: 12px;
     cursor: pointer;
     transition:
@@ -206,7 +207,7 @@ body.darkMode .themeToggle:hover {
     cursor: pointer;
     transition: background-color 0.3s ease;
     display: inline-block;
-    font-size: 1.6rem;
+    font-size: 16px;
 }
 
 .btnSecondary:hover {
@@ -232,7 +233,7 @@ body.darkMode .themeToggle:hover {
         all 0.1s ease,
         color 0.1s ease;
 
-    font-size: 1.6rem;
+    font-size: 16px;
 }
 
 .btnSecondaryOutline:hover {
@@ -316,7 +317,7 @@ body.darkMode .themeToggle:hover {
 }
 
 .btnText {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 600;
 }
 
@@ -357,6 +358,16 @@ p {
 
 .red {
     color: var(--primary);
+}
+
+.regForm input.inputError {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 0 1px rgba(220, 53, 69, 0.18);
+}
+
+.inputError {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 0 1px rgba(220, 53, 69, 0.18);
 }
 
 input,
@@ -442,7 +453,7 @@ select {
     }
 
     .btnText {
-        font-size: 18px;
+        font-size: 14px;
         font-weight: 600;
     }
 
@@ -459,7 +470,7 @@ select {
 
 @media (max-width: 768px) {
     main {
-        margin-top: 15rem !important;
+        margin-top: 6rem !important;
     }
 }
 
@@ -472,6 +483,7 @@ select {
     
     .btnPrimaryOutline {
         padding: 8px 12px;
+        font-size: small;
     }
     
     .btnSecondary {

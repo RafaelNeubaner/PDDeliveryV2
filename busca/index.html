@@ -19,10 +19,10 @@
     />
 
     <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/home.css" />
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="stylesheet" href="/css/header.css" />
     <link rel="stylesheet" href="/css/footer.css" />
-    <link rel="stylesheet" href="/css/home.css" />
     <link rel="stylesheet" href="/busca/css/busca.css" />
 
     <!-- Scripts -->
@@ -34,6 +34,7 @@
 
     <!-- Custom JS -->
     <script type="module" src="/js/requiredAuthentication.js"></script>
+    <script type="module" src="./js/requiredOnlyClient.js"></script>
     <script src="/js/scripts.js" defer></script>
     <script type="module" src="/js/components/header.js"></script>
     <script type="module" src="/js/components/productCard.js"></script>
@@ -113,13 +114,13 @@
           <li class="btnPrimaryOutline promocao" data-filter="promocao">Promoções</li>
           <li class="btnPrimaryOutline sobremesa" data-filter="sobremesa">Sobremesas</li>
           <li class="btnPrimaryOutline bebidas" data-filter="bebidas">Bebidas</li>
-          <li class="btnPrimaryOutline brasileira" data-filter="brasileira">Culinária Brasileira</li>
+          <li class="btnPrimaryOutline brasileira" data-filter="brasileira">Tradicional Brasileira</li>
         </ul>
 
         <label class="ordenarBusca">
           <span>Ordenar por</span>
           <select id="ordenarBusca" name="ordenar">
-            <option value="">Ordenar por</option>
+            <option value="" disabled selected>Selecione um filtro</option>
             <option value="maior-preco">Maior preço</option>
             <option value="menor-preco">Menor preço</option>
             <option value="maior-desconto">Maior desconto</option>
@@ -127,7 +128,7 @@
           </select>
         </label>
       </section>
-    <div class="container mt-5 ContainerBusca">
+    <div class="container mt-5 p-0  ContainerBusca">
         <section class="col-lg-9" id="resultadosBusca">
           <div
             id="gridProdutosBusca"
