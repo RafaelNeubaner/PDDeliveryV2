@@ -646,3 +646,9 @@ body.modal-open {
 .compreJunto {
   max-width: 80vw;
 }
+
+@media (max-width: 768px) {
+  .checkoutModal {
+    z-index:1 !important;
+  }
+}
