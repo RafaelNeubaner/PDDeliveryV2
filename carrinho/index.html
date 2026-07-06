@@ -34,9 +34,9 @@
     ></script>
 
     <!-- Custom JS -->
-    <script type="module" src="./js/requiredAuthentication.js"></script>
-    <script type="module" src="./js/requiredOnlyClient.js"></script>
-    <script src="js/scripts.js" defer></script>
+    <script type="module" src="/js/requiredAuthentication.js"></script>
+    <script type="module" src="/js/requiredOnlyClient.js"></script>
+    <script src="/js/scripts.js" defer></script>
     <script type="module" src="/js/components/header.js"></script>
 
     <script type="module" src="/carrinho/js/carrinho.js"></script>
@@ -332,9 +332,10 @@
                   <div class="checkoutSummaryRow checkoutSummaryTotal">
                     <div class="checkoutTotalGroup">
                       <span>Total</span>
-                      <strong id="checkoutTotal">R$ --,--</strong>
+                      <strong class="checkoutTotal displayNoneDesktop">R$ --,--</strong>
                     </div>
-                    <strong id="checkoutItemCount">0 qtd</strong>
+                    <strong class="checkoutTotal displayNoneMobile">R$ --,--</strong>
+                    <strong id="checkoutItemCount" class="displayNoneDesktop">0 qtd</strong>
                   </div>
                 </div>
 

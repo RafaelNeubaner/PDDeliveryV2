@@ -1,6 +1,5 @@
+import { cartApi } from "../../js/services/useCarrinho.js";
 import { getLocationByCEP } from "../../js/services/useCep.js";
-
-const CART_KEY = "pdDeliveryCart";
 
 const cartContainer = document.getElementById("carrinho");
 const itemsContainer = document.querySelector(".itensCarrinho");
@@ -25,45 +24,18 @@ const paymentPix = document.getElementById("paymentPix");
 const paymentCredit = document.getElementById("paymentCredit");
 const cardFields = document.getElementById("cardFields");
 const checkoutFrete = document.getElementById("checkoutFrete");
-const checkoutTotal = document.getElementById("checkoutTotal");
+const checkoutTotal = document.querySelectorAll(".checkoutTotal");
 const checkoutItemCount = document.getElementById("checkoutItemCount");
 const checkoutPromoBadge = document.getElementById("checkoutPromoBadge");
 
 let checkoutFreightValue = null;
 let lastCepLookup = "";
 
-
 function formatCurrency(value) {
   return Number(value || 0).toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL",
   });
-}
-
-function getCart() {
-  try {
-    return JSON.parse(localStorage.getItem(CART_KEY)) || [];
-  } catch {
-    return [];
-  }
-}
-
-function getCartSubtotal(cart = getCart()) {
-  return cart.reduce(
-    (total, item) => total + Number(item.unitTotal || item.basePrice || 0) * item.quantity,
-    0,
-  );
-}
-
-function getCartItemCount(cart = getCart()) {
-  return cart.reduce((total, item) => total + Number(item.quantity || 0), 0);
-}
-
-function getCheckoutTotal() {
-  const subtotal = getCartSubtotal();
-  const serviceTax = getCart().length > 0 ? 0.99 : 0;
-
-  return subtotal + serviceTax + Number(checkoutFreightValue || 0) - discount;
 }
 
 function formatCep(cep) {
@@ -79,16 +51,18 @@ function randomFreight() {
 }
 
 function updateCheckoutSummary() {
-  const cart = getCart();
-  const subtotal = getCartSubtotal(cart);
-  const itemCount = getCartItemCount(cart);
+  const cart = cartApi.getCart();
+  const subtotal = cartApi.getCartSubtotal();
+  const itemCount = cartApi.getTotalItens();
 
   if (checkoutFrete) {
     checkoutFrete.textContent = checkoutFreightValue === null ? "R$ --,--" : formatCurrency(checkoutFreightValue);
   }
 
   if (checkoutTotal) {
-    checkoutTotal.textContent = formatCurrency(subtotal + (cart.length > 0 ? 0.99 : 0) + Number(checkoutFreightValue || 0) - discount);
+    for (const totalElement of checkoutTotal) {
+      totalElement.textContent = formatCurrency(subtotal + (cart.length > 0 ? 0.99 : 0) + Number(checkoutFreightValue || 0) - discount);
+    }
   }
 
   if (checkoutItemCount) {
@@ -140,15 +114,6 @@ function closeCheckoutModal() {
   document.body.classList.remove("modal-open");
 }
 
-function clearCart() {
-  localStorage.removeItem(CART_KEY);
-  localStorage.removeItem("carrinho");
-  discount = 0;
-  checkoutFreightValue = null;
-  renderCart();
-  updateBadges([]);
-}
-
 function showOrderCompleted() {
   clearCart();
   closeCheckoutModal();
@@ -176,12 +141,6 @@ async function handleCepLookup(cepValue) {
   checkoutFreightValue = randomFreight();
   updateCheckoutSummary();
   checkoutNumero?.focus();
-}
-
-function saveCart(cart) {
-  localStorage.setItem(CART_KEY, JSON.stringify(cart));
-  localStorage.setItem("carrinho", JSON.stringify(cart));
-  renderCart();
 }
 
 function getAdditionsText(item) {
@@ -269,7 +228,7 @@ function renderSummary(cart) {
 }
 
 function renderCart() {
-  const cart = getCart();
+  const cart = cartApi.getCart();
 
   cartContainer?.classList.toggle("empty-cart", cart.length === 0);
   updateBadges(cart);
@@ -282,25 +241,23 @@ itemsContainer?.addEventListener("click", (event) => {
   if (!button) return;
 
   const itemElement = button.closest(".item");
-  const cart = getCart();
-  const item = cart.find((cartItem) => cartItem.id === itemElement.dataset.id);
+  const item = cartApi.getByCartId(itemElement.dataset.id);
+
 
   if (!item) return;
 
   if (button.dataset.action === "increase") {
-    item.quantity += 1;
+    cartApi.addToCart(item, 1)
   }
 
   if (button.dataset.action === "decrease") {
-    item.quantity -= 1;
+    cartApi.removeFromCart(item, 1)
   }
-
-  const nextCart =
-    button.dataset.action === "remove" || item.quantity <= 0
-      ? cart.filter((cartItem) => cartItem.id !== item.id)
-      : cart;
-
-  saveCart(nextCart);
+  
+  if(button.dataset.action === "remove" || item.quantity <= 0){
+      cartApi.removeFromCart(item, item.quantity);
+  }
+  renderCart()
 });
 
 finishButton?.addEventListener("click", () => {
