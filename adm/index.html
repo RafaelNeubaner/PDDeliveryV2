@@ -69,7 +69,7 @@
             <input id="searchInput" type="search" placeholder="Busca"/>
             <i class="bi bi-search"></i>
           </div>
-          <button class="btnPrimary">Criar Produto</button>
+          <button class="btnPrimary" id="btnCriarProduto">Criar Produto</button>
         </div>
         <div class="produtosContainer">
           <template class="cardProdutoTemp">
@@ -86,14 +86,143 @@
                   <i class="bi bi-eye"></i>
                   <span>Visualizar</span>
                 </span>
-                <button class="btnSecondaryOutline">Editar</button>
-                <button class="btnPrimary">Excluir</button>
+                <button class="btnSecondaryOutline btnEditar">Editar</button>
+                <button class="btnPrimary btnExcluir">Excluir</button>
               </div>
             </article>
           </template>
         </div>
       </section>
     </main>
+
+    <!-- MODAL CRIAR / EDITAR PRODUTO -->
+    <div class="modalOverlay" id="modalProduto">
+      <div class="modalContent">
+        <h2 class="modalTitle" id="modalProdutoTitle">Criar Produto</h2>
+
+        <form id="formProduto" autocomplete="off">
+          <!-- Imagem URL -->
+          <div class="modalFormRow modalFormRowImage">
+            <div class="inputImageUrl">
+              <i class="bi bi-image"></i>
+              <input type="text" id="produtoImage" placeholder="Imagem URL" />
+            </div>
+            <button type="button" class="btnImagePreview" id="btnImagePreview" title="Pré-visualizar imagem">
+              <i class="bi bi-card-image"></i>
+            </button>
+          </div>
+
+          <!-- Preview da imagem -->
+          <div class="imagePreviewContainer" id="imagePreviewContainer">
+            <img id="imagePreview" src="" alt="Pré-visualização" />
+          </div>
+
+          <!-- Nome e Categoria -->
+          <div class="modalFormRow">
+            <input type="text" id="produtoNome" placeholder="Nome" required />
+            <input type="text" id="produtoCategoria" placeholder="Categoria" />
+          </div>
+
+          <!-- Preço e Desconto -->
+          <div class="modalFormRow">
+            <input type="number" id="produtoPreco" placeholder="Preço" step="0.01" min="0" required />
+            <input type="number" id="produtoDesconto" placeholder="Desconto" step="0.01" min="0" />
+          </div>
+
+          <!-- Descrição -->
+          <div class="modalFormRow">
+            <textarea id="produtoDescricao" placeholder="Descrição" rows="4"></textarea>
+          </div>
+
+          <!-- Seção Opcionais -->
+          <fieldset class="opcionaisFieldset">
+            <legend>Opcionais</legend>
+
+            <div class="opcionaisAddRow">
+              <input type="text" id="novoTipoAdicional" placeholder="Tipo adicional" />
+              <button type="button" class="btnPrimary btnSmall" id="btnAddTipoAdicional">Adicionar</button>
+            </div>
+
+            <div id="opcionaisContainer"></div>
+          </fieldset>
+
+          <!-- Botões do Modal -->
+          <div class="modalActions">
+            <button type="button" class="btnSecondaryOutline" id="btnVoltarProduto">Voltar</button>
+            <button type="submit" class="btnPrimary" id="btnSubmitProduto">Cadastrar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- TEMPLATE GRUPO OPCIONAL -->
+    <template id="templateGrupoOpcional">
+      <div class="grupoOpcional">
+        <div class="grupoOpcionalHeader">
+          <button type="button" class="grupoToggleBtn">
+            <i class="bi bi-chevron-down"></i>
+            <span class="grupoNome">Molhos</span>
+          </button>
+          <div class="grupoToggles">
+            <label class="toggleLabel">
+              <span>Multi Seleção</span>
+              <input type="checkbox" class="toggleMultiSelecao" />
+              <span class="toggleSwitch"></span>
+            </label>
+            <label class="toggleLabel">
+              <span>Obrigatório</span>
+              <input type="checkbox" class="toggleObrigatorio" />
+              <span class="toggleSwitch"></span>
+            </label>
+            <span class="grupoOpcaoCount">0 opções</span>
+            <button type="button" class="link btnAddOpcao">Adicionar</button>
+            <button type="button" class="btnRemoveGrupo" title="Remover grupo">
+              <i class="bi bi-trash-fill"></i>
+            </button>
+          </div>
+        </div>
+        <div class="grupoOpcionalBody">
+          <table class="opcoesTable">
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </template>
+
+    <!-- TEMPLATE LINHA OPÇÃO -->
+    <template id="templateOpcaoRow">
+      <tr class="opcaoRow">
+        <td class="opcaoIndex">1</td>
+        <td><input type="text" class="opcaoNome" placeholder="Nome" /></td>
+        <td><input type="text" class="opcaoDescricao" placeholder="Descrição" /></td>
+        <td><input type="text" class="opcaoPreco" placeholder="R$ 0,00" /></td>
+        <td class="opcaoActions">
+          <button type="button" class="btnOpcaoConfirmar" title="Confirmar"><i class="bi bi-check-lg"></i></button>
+          <button type="button" class="btnOpcaoEditar" title="Editar"><i class="bi bi-pencil-fill"></i></button>
+          <button type="button" class="btnOpcaoExcluir" title="Excluir"><i class="bi bi-trash-fill"></i></button>
+        </td>
+      </tr>
+    </template>
+
+    <!-- MODAL EXCLUIR PRODUTO -->
+    <div class="modalOverlay" id="modalExcluir">
+      <div class="modalContentExcluir">
+        <h3>Deseja realmente excluir o produto selecionado?</h3>
+        <p class="modalExcluirSub">Essa ação não poderá ser desfeita e todos os dados serão excluídos</p>
+        <div class="modalActions">
+          <button type="button" class="btnSecondaryOutline" id="btnCancelarExcluir">Cancelar</button>
+          <button type="button" class="btnPrimary" id="btnConfirmarExcluir">Confirmar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOAST DE SUCESSO -->
+    <div class="toastContainer" id="toastContainer">
+      <div class="toastMessage" id="toastMessage">
+        <i class="bi bi-check-circle-fill"></i>
+        <span id="toastText"></span>
+      </div>
+    </div>
     
 </body>
 </html>

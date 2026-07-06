@@ -313,9 +313,555 @@ footer .navLinks {
     color: var(--primary);
   }
 
+
   .cardProdutoAdm .buttons button,
   .cardProdutoAdm .buttons i {
     width: 100%;
     text-align: center;
+  }
+}
+
+/* ============================================
+   MODAL OVERLAY (shared)
+   ============================================ */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background-color: rgba(0, 0, 0, 0.65);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.25s ease;
+}
+
+.modalOverlay.active {
+  display: flex;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   MODAL CRIAR / EDITAR PRODUTO
+   ============================================ */
+.modalContent {
+  background-color: var(--bg);
+  border-radius: 16px;
+  padding: 30px;
+  width: 100%;
+  max-width: 620px;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  animation: slideUp 0.3s ease;
+}
+
+.modalTitle {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: var(--txt);
+}
+
+/* Form Rows */
+.modalFormRow {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.modalFormRow input,
+.modalFormRow textarea {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Override global thin inputs inside modal */
+.modalContent input,
+.modalContent select {
+  height: 48px;
+  min-height: 48px;
+  max-height: 48px;
+  padding: 12px 14px !important;
+  font-size: 15px !important;
+}
+
+.modalContent textarea {
+  padding: 12px 14px !important;
+  font-size: 15px !important;
+}
+
+.modalContent input::placeholder,
+.modalContent textarea::placeholder {
+  font-size: 15px !important;
+}
+
+
+.modalFormRow textarea {
+  resize: vertical;
+  min-height: 90px;
+  max-height: none;
+  padding: 10px !important;
+}
+
+/* Image URL Row */
+.modalFormRowImage {
+  align-items: center;
+}
+
+.inputImageUrl {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputImageUrl i {
+  position: absolute;
+  left: 12px;
+  font-size: 18px;
+  color: var(--txtMuted);
+  pointer-events: none;
+}
+
+.inputImageUrl input {
+  padding-left: 38px !important;
+  width: 100%;
+}
+
+.btnImagePreview {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--txt);
+  border-radius: 12px;
+  background: transparent;
+  cursor: pointer;
+  font-size: 22px;
+  color: var(--txt);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.btnImagePreview:hover {
+  background-color: var(--primary);
+  color: var(--txtLight);
+  border-color: var(--primary);
+}
+
+/* Image Preview */
+.imagePreviewContainer {
+  display: none;
+  margin-bottom: 14px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid var(--txt);
+  max-height: 180px;
+}
+
+.imagePreviewContainer.active {
+  display: block;
+}
+
+.imagePreviewContainer img {
+  width: 100%;
+  max-height: 180px;
+  object-fit: cover;
+}
+
+/* ============================================
+   OPCIONAIS SECTION
+   ============================================ */
+.opcionaisFieldset {
+  border: none;
+  padding: 0;
+  margin: 20px 0 14px;
+}
+
+.opcionaisFieldset legend {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--txt);
+  margin-bottom: 12px;
+}
+
+.opcionaisAddRow {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.opcionaisAddRow input {
+  flex: 1;
+}
+
+.btnSmall {
+  padding: 8px 18px !important;
+  font-size: 14px !important;
+}
+
+/* Grupo Opcional */
+.grupoOpcional {
+  border: 2px solid var(--primary);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.grupoOpcionalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background-color: var(--bg);
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.grupoToggleBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--txt);
+  padding: 0;
+}
+
+.grupoToggleBtn i {
+  transition: transform 0.25s ease;
+  font-size: 14px;
+}
+
+.grupoOpcional.collapsed .grupoToggleBtn i {
+  transform: rotate(-90deg);
+}
+
+.grupoOpcional.collapsed .grupoOpcionalBody {
+  display: none;
+}
+
+.grupoToggles {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Toggle Switch */
+.toggleLabel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--txt);
+  cursor: pointer;
+  user-select: none;
+}
+
+.toggleLabel input {
+  display: none !important;
+}
+
+.toggleSwitch {
+  width: 38px;
+  height: 20px;
+  background-color: #ccc;
+  border-radius: 20px;
+  position: relative;
+  transition: background-color 0.25s ease;
+  border: none !important;
+  max-height: none;
+}
+
+.toggleSwitch::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.25s ease;
+}
+
+.toggleLabel input:checked + .toggleSwitch {
+  background-color: var(--primary);
+}
+
+.toggleLabel input:checked + .toggleSwitch::after {
+  transform: translateX(18px);
+}
+
+.grupoOpcaoCount {
+  font-size: 13px;
+  color: var(--txtMuted);
+  font-weight: 500;
+}
+
+.btnAddOpcao {
+  font-size: 13px !important;
+  font-weight: 600;
+  padding: 0 !important;
+}
+
+.btnRemoveGrupo {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--primary);
+  font-size: 16px;
+  padding: 4px;
+  transition: transform 0.15s ease;
+}
+
+.btnRemoveGrupo:hover {
+  transform: scale(1.15);
+}
+
+/* Options Table */
+.grupoOpcionalBody {
+  padding: 0 14px 10px;
+}
+
+.opcoesTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.opcaoRow td {
+  padding: 4px 4px;
+  vertical-align: middle;
+}
+
+.opcaoIndex {
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 14px;
+  width: 24px;
+  text-align: center;
+}
+
+.modalContent .opcaoRow input {
+  font-size: 13px !important;
+  padding: 4px 8px !important;
+  height: 34px;
+  min-height: 34px;
+  max-height: 34px;
+  width: 100%;
+}
+
+.opcaoRow input:read-only {
+  border-color: transparent !important;
+  background: transparent !important;
+  box-shadow: none;
+}
+
+.opcaoActions {
+  display: flex;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.opcaoActions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  font-size: 16px;
+  transition: transform 0.15s ease;
+}
+
+.btnOpcaoConfirmar {
+  color: #28a745;
+}
+
+.btnOpcaoEditar {
+  color: var(--secondary);
+}
+
+.btnOpcaoExcluir {
+  color: var(--primary);
+}
+
+.opcaoActions button:hover {
+  transform: scale(1.2);
+}
+
+/* Row in confirmed state */
+.opcaoRow.confirmed .btnOpcaoConfirmar {
+  display: none;
+}
+
+.opcaoRow:not(.confirmed) .btnOpcaoEditar {
+  display: none;
+}
+
+/* ============================================
+   MODAL ACTIONS (footer buttons)
+   ============================================ */
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+/* ============================================
+   MODAL EXCLUIR
+   ============================================ */
+.modalContentExcluir {
+  background-color: var(--bg);
+  border-radius: 16px;
+  padding: 32px;
+  width: 100%;
+  max-width: 460px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  animation: slideUp 0.3s ease;
+  text-align: left;
+}
+
+.modalContentExcluir h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--txt);
+  margin-bottom: 8px;
+}
+
+.modalExcluirSub {
+  font-size: 14px !important;
+  color: var(--txtMuted);
+  margin-bottom: 20px;
+}
+
+/* ============================================
+   TOAST
+   ============================================ */
+.toastContainer {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 3000;
+  pointer-events: none;
+}
+
+.toastMessage {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  background-color: #28a745;
+  color: #fff;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  animation: toastSlideIn 0.35s ease;
+}
+
+.toastMessage.active {
+  display: flex;
+}
+
+.toastMessage i {
+  font-size: 22px;
+  color: #fff;
+}
+
+@keyframes toastSlideIn {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes toastSlideOut {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(40px); }
+}
+
+.toastMessage.closing {
+  animation: toastSlideOut 0.35s ease forwards;
+}
+
+/* ============================================
+   RESPONSIVIDADE MODAL ( < 992px )
+   ============================================ */
+@media (max-width: 992px) {
+  .modalContent {
+    max-width: 95%;
+    max-height: 90vh;
+    padding: 20px;
+  }
+
+  .modalFormRow {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .modalFormRowImage {
+    flex-direction: row;
+  }
+
+  .grupoOpcionalHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .grupoToggles {
+    width: 100%;
+  }
+
+  .opcaoRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .opcaoRow td {
+    padding: 2px;
+  }
+
+  .opcaoRow td:nth-child(2),
+  .opcaoRow td:nth-child(3),
+  .opcaoRow td:nth-child(4) {
+    flex: 1;
+    min-width: 80px;
+  }
+
+  .modalContentExcluir {
+    max-width: 95%;
+    padding: 24px;
+  }
+
+  .modalActions {
+    justify-content: center;
+  }
+
+  .toastContainer {
+    top: 12px;
+    right: 12px;
+    left: 12px;
+  }
+
+  .toastMessage {
+    font-size: 14px;
+    padding: 12px 16px;
   }
 }

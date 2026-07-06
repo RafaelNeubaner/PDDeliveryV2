@@ -271,6 +271,7 @@ function renderSummary(cart) {
 function renderCart() {
   const cart = getCart();
 
+  cartContainer?.classList.toggle("empty-cart", cart.length === 0);
   updateBadges(cart);
   renderItems(cart);
   renderSummary(cart);

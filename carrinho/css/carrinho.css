@@ -31,6 +31,27 @@ footer {
   margin-top: auto;
 }
 
+#carrinho.empty-cart > :not(.listaCarrinho) {
+  display: none !important;
+}
+
+#carrinho.empty-cart .listaCarrinho > :not(.itensCarrinho) {
+  display: none !important;
+}
+
+#carrinho.empty-cart .itensCarrinho {
+  min-height: 38rem;
+  align-items: center;
+  justify-content: center;
+}
+
+#carrinho.empty-cart .carrinho-vazio {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--txtDark);
+  text-align: center;
+}
+
 /* ITENS CARRINHO */
 .itensCarrinho {
   display: flex;
@@ -342,7 +363,7 @@ ul {
   display: none;
   align-items: center;
   justify-content: center;
-  z-index: 900;
+  z-index: 5;
 }
 
 .checkoutModal.is-open {
