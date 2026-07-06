@@ -41,6 +41,9 @@ const toastContainer = document.getElementById("toastContainer")
 const toastMessage = document.getElementById("toastMessage")
 const toastText = document.getElementById("toastText")
 
+// Botões
+const btnLogoutMobile = document.querySelector(".logoutBtnMobile")
+
 // ===== STATE =====
 let editingProductId = null  // null = criar, ID = editar
 let deletingProductId = null
@@ -69,6 +72,30 @@ addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
+    const navMobile = document.querySelectorAll("footer i")
+
+    navMobile.forEach(link=>{
+        link.addEventListener('click', (ev)=>{
+            navMobile.forEach(link => link.classList.remove('selected'));
+            ev.target.classList.add('selected')
+            
+            switch(ev.target.dataset.to){
+                case "pedidos":
+                    pedidosSection.classList.remove('hidden');
+                    pedidosSection.classList.add('visible');
+                    produtosSection.classList.remove('visible');
+                    produtosSection.classList.add('hidden');
+                    break;
+                case "produtos":
+                    produtosSection.classList.remove('hidden');
+                    produtosSection.classList.add('visible');
+                    pedidosSection.classList.remove('visible');
+                    pedidosSection.classList.add('hidden');
+                    break;
+            }
+        })
+    })
 });
 
 // ===== SEARCH =====
@@ -79,6 +106,11 @@ document.getElementById("searchInput").addEventListener("input", async (ev) => {
 
 // ===== LOGOUT =====
 document.querySelector(".logoutButton").addEventListener("click", async (ev) => {
+    logout()
+    location.href = "/"
+})
+
+btnLogoutMobile.addEventListener('click', ()=>{
     logout()
     location.href = "/"
 })
