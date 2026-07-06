@@ -16,7 +16,7 @@ const elements = {
   image: document.getElementById("produtoImagem"),
   description: document.getElementById("produtoDescricao"),
   additionsList: document.getElementById("listaAdicionais"),
-  badges: document.getElementById("produtoBadges"),
+  badges: document.querySelectorAll(".produtoBadges"),
   price: document.getElementById("produtoPreco"),
   productQuantity: document.getElementById("quantidadeProduto"),
   decreaseProduct: document.getElementById("diminuirProduto"),
@@ -27,6 +27,7 @@ const elements = {
 };
 
 function formatCurrency(value) {
+  if(value===0) return "Grátis"
   return Number(value || 0).toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL",
@@ -92,7 +93,7 @@ function renderBadges(product) {
     `);
   }
 
-  elements.badges.innerHTML = badges.join("");
+  elements.badges.forEach(badge=>badge.innerHTML = badges.join(""))
 }
 
 function formatOptionPrice(value) {
@@ -206,7 +207,6 @@ function updateTotals() {
   elements.total.textContent = formatCurrency(calculateUnitTotal() * state.quantity);
 }
 
-
 function buildCartItem() {
   const selectedAdditions = [];
 
@@ -266,14 +266,8 @@ function buildCartItem() {
   };
 }
 
-function getItemSignature(item) {
-  const additions = (item.additions || [])
-    .map((addition) => `${addition.title}:${addition.quantity}`)
-    .sort()
-    .join("|");
 
-  return `${item.productId}|${additions}`;
-}
+/** Utilizar o useCarrinho.js para gerenciar o carrinho */
 
 function addToCart() {
   const item = buildCartItem();
@@ -309,7 +303,19 @@ function setupEvents() {
 
   elements.additionsList.addEventListener("click", (event) => {
     const button = event.target.closest("button[data-action]");
-    if (!button) return;
+    if (!button) {
+      const adicional = event.target.closest("article.adicionalItem");
+
+      const dataId = adicional.dataset.index
+      const [indexAdditional, indexOption] = dataId.split("-")
+      const addition = state.additions[Number(indexAdditional)];
+
+      addition.selected = addition.options[indexOption]
+      renderAdditions();
+      updateTotals();
+      console.log(state.additions)
+      return;
+    };
 
     const control = button.closest(".controleAdicional");
     if (!control) return;
@@ -321,11 +327,12 @@ function setupEvents() {
     if (!addition) return;
 
     if (button.dataset.action === "increase") {
-      addition.quantity += 1;
-    } else {
-      addition.quantity = Math.max(0, addition.quantity - 1);
+      addition.options[indexOption].quantity += 1;
+    } else if (button.dataset.action === "decrease") {
+      addition.options[indexOption].quantity = Math.max(0, addition.options[indexOption].quantity - 1);
     }
 
+    console.log(state.additions)
     renderAdditions();
     updateTotals();
   });
@@ -346,10 +353,12 @@ function setupEvents() {
 
   elements.addCart.addEventListener("click", addToCart);
 
-  elements.buyNow.addEventListener("click", () => {
-    addToCart();
-    window.location.href = "/carrinho/index.html";
-  });
+  //elements.addCart.addEventListener("click", addToCart);
+
+  // elements.buyNow.addEventListener("click", () => {
+  //   addToCart();
+  //   window.location.href = "/carrinho/index.html";
+  // });
 }
 
 function renderProduct(product) {
