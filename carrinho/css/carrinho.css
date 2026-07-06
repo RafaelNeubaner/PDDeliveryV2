@@ -227,7 +227,7 @@ p {
   .resumo {
     width: 100%;
     max-width: none;
-    z-index: 10;
+    z-index: 1;
   }
 }
 
