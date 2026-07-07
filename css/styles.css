@@ -383,14 +383,14 @@ input.form-control {
     outline: none;
     background-color: transparent !important;
     color: var(--txt) !important;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     max-height: 50px;
 }
 
 input::placeholder,
 textarea::placeholder {
     color: var(--txtMuted-dark) !important;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
 }
 
 input:focus,

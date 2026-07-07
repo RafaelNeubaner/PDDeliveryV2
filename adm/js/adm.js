@@ -5,14 +5,13 @@ import { useProducts } from "../../js/services/useProducts.js"
 const cardProdutoTemp = document.querySelector(".cardProdutoTemp")
 const produtosContainer = document.querySelector(".produtosContainer")
 
-// Modal Criar/Editar
 const modalProduto = document.getElementById("modalProduto")
-const modalProdutoTitle = document.getElementById("modalProdutoTitle")
 const formProduto = document.getElementById("formProduto")
 const btnCriarProduto = document.getElementById("btnCriarProduto")
 const btnVoltarProduto = document.getElementById("btnVoltarProduto")
 const btnSubmitProduto = document.getElementById("btnSubmitProduto")
 const btnImagePreview = document.getElementById("btnImagePreview")
+const btnFecharModal = document.getElementById("btnFecharModal")
 const imagePreviewContainer = document.getElementById("imagePreviewContainer")
 const imagePreview = document.getElementById("imagePreview")
 
@@ -177,7 +176,6 @@ function closeModal(modal) {
 // ===== MODAL CRIAR PRODUTO =====
 btnCriarProduto.addEventListener("click", () => {
     editingProductId = null
-    modalProdutoTitle.textContent = "Criar Produto"
     btnSubmitProduto.textContent = "Cadastrar"
     resetForm()
     openModal(modalProduto)
@@ -186,7 +184,6 @@ btnCriarProduto.addEventListener("click", () => {
 // ===== MODAL EDITAR PRODUTO =====
 function openEditModal(product) {
     editingProductId = product.id
-    modalProdutoTitle.textContent = "Editar Produto"
     btnSubmitProduto.textContent = "Confirmar"
     resetForm()
 
@@ -233,6 +230,10 @@ btnVoltarProduto.addEventListener("click", () => {
     closeModal(modalProduto)
 })
 
+btnFecharModal.addEventListener("click", () => {
+    closeModal(modalProduto)
+})
+
 // Fechar ao clicar fora
 modalProduto.addEventListener("click", (e) => {
     if (e.target === modalProduto) closeModal(modalProduto)
@@ -241,14 +242,21 @@ modalProduto.addEventListener("click", (e) => {
 // ===== PREVIEW DE IMAGEM =====
 btnImagePreview.addEventListener("click", () => {
     const url = inputImage.value.trim()
+    if (!imagePreview || !imagePreviewContainer) return
+
+    // Se já está visível, ocultar (toggle)
+    if (imagePreviewContainer.classList.contains("active")) {
+        imagePreviewContainer.classList.remove("active")
+        return
+    }
+
+    // Se tem URL, mostrar preview
     if (url) {
         imagePreview.src = url
         imagePreviewContainer.classList.add("active")
         imagePreview.onerror = () => {
             imagePreviewContainer.classList.remove("active")
         }
-    } else {
-        imagePreviewContainer.classList.remove("active")
     }
 })
 
@@ -457,7 +465,12 @@ function addOpcaoRow(grupoEl, groupIndex, optData = null) {
     if (optData) {
         inputNomeOpt.value = optData.name || ""
         inputDesc.value = optData.description || ""
-        inputPrecoOpt.value = optData.price || ""
+        if (inputPrecoOpt.value  === '0' || inputPrecoOpt.value === 0) {
+            inputPrecoOpt.value = "Gratuito"
+        }
+        else {
+            inputPrecoOpt.value = formatPriceBRL(optData.price || 0)
+        }
 
         if (optData.confirmed) {
             row.classList.add("confirmed")
@@ -483,7 +496,7 @@ function addOpcaoRow(grupoEl, groupIndex, optData = null) {
         opcionaisData[groupIndex].options[idx] = {
             name: inputNomeOpt.value.trim(),
             description: inputDesc.value.trim(),
-            price: inputPrecoOpt.value.trim(),
+            price: parsePriceBRL(inputPrecoOpt.value),
             confirmed: true
         }
         row.classList.add("confirmed")
@@ -534,6 +547,31 @@ function reindexOptions(grupoEl) {
 function updateGroupCount(grupoEl, groupData) {
     const count = groupData.options.length
     grupoEl.querySelector(".grupoOpcaoCount").textContent = `${count} ${count === 1 ? 'opção' : 'opções'}`
+}
+
+//Formatar preço para reais
+function formatPriceBRL(value) {
+    const numericValue = typeof value === "number" ? value : Number(value)
+
+    if (!Number.isFinite(numericValue)) return ""
+
+    return numericValue.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    })
+}
+
+function parsePriceBRL(value) {
+    if (typeof value === "number") return value
+
+    const normalizedValue = String(value)
+        .replace(/\s/g, "")
+        .replace("R$", "")
+        .replace(/\./g, "")
+        .replace(",", ".")
+
+    const parsedValue = Number(normalizedValue)
+    return Number.isFinite(parsedValue) ? parsedValue : 0
 }
 
 // Reindexar grupos após remoção
