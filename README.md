@@ -98,7 +98,7 @@ JSON
 ```
 	{
 		"email": "admin@pddelivery.com",
-		"senha": "adminPdV2"
+		"senha": "adminPdV2*"
 	}
 ```
 
