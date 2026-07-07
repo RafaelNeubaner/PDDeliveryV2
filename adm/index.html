@@ -43,7 +43,7 @@
         id="logoMobile"
       />
 
-      <span class="logoutBtnMobile">
+      <span class="logoutBtnMobile d-md-none">
         <i class="bi bi-box-arrow-left"></i>
         Logout
       </span>
@@ -114,8 +114,9 @@
     <!-- MODAL CRIAR / EDITAR PRODUTO -->
     <div class="modalOverlay" id="modalProduto">
       <div class="modalContent">
-        <h2 class="modalTitle" id="modalProdutoTitle">Criar Produto</h2>
-
+        <button type="button" class="btnFecharModal" id="btnFecharModal" title="Fechar">
+          <i class="bi bi-x-lg"></i>
+        </button>
         <form id="formProduto" autocomplete="off">
           <!-- Imagem URL -->
           <div class="modalFormRow modalFormRowImage">
@@ -191,7 +192,7 @@
               <span class="toggleSwitch"></span>
             </label>
             <span class="grupoOpcaoCount">0 opções</span>
-            <button type="button" class="link btnAddOpcao">Adicionar</button>
+            <button type="button" class="link btnAddOpcao btnPrimaryOutline">Adicionar</button>
             <button type="button" class="btnRemoveGrupo" title="Remover grupo">
               <i class="bi bi-trash-fill"></i>
             </button>

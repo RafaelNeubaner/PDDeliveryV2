@@ -244,34 +244,3 @@ menu ul {
     }
 
 }
-
-/* DARK MODE - HEADER  */
-
-body.darkMode header .navbar #navbarNav li a,
-body.darkMode header .navbar .containerSearch .navbar-nav li a,
-body.darkMode header .navbar i,
-body.darkMode header .navbar .containerSearch button i {
-    color: var(--txtLight) !important;
-}
-
-body.darkMode header .navbar #navbarNav li a::after,
-.nav-link::after {
-    background: var(--txtLight);
-}
-
-
-body.darkMode .navbar-toggler-icon {
-    filter: invert(1) brightness(500%);
-}
-
-@media (max-width: 992px) {
-    .navbar{
-        padding: 0 6rem !important;
-    }
-}
-
-@media (max-width: 576px) {
-    .navbar{
-        padding: 0 2rem !important;
-    }
-}
