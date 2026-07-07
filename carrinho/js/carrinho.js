@@ -287,8 +287,8 @@ descontoButton?.addEventListener("click", (event) => {
     desconto.classList.add("inputError");
   }
 
-
   renderCart();
+  updateCheckoutSummary();
 });
 
 checkoutClose?.addEventListener("click", closeCheckoutModal);
@@ -311,6 +311,24 @@ paymentCredit?.addEventListener("change", toggleCardFields);
 checkoutCep?.addEventListener("input", (event) => {
   const formatted = formatCep(event.target.value);
   event.target.value = formatted;
+
+  const cepDigits = formatted.replace(/\D/g, "");
+
+  // Se o CEP foi apagado/incompleto, resetar frete e endereço
+  if (cepDigits.length < 8) {
+    if (checkoutFreightValue !== null) {
+      checkoutFreightValue = null;
+      lastCepLookup = "";
+      checkoutRua.value = "";
+      checkoutBairro.value = "";
+      checkoutCidade.value = "";
+      checkoutEstado.value = "";
+      checkoutNumero.value = "";
+      checkoutComplemento.value = "";
+      updateCheckoutSummary();
+    }
+    return;
+  }
 
   handleCepLookup(formatted).catch((error) => {
     console.error("Erro ao buscar CEP:", error);
