@@ -13,7 +13,7 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  width: 25vh;
+  width: 30vh;
   background-color: var(--bg-header);
   color: var(--txt);
   height: 100vh;
@@ -42,6 +42,7 @@ nav {
   border-radius: 4px;
   background-color: var(--bg-light);
   height: 100%;
+  width: 100%;
 }
 
 nav > div {
@@ -107,7 +108,7 @@ section {
   display: flex;
   width: 100%;
   gap: 30px;
-  padding: 10px;
+  padding: 30px;
   justify-content: center;
 }
 
@@ -385,6 +386,7 @@ footer{
    MODAL CRIAR / EDITAR PRODUTO
    ============================================ */
 .modalContent {
+  position: relative;
   background-color: var(--bg);
   border-radius: 16px;
   padding: 30px;
@@ -394,6 +396,11 @@ footer{
   overflow-y: auto;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
   animation: slideUp 0.3s ease;
+}
+
+/* Botão fechar modal (X) — oculto por padrão, visível no mobile */
+.btnFecharModal {
+  display: none;
 }
 
 .modalTitle {
@@ -419,11 +426,10 @@ footer{
 /* Override global thin inputs inside modal */
 .modalContent input,
 .modalContent select {
-  height: 48px;
-  min-height: 48px;
-  max-height: 48px;
+  height: 36px;
+  min-height: 36px;
+  max-height: 36px;
   padding: 12px 14px !important;
-  font-size: 15px !important;
 }
 
 .modalContent textarea {
@@ -470,8 +476,8 @@ footer{
 }
 
 .btnImagePreview {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -534,7 +540,7 @@ footer{
 }
 
 .opcionaisAddRow input {
-  flex: 1;
+  width: 100%;
 }
 
 .btnSmall {
@@ -588,9 +594,12 @@ footer{
 
 .grupoToggles {
   display: flex;
+  margin: auto;
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
+  width: 98%;
+  justify-content: space-between;
 }
 
 /* Toggle Switch */
@@ -598,8 +607,7 @@ footer{
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 1.5rem;
   color: var(--txt);
   cursor: pointer;
   user-select: none;
@@ -610,7 +618,7 @@ footer{
 }
 
 .toggleSwitch {
-  width: 38px;
+  width: 31px;
   height: 20px;
   background-color: #ccc;
   border-radius: 20px;
@@ -637,7 +645,7 @@ footer{
 }
 
 .toggleLabel input:checked + .toggleSwitch::after {
-  transform: translateX(18px);
+  transform: translateX(11px);
 }
 
 .grupoOpcaoCount {
@@ -649,7 +657,7 @@ footer{
 .btnAddOpcao {
   font-size: 13px !important;
   font-weight: 600;
-  padding: 0 !important;
+  padding: 1px 5px !important;
 }
 
 .btnRemoveGrupo {
@@ -839,6 +847,46 @@ footer{
     padding: 20px;
   }
 
+    /* --- Modal fullscreen (apenas modal de produto) --- */
+    #modalProduto {
+      align-items: stretch;
+      padding: 0;
+    }
+  
+    #modalProduto .modalContent {
+      max-width: 100%;
+      max-height: 100%;
+      height: 100vh;
+      border-radius: 0;
+      padding: 20px;
+      padding-top: 50px;
+      animation: none;
+    }
+  
+    /* --- Botão fechar (X) --- */
+    .btnFecharModal {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 36px;
+      height: 36px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #000;
+      font-size: 20px;
+      z-index: 10;
+      padding: 0;
+      transition: transform 0.15s ease;
+    }
+  
+    .btnFecharModal:hover {
+      transform: scale(1.15);
+    }
+
   .modalFormRow {
     flex-direction: column;
     gap: 10px;
@@ -882,7 +930,7 @@ footer{
   }
 
   .modalActions {
-    justify-content: center;
+    justify-content: right;
   }
 
   .toastContainer {
@@ -894,5 +942,176 @@ footer{
   .toastMessage {
     font-size: 14px;
     padding: 12px 16px;
+  }
+}
+
+/* ============================================
+   RESPONSIVIDADE OPCIONAIS ( < 585px )
+   ============================================ */
+@media (max-width: 585px) {
+
+  /* --- Grupo Header --- */
+  .grupoOpcionalHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 12px;
+  }
+
+  .grupoToggles {
+    width: 100%;
+    gap: 10px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .grupoOpcaoCount {
+    margin-left: 0;
+  }
+
+  /* --- Tabela -> cards verticais --- */
+  .opcoesTable,
+  .opcoesTable tbody {
+    display: block;
+    width: 100%;
+  }
+
+  .opcaoRow {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .opcaoRow:last-child {
+    border-bottom: none;
+  }
+
+  .opcaoRow td {
+    display: block;
+    width: 100%;
+    padding: 0;
+  }
+
+  /* Nome: ocupa a linha inteira, primeira posição */
+  .opcaoRow td:nth-child(2) {
+    order: 1;
+    margin-bottom: 4px;
+  }
+
+  .opcaoRow td:nth-child(2) input {
+    font-weight: 600;
+    font-size: 14px !important;
+  }
+
+  /* Linha do meio: índice + descrição + ações */
+  .opcaoRow td.opcaoIndex {
+    order: 2;
+    width: auto;
+    display: inline-flex;
+    align-items: center;
+    position: absolute;
+    left: 0;
+  }
+
+  .opcaoRow td:nth-child(3) {
+    order: 2;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .opcaoRow td:nth-child(3) input {
+    font-size: 12px !important;
+    height: 28px;
+    min-height: 28px;
+    max-height: 28px;
+  }
+
+  .opcaoRow td.opcaoActions {
+    order: 2;
+    width: auto;
+    position: absolute;
+    right: 0;
+  }
+
+  /* Rearranjar: usar flex row para índice + descrição + ações */
+  .opcaoRow {
+    position: relative;
+    flex-direction: column;
+  }
+
+  /* Wrapper visual: linha do meio (índice, descrição, ações) */
+  .opcaoRow td.opcaoIndex,
+  .opcaoRow td:nth-child(3),
+  .opcaoRow td.opcaoActions {
+    position: static;
+  }
+
+  /* Criar layout de duas "sub-linhas": 
+     Sub-linha 1: Nome (td:nth-child(2))
+     Sub-linha 2: Index + Descrição + Ações 
+     Sub-linha 3: Preço (td:nth-child(4)) */
+  .opcaoRow {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto auto auto;
+    gap: 2px 6px;
+    align-items: center;
+  }
+
+  /* Nome: linha inteira */
+  .opcaoRow td:nth-child(2) {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  /* Índice */
+  .opcaoRow td.opcaoIndex {
+    grid-column: 1;
+    grid-row: 2;
+    width: auto;
+    text-align: left;
+  }
+
+  /* Descrição */
+  .opcaoRow td:nth-child(3) {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  /* Ações */
+  .opcaoRow td.opcaoActions {
+    grid-column: 3;
+    grid-row: 2;
+    width: auto;
+    justify-content: flex-end;
+  }
+
+  /* Preço: linha inteira */
+  .opcaoRow td:nth-child(4) {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    margin-top: 2px;
+  }
+
+  .opcaoRow td:nth-child(4) input {
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 13px !important;
+  }
+
+  /* Confirmados: inputs parecem texto */
+  .opcaoRow.confirmed td:nth-child(2) input,
+  .opcaoRow.confirmed td:nth-child(3) input,
+  .opcaoRow.confirmed td:nth-child(4) input {
+    border-color: transparent !important;
+    background: transparent !important;
+    padding-left: 0 !important;
+  }
+
+  /* Grupo body padding */
+  .grupoOpcionalBody {
+    padding: 0 12px 8px;
   }
 }
