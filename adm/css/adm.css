@@ -919,7 +919,8 @@ footer{
 
   .opcaoRow td:nth-child(2),
   .opcaoRow td:nth-child(3),
-  .opcaoRow td:nth-child(4) {
+  .opcaoRow td:nth-child(4),
+  .opcaoRow td:nth-child(5) {
     flex: 1;
     min-width: 80px;
   }
@@ -977,9 +978,11 @@ footer{
   }
 
   .opcaoRow {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto auto auto auto;
+    gap: 2px 6px;
+    align-items: center;
     padding: 10px 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
@@ -994,34 +997,43 @@ footer{
     padding: 0;
   }
 
-  /* Nome: ocupa a linha inteira, primeira posição */
+  /* Linha 1: URL Imagem (td:nth-child(2)) */
   .opcaoRow td:nth-child(2) {
-    order: 1;
-    margin-bottom: 4px;
+    grid-column: 1 / -1;
+    grid-row: 1;
   }
 
   .opcaoRow td:nth-child(2) input {
+    font-size: 12px !important;
+    color: var(--txtMuted);
+  }
+
+  /* Linha 2: Nome (td:nth-child(3)) */
+  .opcaoRow td:nth-child(3) {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    margin-bottom: 2px;
+  }
+
+  .opcaoRow td:nth-child(3) input {
     font-weight: 600;
     font-size: 14px !important;
   }
 
-  /* Linha do meio: índice + descrição + ações */
+  /* Linha 3: Índice + Descrição + Ações */
   .opcaoRow td.opcaoIndex {
-    order: 2;
+    grid-column: 1;
+    grid-row: 3;
     width: auto;
-    display: inline-flex;
-    align-items: center;
-    position: absolute;
-    left: 0;
+    text-align: left;
   }
 
-  .opcaoRow td:nth-child(3) {
-    order: 2;
-    display: inline-flex;
-    align-items: center;
+  .opcaoRow td:nth-child(4) {
+    grid-column: 2;
+    grid-row: 3;
   }
 
-  .opcaoRow td:nth-child(3) input {
+  .opcaoRow td:nth-child(4) input {
     font-size: 12px !important;
     height: 28px;
     min-height: 28px;
@@ -1029,73 +1041,20 @@ footer{
   }
 
   .opcaoRow td.opcaoActions {
-    order: 2;
-    width: auto;
-    position: absolute;
-    right: 0;
-  }
-
-  /* Rearranjar: usar flex row para índice + descrição + ações */
-  .opcaoRow {
-    position: relative;
-    flex-direction: column;
-  }
-
-  /* Wrapper visual: linha do meio (índice, descrição, ações) */
-  .opcaoRow td.opcaoIndex,
-  .opcaoRow td:nth-child(3),
-  .opcaoRow td.opcaoActions {
-    position: static;
-  }
-
-  /* Criar layout de duas "sub-linhas": 
-     Sub-linha 1: Nome (td:nth-child(2))
-     Sub-linha 2: Index + Descrição + Ações 
-     Sub-linha 3: Preço (td:nth-child(4)) */
-  .opcaoRow {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    grid-template-rows: auto auto auto;
-    gap: 2px 6px;
-    align-items: center;
-  }
-
-  /* Nome: linha inteira */
-  .opcaoRow td:nth-child(2) {
-    grid-column: 1 / -1;
-    grid-row: 1;
-  }
-
-  /* Índice */
-  .opcaoRow td.opcaoIndex {
-    grid-column: 1;
-    grid-row: 2;
-    width: auto;
-    text-align: left;
-  }
-
-  /* Descrição */
-  .opcaoRow td:nth-child(3) {
-    grid-column: 2;
-    grid-row: 2;
-  }
-
-  /* Ações */
-  .opcaoRow td.opcaoActions {
     grid-column: 3;
-    grid-row: 2;
+    grid-row: 3;
     width: auto;
     justify-content: flex-end;
   }
 
-  /* Preço: linha inteira */
-  .opcaoRow td:nth-child(4) {
+  /* Linha 4: Preço (td:nth-child(5)) */
+  .opcaoRow td:nth-child(5) {
     grid-column: 1 / -1;
-    grid-row: 3;
+    grid-row: 4;
     margin-top: 2px;
   }
 
-  .opcaoRow td:nth-child(4) input {
+  .opcaoRow td:nth-child(5) input {
     color: var(--primary);
     font-weight: 600;
     font-size: 13px !important;
@@ -1104,7 +1063,8 @@ footer{
   /* Confirmados: inputs parecem texto */
   .opcaoRow.confirmed td:nth-child(2) input,
   .opcaoRow.confirmed td:nth-child(3) input,
-  .opcaoRow.confirmed td:nth-child(4) input {
+  .opcaoRow.confirmed td:nth-child(4) input,
+  .opcaoRow.confirmed td:nth-child(5) input {
     border-color: transparent !important;
     background: transparent !important;
     padding-left: 0 !important;
