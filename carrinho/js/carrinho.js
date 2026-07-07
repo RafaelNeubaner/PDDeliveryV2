@@ -1,5 +1,7 @@
 import { cartApi } from "../../js/services/useCarrinho.js";
 import { getLocationByCEP } from "../../js/services/useCep.js";
+import { getUserAuthenticated } from "../../js/services/useAuth.js";
+import { usePedidos } from "../../js/services/usePedidos.js";
 
 const cartContainer = document.getElementById("carrinho");
 const itemsContainer = document.querySelector(".itensCarrinho");
@@ -299,10 +301,64 @@ checkoutModal?.addEventListener("click", (event) => {
   }
 });
 
-checkoutForm?.addEventListener("submit", (event) => {
+// ao submeter o formulário de checkout, cria um novo pedido e envia para a API
+checkoutForm?.addEventListener("submit", async (event) => {
   event.preventDefault();
-  showOrderCompleted();
-  modalCompraConcluida?.classList.add("is-open");
+
+  try {
+
+    const user = await getUserAuthenticated();
+    
+    if (!user) {
+      alert("Você precisa estar logado para finalizar a compra.");
+      return window.location.href = "/login/index.html";
+    }
+
+  
+    const cart = cartApi.getCart();
+    const subtotal = cartApi.getCartSubtotal();
+    const serviceTax = cart.length > 0 ? 0.99 : 0;
+    const frete = Number(checkoutFreightValue || 0);
+    const totalFinal = subtotal + serviceTax + frete - discount;
+
+
+    const novoPedido = {
+      idCliente: user.id,
+      nomeCliente: user.nome,
+      telefone: user.celphone,
+      endereco: `${checkoutRua.value}, ${checkoutNumero.value} - ${checkoutBairro.value}, ${checkoutCidade.value} - ${checkoutEstado.value}. Comp: ${checkoutComplemento.value}`,
+      formaPagamento: paymentPix.checked ? "PIX" : "Cartão de Crédito",
+      horarioRealizado: new Date().toISOString(), 
+      horarioEntregue: null,
+      status: "Recebido",
+      resumoValores: {
+        subtotal: subtotal,
+        taxaServico: serviceTax,
+        desconto: discount,
+        frete: frete,
+        total: totalFinal
+      },
+      listaItens: cart.map(item => ({
+        idProduto: item.id,
+        nome: item.name,
+        imagem: item.image,
+        quantidade: item.quantity,
+        adicionais: getAdditionsText(item),
+        precoTotalItem: (item.unitTotal || item.basePrice) * item.quantity
+      }))
+    };
+
+
+    await usePedidos.createPedido(novoPedido);
+
+    
+    showOrderCompleted();
+    modalCompraConcluida?.classList.add("is-open");
+
+  } catch (error) {
+    console.error("Falha na finalização:", error);
+    alert("Ocorreu um erro ao processar seu pedido. Tente novamente.");
+  }
 });
 
 paymentPix?.addEventListener("change", toggleCardFields);
