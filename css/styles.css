@@ -568,3 +568,43 @@ select {
     align-items: center;
     justify-content: center;
 }
+
+.badgeStatusPedido{
+    padding: 2px 12px;
+    border-radius: 18px;
+    display: table-cell;
+    vertical-align: middle;
+    height: 24px;
+    font-size: 12px;
+    text-align: center;
+}
+
+.badgeStatusPedido.statusFinalizado{
+    background-color: #35D747;
+    color: #212428;
+}
+
+.badgeStatusPedido.statusRecebido{
+    background-color: #FFEA4D;
+    color: #212428;
+}
+
+.badgeStatusPedido.statusAceito{
+    background-color: #EAD21C;
+    color: #212428;
+}
+
+.badgeStatusPedido.statusEmPreparo{
+    background-color: #7F24DF;
+    color: #FFFFFF;
+}
+
+.badgeStatusPedido.statusACaminho{
+    background-color: #266AFE;
+    color: #FFFFFF;
+}
+
+.badgeStatusPedido.statusCancelado{
+    background-color: #D62828;
+    color: #FFFFFF;
+}
