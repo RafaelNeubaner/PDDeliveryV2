@@ -143,3 +143,21 @@ main input,
     min-width: 100px !important; 
     flex-grow: 1; 
 }
+
+.inputData{
+    width: 100%;
+    position: relative;
+}
+
+.inputData input{
+    width: 100%;
+}
+
+.inputData p{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 13px;
+    display: none;
+}
+
