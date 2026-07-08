@@ -112,20 +112,20 @@
         </div>
 
         <div class="informacoesPedido">
-            <p class="badgeStatusPedido statusFinalizado statusContent order-0 order-lg-3">Entregue</p>
-            <h4>Pedido <span class="pedidoId order-1 order-lg-0">#7321</span></h4>
-            <h4>Data da Compra <span class="dataCompra order-2 order-lg-1">12/12/2026</span></h4>
-            <h4>Total <span class="totalPedido order-3 order-lg-2">R$ 45,98    </span></h4>
+            <p class="badgeStatusPedido  statusContent order-0 order-lg-3"></p>
+            <h4>Pedido <span class="pedidoId order-1 order-lg-0"></span></h4>
+            <h4>Data da Compra <span class="dataCompra order-2 order-lg-1"></span></h4>
+            <h4>Total <span class="totalPedido order-3 order-lg-2"></span></h4>
         </div>
 
         <section class="horariosPedido">
             <div>
                 <p>Pedido Realizado</p>
-                <p class="pedidoRealizado">12/12 - 09:30</p>
+                <p class="pedidoRealizado"></p>
             </div>
             <div>
                 <p>Pedido entregue</p>
-                <p class="pedidoEntregue">12/12 - 10:14</p>
+                <p class="pedidoEntregue"></p>
             </div>
         </section>
 
@@ -134,9 +134,9 @@
                 <article class="cardProdutoPedido">
                     <img src="https://s2-casaejardim.glbimg.com/W1fPyFbY1VJ1LZrOLa6-cwgVD10=/0x0:1400x933/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_a0b7e59562ef42049f4e191fe476fe7d/internal_photos/bs/2024/k/g/fQetnlRqCCgARUUVXwXQ/receita-pao-queijo-carne-louca-acem-mococa.jpg" alt="">
                     <div>
-                        <h3>Item: <span class="produtoTitle">Pão de Queijo Recheado com Lombo</span></h3>
-                        <h3>Adicionais: <span class="produtoAdicionais">Pão de Queijo Recheado com Lombo</span></h3>
-                        <h3>Quantidade: <span class="produtoQtd">1</span></h3>
+                        <h3>Item: <span class="produtoTitle"></span></h3>
+                        <h3>Adicionais: <span class="produtoAdicionais"></span></h3>
+                        <h3>Quantidade: <span class="produtoQtd"></span></h3>
                     </div>
                 </article>
             </template>
@@ -156,40 +156,52 @@
         <section class="dadosDoPedido">
             <div>
                 <h3>Endereço</h3>
-                <p class="nomeCliente">Joaquim de Freitas</p>
-                <p class="enderecoCliente">Rua Moacir Cruz, 123 - Capão do Sul - SP</p>
+                <p class="nomeCliente"></p>
+                <p class="enderecoCliente"></p>
             </div>
             <div>
                 <h3>Pagamento</h3>
-                <p class="formaPagamento">PIX</p>
-                <p class="totalPedido">R$ 60,96</p>
+                <p class="formaPagamento"></p>
+                <p class="totalPedido"></p>
             </div>
             <div class="resumoContent">
                 <h3>Resumo</h3>
                 <div>
                     <p>Produtos(qtd)</p>
-                    <p>R$ 39,99</p>
+                    <p class="subtotal"></p>
                 </div>
                 <div>
                     <p>Taxa de Serviço</p>
-                    <p>R$ 0,99</p>
+                    <p class="taxaServiço"></p>
                 </div>
                 <div>
                     <p>Descontos<p>
-                    <p>R$ 4,99</p>
+                    <p class="descontos"></p>
                 </div>
                 <div>
                     <p>Frete</p>
-                    <p>R$ 14,99</p>
+                    <p class="frete"></p>
                 </div>
-                <div>
+                <div class="totalCont">
                     <p>Total</p>
-                    <p>R$ 60,96</p>
+                    <p class="totalPedido"></p>
                 </div>
             </div>
         </section>
         <button class="btnComprarNovamente btnPrimary">Comprar Novamente</button>
     </main>
 
+    <section class="acessoNegado hide">
+      <i class="bi bi-ban"></i>
+      <h3>Você não tem acesso a esse pedido</h3>
+    </section>
+    
+    <div class="loading">
+      <div class="spinner-content">
+        <div class="spinner-border text-light" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

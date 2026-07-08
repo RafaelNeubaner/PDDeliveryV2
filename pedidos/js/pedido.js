@@ -1,3 +1,5 @@
+import { getUserAuthenticated } from "../../js/services/useAuth.js"
+import { usePedidos } from "../../js/services/usePedidos.js"
 
 
 const elements = {
@@ -8,13 +10,18 @@ const elements = {
     pedidoId: document.querySelector(".pedidoId"),
     dataCompra: document.querySelector(".dataCompra"),
     totalPedido: document.querySelectorAll(".totalPedido"),
-    pedidoRealizado: document.querySelectorAll(".pedidoRealizado"),
-    pedidoEntregue: document.querySelectorAll(".pedidoEntregue"),
-    nomeCliente: document.querySelectorAll(".nomeCliente"),
-    enderecoCliente: document.querySelectorAll(".enderecoCliente"),
-    formaPagamento: document.querySelectorAll(".formaPagamento"),
+    pedidoRealizado: document.querySelector(".pedidoRealizado"),
+    pedidoEntregue: document.querySelector(".pedidoEntregue"),
+    nomeCliente: document.querySelector(".nomeCliente"),
+    enderecoCliente: document.querySelector(".enderecoCliente"),
+    formaPagamento: document.querySelector(".formaPagamento"),
     totalPedido: document.querySelectorAll(".totalPedido"),
-    resumoContent: document.querySelectorAll(".resumoContent"),
+    resumoContent: document.querySelector(".resumoContent"),
+    subtotal: document.querySelector(".subtotal"),
+    taxaServico: document.querySelector(".taxaServiço"),
+    descontos: document.querySelector(".descontos"),
+    frete: document.querySelector(".frete"),
+    loading: document.querySelector(".loading")
 }
 
 const state = {
@@ -23,84 +30,17 @@ const state = {
     loading: true
 }
 
-const produtos = [
-  {
-    "productId": "25",
-    "name": "Beirute de Rosbife Completo",
-    "category": "Lanches",
-    "image": "https://www.estadao.com.br/resizer/v2/UPDNCZXZEBBFTJ2F7MFB3M4YOM.jpg?quality=80&auth=e2dcf0852f250f37f5bddf53a31e8d9b5b3b33bea36909d1f255e0c9c8fd24cc&width=550&height=925&focal=967,719",
-    "description": "Pão sírio gigante tostado, recheado com rosbife artesanal fininho, queijo prato derretido, presunto, ovo, alface, tomate, orégano e maionese.\n\nQuantidade: 450g\nServe: 1 pessoa (fome grande).",
-    "basePrice": 34,
-    "initialPrice": 42,
-    "discount": 8,
-    "quantity": 1,
-    "additions": [],
-    "adicionais": [],
-    "unitTotal": 34,
-    "total": 34,
-    "id": "25::"
-  },
-  {
-    "productId": "2",
-    "name": "Pão de Queijo Recheado com Lombo",
-    "category": "Lanches",
-    "image": "https://s2-casaejardim.glbimg.com/W1fPyFbY1VJ1LZrOLa6-cwgVD10=/0x0:1400x933/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_a0b7e59562ef42049f4e191fe476fe7d/internal_photos/bs/2024/k/g/fQetnlRqCCgARUUVXwXQ/receita-pao-queijo-carne-louca-acem-mococa.jpg",
-    "description": "Tradicional pão de queijo mineiro em tamanho especial, assado na hora e recheado com suculento lombo desfiado e requeijão cremoso em abundância.\n\nQuantidade: 250g\nServe: 1 pessoa.",
-    "basePrice": 22.5,
-    "initialPrice": 24.5,
-    "discount": 2,
-    "quantity": 1,
-    "additions": [
-      {
-        "title": "Geleia de Pimenta Defumada",
-        "name": "Geleia de Pimenta Defumada",
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQESx5i_IEcEpDb1lC_GdJdbsrlX-bk3zoUDBZxiu3MHdCB2yx0K6ISYyY&s=10",
-        "additionalPrice": 4.5,
-        "price": 4.5,
-        "description": "30g",
-        "quantity": 1,
-        "groupTitle": "Adicionais"
-      },
-      {
-        "title": "Dobro de Requeijão",
-        "name": "Dobro de Requeijão",
-        "image": "https://blogger.googleusercontent.com/img/a/AVvXsEjutSK4HPPoC64ZW0Do4Ab_4_tpaApbnWxP3HweF1RHrnRQ2LcN2TcfznjPdRJrEkOtGEVvcENlYGjifysxjTP9_sIN4w7ZM0XCOcqGYGZdn4WU8Bu0cm6BUClgvhD2pc_vgmmX-NSNaVls78LmtW7FUEVkzBwfL_B3hAcG3Rq4jsgOuhAwTweL4bkB=w640-h550",
-        "additionalPrice": 5,
-        "price": 5,
-        "description": "50g",
-        "quantity": 2,
-        "groupTitle": "Adicionais"
-      }
-    ],
-    "adicionais": [
-      {
-        "title": "Geleia de Pimenta Defumada",
-        "name": "Geleia de Pimenta Defumada",
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQESx5i_IEcEpDb1lC_GdJdbsrlX-bk3zoUDBZxiu3MHdCB2yx0K6ISYyY&s=10",
-        "additionalPrice": 4.5,
-        "price": 4.5,
-        "description": "30g",
-        "quantity": 1,
-        "groupTitle": "Adicionais"
-      },
-      {
-        "title": "Dobro de Requeijão",
-        "name": "Dobro de Requeijão",
-        "image": "https://blogger.googleusercontent.com/img/a/AVvXsEjutSK4HPPoC64ZW0Do4Ab_4_tpaApbnWxP3HweF1RHrnRQ2LcN2TcfznjPdRJrEkOtGEVvcENlYGjifysxjTP9_sIN4w7ZM0XCOcqGYGZdn4WU8Bu0cm6BUClgvhD2pc_vgmmX-NSNaVls78LmtW7FUEVkzBwfL_B3hAcG3Rq4jsgOuhAwTweL4bkB=w640-h550",
-        "additionalPrice": 5,
-        "price": 5,
-        "description": "50g",
-        "quantity": 2,
-        "groupTitle": "Adicionais"
-      }
-    ],
-    "unitTotal": 37,
-    "total": 37,
-    "id": "2::Geleia de Pimenta Defumadax1:Dobro de Requeijãox2"
-  }
-]
-
-renderProdutos(produtos)
+const params = new URLSearchParams(location.search)
+const pedido = await usePedidos.getPedidoById(params.get("id"))
+elements.loading.classList.add("hide")
+const formatDataNumber = (number) => {return number >=10 ? number : `0${number}`}
+const user = await getUserAuthenticated()
+if(user.id === pedido.idCliente){
+    renderPedido(pedido)
+}else{
+    document.querySelector("main").classList.add("hide")
+    document.querySelector(".acessoNegado").classList.remove("hide")
+}
 
 function renderBadgeStatusPedido(status){
     switch(status.toLowerCase()){
@@ -131,11 +71,34 @@ function renderBadgeStatusPedido(status){
     }
 }
 
-function renderPedido(pedido){
-    elements.pedidoId.textContent = pedido.idPedido;
-    elements.totalPedido.forEach(total=>total.textContent = pedido.totalPrice);
-    elements.enderecoCliente.textContent = pedido.address
 
+function renderPedido(pedido){
+    elements.pedidoId.textContent = `#${pedido.id}`;
+    elements.totalPedido.forEach(total=>total.textContent = pedido.resumoValores.total.toLocaleString('pt-BR', {style: 'currency', currency: "BRL" }));
+    elements.enderecoCliente.textContent = pedido.endereco
+    elements.nomeCliente.textContent = pedido.nomeCliente
+    elements.formaPagamento.textContent = pedido.formaPagamento
+
+    elements.subtotal.textContent = pedido.resumoValores.subtotal.toLocaleString('pt-BR', {style: 'currency', currency: "BRL" })
+    elements.taxaServico.textContent = pedido.resumoValores.taxaServico.toLocaleString('pt-BR', {style: 'currency', currency: "BRL" })
+    elements.descontos.textContent = pedido.resumoValores.desconto.toLocaleString('pt-BR', {style: 'currency', currency: "BRL" })
+    elements.frete.textContent = pedido.resumoValores.frete.toLocaleString('pt-BR', {style: 'currency', currency: "BRL" })
+
+    if(pedido.horarioRealizado){
+        const dataRealizado = new Date(pedido.horarioRealizado)
+        elements.dataCompra.textContent = `${formatDataNumber(dataRealizado.getDay())}/${ formatDataNumber(dataRealizado.getMonth())} - ${formatDataNumber(dataRealizado.getHours())}:${formatDataNumber(dataRealizado.getMinutes())}`
+        elements.pedidoRealizado.textContent = `${formatDataNumber(dataRealizado.getDay())}/${ formatDataNumber(dataRealizado.getMonth())} - ${formatDataNumber(dataRealizado.getHours())}:${formatDataNumber(dataRealizado.getMinutes())}`
+    }else{
+        elements.dataCompra.textContent = '--/-- - --:--'
+    }
+
+    if(pedido.horarioEntregue){
+        const dataEntregue = new Date(pedido.horarioEntregue)
+        elements.pedidoEntregue.textContent = `${formatDataNumber(dataEntregue.getDay())}/${ formatDataNumber(dataEntregue.getMonth())} - ${formatDataNumber(dataEntregue.getHours())}:${formatDataNumber(dataEntregue.getMinutes())}`
+    }else{
+        elements.pedidoEntregue.textContent = '--/-- - --:--'
+    }
+    
     renderBadgeStatusPedido(pedido.status)
     renderProdutos(pedido.listaItens)
 }
@@ -145,10 +108,10 @@ function renderProdutos(produtos){
     produtos.forEach(produto => {
         const produtoElem = elements.cardProdutoTemplate.content.cloneNode(true)
 
-        produtoElem.querySelector("img").src = produto.image
-        produtoElem.querySelector(".produtoTitle").textContent = produto.name
-        produtoElem.querySelector(".produtoAdicionais").textContent = produto.adicionais.map(ad=>`${ad.title} (x${ad.quantity})`).join(", ")
-        produtoElem.querySelector(".produtoQtd").textContent = produto.quantity
+        produtoElem.querySelector("img").src = produto.imagem
+        produtoElem.querySelector(".produtoTitle").textContent = produto.nome
+        produtoElem.querySelector(".produtoAdicionais").textContent = produto.adicionais
+        produtoElem.querySelector(".produtoQtd").textContent = produto.quantidade
 
         elements.produtosSec.appendChild(produtoElem)
     });
@@ -195,3 +158,7 @@ elements.stars.forEach(star=>{
     })
 }
 )
+
+document.querySelector(".btnRetornarPedidos").addEventListener("click", ()=>{
+    location.href="/pedidos/index.html"
+})
