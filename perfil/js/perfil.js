@@ -91,6 +91,19 @@ async function changePassword(){
 passwordCont.querySelector("i").addEventListener('click', (ev)=>{changePasswordStatus(passwordCont)})
 confirmPasswordCont.querySelector("i").addEventListener('click', (ev)=>{changePasswordStatus(confirmPasswordCont)})
 
+function checkIfMobile() {
+}
+
+dateBirthInp.addEventListener("change", (ev)=>{
+    const ua = navigator.userAgent;
+    if( /Android|Mobi|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua) && ev.target.value==""){
+        document.querySelector(".inputData").querySelector("p").style.display="block"
+    }else{
+        document.querySelector(".inputData").querySelector("p").style.display="none"
+    }
+    
+})
+
 function changePasswordStatus(comp){
     
     let input = comp.querySelector("input")
