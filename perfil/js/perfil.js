@@ -92,19 +92,19 @@ async function changePassword(){
 passwordCont.querySelector("i").addEventListener('click', (ev)=>{changePasswordStatus(passwordCont)})
 confirmPasswordCont.querySelector("i").addEventListener('click', (ev)=>{changePasswordStatus(confirmPasswordCont)})
 
-const isMobile = /Android|Mobi|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+const isMobile = /Android|Mobi|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
 
 dateBirthInp.addEventListener("focus", (ev) => {
     if (isMobile) {
         datePlaceholder.style.display = "none";
     }
-});
+})
 
 dateBirthInp.addEventListener("blur", (ev) => {
     if (isMobile && ev.target.value === "") {
         datePlaceholder.style.display = "block";
     }
-});
+})
 
 dateBirthInp.addEventListener("input", (ev)=>{
     const ua = navigator.userAgent;
