@@ -266,6 +266,7 @@ footer{
     margin-left: 0;
     width: 100%;
     height: calc(100vh - 8vh);
+    padding-top: 132px;
     margin-bottom: 8vh;
     padding-bottom: 10rem;
   }

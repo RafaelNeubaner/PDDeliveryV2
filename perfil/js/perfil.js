@@ -9,6 +9,7 @@ const cpfInp = document.getElementById("cpfInp")
 const cellInp = document.getElementById("celInp")
 const emailInp = document.getElementById("emailInp")
 const dateBirthInp = document.getElementById("birthdayInp")
+const datePlaceholder = document.querySelector(".inputData").querySelector("p")
 
 const passwordCont = document.querySelector(".passwordCont")
 const confirmPasswordCont = document.querySelector(".confirmPasswordCont")
@@ -91,15 +92,27 @@ async function changePassword(){
 passwordCont.querySelector("i").addEventListener('click', (ev)=>{changePasswordStatus(passwordCont)})
 confirmPasswordCont.querySelector("i").addEventListener('click', (ev)=>{changePasswordStatus(confirmPasswordCont)})
 
-function checkIfMobile() {
-}
+const isMobile = /Android|Mobi|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
 
-dateBirthInp.addEventListener("change", (ev)=>{
+dateBirthInp.addEventListener("focus", (ev) => {
+    if (isMobile) {
+        datePlaceholder.style.display = "none";
+    }
+})
+
+dateBirthInp.addEventListener("blur", (ev) => {
+    if (isMobile && ev.target.value === "") {
+        datePlaceholder.style.display = "block";
+    }
+})
+
+dateBirthInp.addEventListener("input", (ev)=>{
     const ua = navigator.userAgent;
-    if( /Android|Mobi|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua) && ev.target.value==""){
-        document.querySelector(".inputData").querySelector("p").style.display="block"
+    console.log(ev.target.value)
+    if(isMobile && ev.target.value=="" && !ev.target.focused){
+        datePlaceholder.style.display="block"
     }else{
-        document.querySelector(".inputData").querySelector("p").style.display="none"
+        datePlaceholder.style.display="none"
     }
     
 })
@@ -163,8 +176,9 @@ function updateFields(user){
     emailInp.value = user.email
 
     if(user.dateBirth===""){
-        dateBirthInp.value = new Date().toISOString().split("T")[0]
+        document.querySelector(".inputData").querySelector("p").style.display="block"
     }else{
+        document.querySelector(".inputData").querySelector("p").style.display="none"
         dateBirthInp.value = user.dateBirth ?? null
     }
 
