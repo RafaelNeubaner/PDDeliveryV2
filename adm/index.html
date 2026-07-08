@@ -43,7 +43,7 @@
         id="logoMobile"
       />
 
-      <span class="logoutBtnMobile">
+      <span class="logoutBtnMobile d-md-none">
         <i class="bi bi-box-arrow-left"></i>
         Logout
       </span>
@@ -87,10 +87,7 @@
                 </div>
               </div>
               <div class="buttons">
-                <span class="visualizar">
-                  <i class="bi bi-eye"></i>
-                  <span>Visualizar</span>
-                </span>
+
                 <button class="btnSecondaryOutline btnEditar">Editar</button>
                 <button class="btnPrimary btnExcluir">Excluir</button>
               </div>
@@ -114,8 +111,9 @@
     <!-- MODAL CRIAR / EDITAR PRODUTO -->
     <div class="modalOverlay" id="modalProduto">
       <div class="modalContent">
-        <h2 class="modalTitle" id="modalProdutoTitle">Criar Produto</h2>
-
+        <button type="button" class="btnFecharModal" id="btnFecharModal" title="Fechar">
+          <i class="bi bi-x-lg"></i>
+        </button>
         <form id="formProduto" autocomplete="off">
           <!-- Imagem URL -->
           <div class="modalFormRow modalFormRowImage">
@@ -191,7 +189,7 @@
               <span class="toggleSwitch"></span>
             </label>
             <span class="grupoOpcaoCount">0 opções</span>
-            <button type="button" class="link btnAddOpcao">Adicionar</button>
+            <button type="button" class="link btnAddOpcao btnPrimaryOutline">Adicionar</button>
             <button type="button" class="btnRemoveGrupo" title="Remover grupo">
               <i class="bi bi-trash-fill"></i>
             </button>
@@ -209,6 +207,7 @@
     <template id="templateOpcaoRow">
       <tr class="opcaoRow">
         <td class="opcaoIndex">1</td>
+        <td><input type="text" class="opcaoImagem" placeholder="URL Imagem" /></td>
         <td><input type="text" class="opcaoNome" placeholder="Nome" /></td>
         <td><input type="text" class="opcaoDescricao" placeholder="Descrição" /></td>
         <td><input type="text" class="opcaoPreco" placeholder="R$ 0,00" /></td>
