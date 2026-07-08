@@ -109,7 +109,7 @@ dateBirthInp.addEventListener("blur", (ev) => {
 dateBirthInp.addEventListener("input", (ev)=>{
     const ua = navigator.userAgent;
     console.log(ev.target.value)
-    if(isMobile && ev.target.value=="" && !ev.target.focused){
+    if(isMobile && ev.target.value=="" && !ev.target == document.activeElement){
         datePlaceholder.style.display="block"
     }else{
         datePlaceholder.style.display="none"
