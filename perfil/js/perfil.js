@@ -111,13 +111,14 @@ async function saveData(){
     if(!validarEmail(emailInp.value)) return alert("Email inválido")
     if(!validarCPF(cpfInp.value)) return alert("CPF Inválido")
     if(!validarTelefone(cellInp.value)) return alert("Telefone inválido")
+    if(dateBirthInp.value === new Date().toISOString().split("T")[0] || dateBirthInp.value=="") return alert("Data de nascimento inválida")
     const userUpdated = {
         id: user.id,
         nome: nameInp.value ?? user.nome,
         email: emailInp.value ?? user.email,
         celphone: cellInp.value ?? user.celphone,
         cpf: cpfInp.value ?? user.cpf,
-        dateBirth: dateBirthInp.value ?? user.dateBirth,
+        dateBirth: dateBirthInp.value != new Date().toISOString().split("T")[0] ? dateBirthInp.value : user.dateBirth,
         password: user.password,
         endereco: {
             cep: cepInp.value ?? user.endereco.cep,
@@ -147,7 +148,12 @@ function updateFields(user){
     cpfInp.value = user.cpf
     cellInp.value = user.celphone
     emailInp.value = user.email
-    dateBirthInp.value = user.dateBirth
+
+    if(user.dateBirth===""){
+        dateBirthInp.value = new Date().toISOString().split("T")[0]
+    }else{
+        dateBirthInp.value = user.dateBirth ?? null
+    }
 
     cepInp.value = user.endereco.cep
     ruaInp.value = user.endereco.rua
@@ -178,3 +184,4 @@ function setRequisitoSenhaValidated(comp, validated){
     }
 
 }
+

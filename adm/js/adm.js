@@ -457,12 +457,14 @@ function addOpcaoRow(grupoEl, groupIndex, optData = null) {
 
     row.querySelector(".opcaoIndex").textContent = optIndex + 1
 
+    const inputImageOpt = row.querySelector(".opcaoImagem")
     const inputNomeOpt = row.querySelector(".opcaoNome")
     const inputDesc = row.querySelector(".opcaoDescricao")
     const inputPrecoOpt = row.querySelector(".opcaoPreco")
 
     // Se pré-preenchido (edição)
     if (optData) {
+        inputImageOpt.value = optData.image || ""
         inputNomeOpt.value = optData.name || ""
         inputDesc.value = optData.description || ""
         if (inputPrecoOpt.value  === '0' || inputPrecoOpt.value === 0) {
@@ -474,6 +476,7 @@ function addOpcaoRow(grupoEl, groupIndex, optData = null) {
 
         if (optData.confirmed) {
             row.classList.add("confirmed")
+            inputImageOpt.readOnly = true
             inputNomeOpt.readOnly = true
             inputDesc.readOnly = true
             inputPrecoOpt.readOnly = true
@@ -486,6 +489,7 @@ function addOpcaoRow(grupoEl, groupIndex, optData = null) {
             name: "",
             description: "",
             price: "",
+            image: "",
             confirmed: false
         })
     }
@@ -493,13 +497,18 @@ function addOpcaoRow(grupoEl, groupIndex, optData = null) {
     // Botão confirmar
     row.querySelector(".btnOpcaoConfirmar").addEventListener("click", () => {
         const idx = getCurrentOptIndex(row)
+        const parsedPrice = parsePriceBRL(inputPrecoOpt.value)
         opcionaisData[groupIndex].options[idx] = {
             name: inputNomeOpt.value.trim(),
             description: inputDesc.value.trim(),
-            price: parsePriceBRL(inputPrecoOpt.value),
+            price: parsedPrice,
+            image: inputImageOpt.value.trim(),
             confirmed: true
         }
+        // Formatar o valor exibido
+        inputPrecoOpt.value = parsedPrice === 0 ? "Gratuito" : formatPriceBRL(parsedPrice)
         row.classList.add("confirmed")
+        inputImageOpt.readOnly = true
         inputNomeOpt.readOnly = true
         inputDesc.readOnly = true
         inputPrecoOpt.readOnly = true
@@ -509,6 +518,7 @@ function addOpcaoRow(grupoEl, groupIndex, optData = null) {
     // Botão editar
     row.querySelector(".btnOpcaoEditar").addEventListener("click", () => {
         row.classList.remove("confirmed")
+        inputImageOpt.readOnly = false
         inputNomeOpt.readOnly = false
         inputDesc.readOnly = false
         inputPrecoOpt.readOnly = false
