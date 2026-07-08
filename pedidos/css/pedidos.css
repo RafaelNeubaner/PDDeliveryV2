@@ -1,0 +1,226 @@
+p {
+  padding: 0;
+  margin: 0;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  min-height: 100vh;
+}
+
+main {
+  padding: 20px;
+  padding-top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100vw;
+  max-width: 1330px;
+}
+
+.btnRetornarPedidos {
+  width: 100%;
+  height: 50px;
+  order: 1;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  order: 1;
+  align-items: center;
+}
+
+.title h3 {
+  order: 2;
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.informacoesPedido {
+  display: flex;
+  flex-direction: column;
+  order: 2;
+  gap: 10px;
+}
+
+.informacoesPedido h4 {
+  color: #606060;
+  font-size: 20px;
+}
+
+.informacoesPedido span {
+  color: #000;
+}
+
+.horariosPedido {
+  order: 3;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+  padding: 20px;
+  gap: 10px;
+}
+
+.horariosPedido div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.produtosPedidos {
+  order: 4;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.avaliacao,
+.dadosDoPedido > div {
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  border: 1px solid black;
+  padding: 20px;
+  gap: 10px;
+}
+
+.avaliacao {
+  order: 5;
+  align-items: center;
+  justify-content: center;
+}
+
+.avaliacao div {
+  display: flex;
+  gap: 10px;
+}
+
+.avaliacao i {
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.dadosDoPedido {
+  order: 6;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.resumoContent > div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btnComprarNovamente {
+  order: 7;
+}
+
+.cardProdutoPedido {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid black;
+}
+
+.cardProdutoPedido img {
+  width: 100%;
+  height: 150px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.cardProdutoPedido div {
+  display: flex;
+  flex-direction: column;
+}
+
+.cardProdutoPedido h3 {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.cardProdutoPedido span {
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.totalCont p {
+    font-size: 24px;
+}
+
+.acessoNegado {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  gap: 30px;
+  align-items: center;
+  flex: 1;
+}
+
+.acessoNegado i {
+  font-size: 30px;
+  color: red;
+}
+
+.hide {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .title {
+    flex-direction: row;
+    justify-content: space-between;
+    order: 2;
+  }
+
+  .title h3 {
+    order: 1;
+  }
+
+  .btnRetornarPedidos {
+    order: 2;
+    max-width: 250px;
+    font-size: 16px;
+  }
+
+  .informacoesPedido {
+    flex-direction: row;
+    justify-content: space-between;
+    order: 1;
+  }
+
+  .dadosDoPedido {
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .avaliacao {
+    border: none;
+  }
+
+  .dadosDoPedido > div {
+    flex: 1;
+  }
+
+  .cardProdutoPedido {
+    flex-direction: row;
+  }
+
+  .cardProdutoPedido img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }
+
+  .cardProdutoPedido div {
+    justify-content: space-between;
+  }
+}
