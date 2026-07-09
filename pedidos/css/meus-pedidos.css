@@ -1,0 +1,89 @@
+.containerPedidos {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  min-height: calc(100vh - 120px);
+}
+
+.pageTitle {
+  margin-bottom: 2rem;
+  color: var(--txt);
+}
+
+.pedidosGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* CARD DE PEDIDO */
+.pedidoCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--bg-dark);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer; 
+}
+
+.pedidoCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.pedidoInfoWrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+}
+
+.pedidoImage {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.pedidoDados li {
+  list-style: none;
+}
+
+.pedidoDados span {
+  margin: 0;
+  font-size: 1.4rem;
+  color: var(--txt);
+  font-weight: 400;
+}
+
+@media (max-width: 768px) {
+  .pedidoCard {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pedidoInfoWrapper {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+  
+  .statusBadge, .btnDetalhes {
+    width: 100%; 
+    margin-bottom: 8px;
+  }
+  
+  .pedidoActions {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .badgeStatusPedido {
+    width: 100%;
+    text-align: center;
+  }
+}
