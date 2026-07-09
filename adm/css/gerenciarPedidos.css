@@ -1,0 +1,69 @@
+
+
+
+#gerenciarPedidos{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#gerenciarPedidos .title{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 10vh;
+}
+
+#gerenciarPedidos .title button{
+    height: 50px;
+}
+
+.statusOptionsSec{
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    width: 100%;
+    justify-content: start;
+}
+
+.statusOptionsSec span{
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.statusOptionsSec span div{
+    width: 0%;
+    height: 2px;
+    background-color: var(--primary);
+    transition: width 0.2s linear;
+}
+
+.statusOptionsSec span:hover, .statusOptionsSec span.active{
+    color: var(--primary)
+}
+
+.statusOptionsSec span:hover div, .statusOptionsSec span.active div{
+    width: 100%;
+}
+
+.pedidosSec{
+    width: 100%;
+}
+
+.cardPedido{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cardPedido img{
+    width: 100px;
+    height: 100px;
+}
+
+.cardPedido .dadosPedidos{
+    display: flex;
+    gap: 15px;
+}

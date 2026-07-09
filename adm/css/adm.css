@@ -5,6 +5,7 @@ body {
 
 body {
   display: flex;
+  justify-content: end;
   width: 100vw;
   overflow: hidden;
 }
@@ -13,7 +14,7 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  width: 30vh;
+  width: 20vw;
   background-color: var(--bg-header);
   color: var(--txt);
   height: 100vh;
@@ -79,9 +80,7 @@ nav > div {
 }
 
 main {
-  flex: 1;
-  width: calc(100vw - 25vh);
-  margin-left: 25vh;
+  width: 80vw;
   padding: 2rem;
   height: 100vh;
   min-height: 0;
