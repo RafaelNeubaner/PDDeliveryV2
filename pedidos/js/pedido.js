@@ -160,5 +160,5 @@ elements.stars.forEach(star=>{
 )
 
 document.querySelector(".btnRetornarPedidos").addEventListener("click", ()=>{
-    location.href="/pedidos/index.html"
+    location.href="/pedidos/meus-pedidos.html"
 })

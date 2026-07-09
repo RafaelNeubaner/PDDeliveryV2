@@ -9,7 +9,6 @@ const cpfInp = document.getElementById("cpfInp")
 const cellInp = document.getElementById("celInp")
 const emailInp = document.getElementById("emailInp")
 const dateBirthInp = document.getElementById("birthdayInp")
-const datePlaceholder = document.querySelector(".inputData").querySelector("p")
 
 const passwordCont = document.querySelector(".passwordCont")
 const confirmPasswordCont = document.querySelector(".confirmPasswordCont")
@@ -92,31 +91,6 @@ async function changePassword(){
 passwordCont.querySelector("i").addEventListener('click', (ev)=>{changePasswordStatus(passwordCont)})
 confirmPasswordCont.querySelector("i").addEventListener('click', (ev)=>{changePasswordStatus(confirmPasswordCont)})
 
-const isMobile = /Android|Mobi|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-
-dateBirthInp.addEventListener("focus", (ev) => {
-    if (isMobile) {
-        datePlaceholder.style.display = "none";
-    }
-})
-
-dateBirthInp.addEventListener("blur", (ev) => {
-    if (isMobile && ev.target.value === "") {
-        datePlaceholder.style.display = "block";
-    }
-})
-
-dateBirthInp.addEventListener("input", (ev)=>{
-    const ua = navigator.userAgent;
-    console.log(ev.target.value)
-    if(isMobile && ev.target.value=="" && !ev.target == document.activeElement){
-        datePlaceholder.style.display="block"
-    }else{
-        datePlaceholder.style.display="none"
-    }
-    
-})
-
 function changePasswordStatus(comp){
     
     let input = comp.querySelector("input")
@@ -174,13 +148,8 @@ function updateFields(user){
     cpfInp.value = user.cpf
     cellInp.value = user.celphone
     emailInp.value = user.email
-
-    if(user.dateBirth===""){
-        document.querySelector(".inputData").querySelector("p").style.display="block"
-    }else{
-        document.querySelector(".inputData").querySelector("p").style.display="none"
-        dateBirthInp.value = user.dateBirth ?? null
-    }
+    dateBirthInp.value = user.dateBirth ?? null
+    
 
     cepInp.value = user.endereco.cep
     ruaInp.value = user.endereco.rua
