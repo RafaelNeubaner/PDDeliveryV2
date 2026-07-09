@@ -110,104 +110,151 @@
         <section>
           <div>
             <div class="d-flex flex-colummn flex-lg-row align-items-start">
-              <fieldset>
+              <section class="formGroup">
                 <legend>Dados Pessoais</legend>
-                <input
-                  type="text"
-                  placeholder="Nome"
-                  id="nomeInp"
-                  name="nome"
-                />
-                <input
-                  type="text"
-                  placeholder="CPF"
-                  id="cpfInp"
-                  name="cpf"
-                  disabled
-                />
-                <input
-                  type="tel"
-                  placeholder="Telefone"
-                  id="celInp"
-                  name="celphone"
-                />
-                <input
-                  type="email"
-                  placeholder="Email"
-                  id="emailInp"
-                  name="email"
-                />
-                <div class="inputData">
-                  <input
-                  type="date" 
-                  id="birthdayInp"
-                  name="birthday"
-                  required
-                  />
-                  <p>dd/mm/aaaa</p>
-                </div>
-              </fieldset>
-              <fieldset>
-                <legend>Dados de Entrega</legend>
-                <input type="text" placeholder="CEP" id="cepInp" name="cep" />
-                <input type="text" placeholder="Rua" id="ruaInp" name="rua" />
-                <input
-                  type="text"
-                  placeholder="Bairro"
-                  id="bairroInp"
-                  name="bairro"
-                />
-                <input
-                  type="text"
-                  placeholder="Cidade"
-                  id="cidadeInp"
-                  name="cidade"
-                />
-                <input
-                  type="text"
-                  placeholder="Estado"
-                  id="estadoInp"
-                  name="estado"
-                />
-                <ul class="inputContainer list-unstyled d-flex gap-3">
-                  <input
-                    type="number"
-                    placeholder="Número"
-                    id="numeroInp"
-                    name="numeroRes"
-                  />
+                <fieldset>
+                  <label for="nomeInp">Nome Completo</label>
                   <input
                     type="text"
-                    placeholder="Complemento"
-                    id="complementoInp"
-                    name="complemento"
+                    placeholder="Nome"
+                    id="nomeInp"
+                    name="nome"
+                    />
+                </fieldset>
+
+                <fieldset>
+
+                  <label for="cpfInp">CPF</label>
+                  <input
+                    type="text"
+                    placeholder="CPF"
+                    id="cpfInp"
+                    name="cpf"
+                    disabled
                   />
+                </fieldset>
+                <fieldset>
+                  <label for="celInp">Celular</label>
+                  <input
+                    type="tel"
+                    placeholder="Telefone"
+                    id="celInp"
+                    name="celphone"
+                  />
+                </fieldset>
+                <fieldset>
+
+                  <label for="emailInp">Email</label>
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    id="emailInp"
+                    name="email"
+                  />
+                </fieldset>
+                <fieldset>
+                  <label for="birthdayInp">Data de Nascimento</label>
+                  <input
+                    type="date" 
+                    id="birthdayInp"
+                    name="birthday"
+                    required
+                  />
+                </fieldset>
+              </section>
+              <section class="formGroup">
+                <legend>Dados de Entrega</legend>
+                <fieldset>
+                  <label for="cepInp">CEP</label>
+                  <input type="text" placeholder="CEP" id="cepInp" name="cep" />
+                </fieldset>
+
+                <fieldset>
+                  <label for="ruaInp">Logradouro</label>
+                  <input type="text" placeholder="Rua" id="ruaInp" name="rua" />
+                </fieldset>
+
+                <fieldset>
+                  <label for="bairroInp">Bairro</label>
+                  <input
+                    type="text"
+                    placeholder="Bairro"
+                    id="bairroInp"
+                    name="bairro"
+                  />
+                </fieldset>
+
+                <fieldset>
+                  <label for="cidadeInp">Cidade</label>
+                  <input
+                    type="text"
+                    placeholder="Cidade"
+                    id="cidadeInp"
+                    name="cidade"
+                  />
+                </fieldset>
+
+                <fieldset>
+                  <label for="estadoInp">Estado</label>
+                  <input
+                    type="text"
+                    placeholder="Estado"
+                    id="estadoInp"
+                    name="estado"
+                  />
+                </fieldset>
+                <ul class="inputContainer list-unstyled d-flex gap-3">
+                  <fieldset>
+                    <label for="numeroInp">Número</label>
+                    <input
+                      type="number"
+                      placeholder="Número"
+                      id="numeroInp"
+                      name="numeroRes"
+                    />
+                  </fieldset>
+
+                  <fieldset>
+                    <label for="complementoInp">Complemento</label>
+                    <input
+                      type="text"
+                      placeholder="Complemento"
+                      id="complementoInp"
+                      name="complemento"
+                    />
+                  </fieldset>
                 </ul>
-              </fieldset>
+              </section>
             </div>
 
             <button type="button" class="btnPrimary saveBtn">Salvar</button>
           </div>
           <div class="divider"></div>
           <div>
-            <fieldset>
+            <section class="formGroup">
               <legend>Dados de Acesso</legend>
-              <div class="passwordCont password">
-                <input
-                  type="password"
-                  placeholder="Nova Senha"
-                  id="newPasswordInp"
-                />
-                <i class="bi bi-eye"></i>
-              </div>
-              <div class="confirmPasswordCont password">
-                <input
-                  type="password"
-                  placeholder="Confirmar Senha"
-                  id="confirmPasswordInp"
-                />
-                <i class="bi bi-eye"></i>
-              </div>
+              <fieldset>
+              <label for="newPasswordInp">Nova Senha</label>
+                <div class="passwordCont password">
+                  <input
+                    type="password"
+                    placeholder="Nova Senha"
+                    id="newPasswordInp"
+                  />
+                  <i class="bi bi-eye"></i>
+                </div>
+              </fieldset>
+              <fieldset>
+                <label for="confirmPasswordInp">Confirmar Senha</label>
+                <div class="confirmPasswordCont password">
+                  <input
+                    type="password"
+                    placeholder="Confirmar Senha"
+                    id="confirmPasswordInp"
+                  />
+                  <i class="bi bi-eye"></i>
+                </div>
+              </fieldset>
               <div class="requisitosSenha">
                 <ul>
                   <li class="letraMaiuscula">
@@ -234,7 +281,7 @@
               <button type="button" class="btnSecondaryOutline changePassBtn">
                 Alterar Senha
               </button>
-            </fieldset>
+            </section>
           </div>
         </section>
       </form>

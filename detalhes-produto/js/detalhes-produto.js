@@ -292,7 +292,7 @@ function addToCart() {
     wrapper.innerHTML=""
   }, 3000)
 
-  cartApi.addToCart(item, 1)
+  cartApi.addToCart(item, state.quantity)
   cartApi.atualizarBadgeGlobal()
 }
 
