@@ -1,5 +1,6 @@
 import { getUserAuthenticated } from "../../js/services/useAuth.js"
 import { usePedidos } from "../../js/services/usePedidos.js"
+import { cartApi } from "../../js/services/useCarrinho.js";
 
 
 const elements = {
@@ -21,7 +22,8 @@ const elements = {
     taxaServico: document.querySelector(".taxaServiço"),
     descontos: document.querySelector(".descontos"),
     frete: document.querySelector(".frete"),
-    loading: document.querySelector(".loading")
+    loading: document.querySelector(".loading"),
+    btnComprarNovamente: document.querySelector(".btnComprarNovamente")
 }
 
 const state = {
@@ -162,3 +164,40 @@ elements.stars.forEach(star=>{
 document.querySelector(".btnRetornarPedidos").addEventListener("click", ()=>{
     location.href="/pedidos/meus-pedidos.html"
 })
+
+// btn "Comprar Novamente" - reconstroi cada item do histórico do pedido   
+elements.btnComprarNovamente.addEventListener("click", () => {
+    
+    cartApi.clearCart();
+
+    pedido.listaItens.forEach((item, index) => {
+        
+        const precoUnitario = item.precoTotalItem / item.quantidade;
+
+        let arrayAdicionais = [];
+        if (item.adicionais && item.adicionais !== "Sem adicionais") {
+            arrayAdicionais = [{
+                title: item.adicionais,
+                name: item.adicionais,
+                quantity: 1
+            }];
+        }
+
+        const idUnico = `hist-${index}`;
+
+        const produtoParaCarrinho = {
+            id: idUnico, 
+            productId: idUnico, 
+            name: item.nome,
+            image: item.imagem,
+            basePrice: precoUnitario,
+            unitTotal: precoUnitario,
+            additions: arrayAdicionais,
+            adicionais: arrayAdicionais
+        };
+
+        cartApi.addToCart(produtoParaCarrinho, item.quantidade);
+    });
+
+    window.location.href = "/carrinho/index.html";
+});
