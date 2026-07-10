@@ -146,6 +146,4 @@ export const usePedidos = {
 
       await usePedidos.updatePedido(pedido.id, pedido)
     }
-  },
-
 };
