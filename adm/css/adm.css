@@ -92,6 +92,7 @@ section {
   justify-content: center;
   display: flex;
   flex-direction: column;
+  gap: 20px;
 }
 
 .visible {
@@ -99,7 +100,7 @@ section {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .searchProdutos,
@@ -258,7 +259,7 @@ footer{
 
   #logoMobile {
     display: block;
-    width: 100px;
+    width: 70px;
     padding-bottom: 0;
     padding: 1rem;
   }
@@ -267,7 +268,7 @@ footer{
     margin-left: 0;
     width: 100%;
     height: calc(100vh - 8vh);
-    padding-top: 132px;
+    padding-top: 60px;
     margin-bottom: 8vh;
     padding-bottom: 10rem;
   }
@@ -279,6 +280,9 @@ footer{
     padding: 0.5rem 5rem;
   }
 
+  .produtosContainer, .searchProdutos{
+    padding: 0;
+  }
   .copy {
     display: none;
   }
@@ -289,8 +293,9 @@ footer{
     align-items: center;
     position: fixed;
     bottom: 0;
+    padding: 5Opx;
     left: 0;
-    height: 8vh;
+    min-height: 8vh;
     width: 100%;
     background-color: var(--bg-header);
     color: var(--txt);

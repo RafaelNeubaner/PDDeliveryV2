@@ -5,7 +5,7 @@ const status = [
     "Recebido",
     "Aceito",
     "Em Preparo",
-    "Saiu para entrega",
+    "Saiu para Entrega",
     "Finalizado",
     "Recusado"
 ]
@@ -55,14 +55,11 @@ function setActions(){
                 return
             }
 
-            switch(pedido.status){
-                case "Recebido":
-                    pedido.status = "Aceito"
-                    break;
-            }
+            
             elements.loadingSec.classList.remove("hide")
-            await usePedidos.updatePedido(idPedido, pedido)
+            await usePedidos.atualizarStatus(pedido)
             await getPedidos()
+            renderOptions()
             renderPedidos()
             elements.loadingSec.classList.add("hide")
         })
@@ -80,16 +77,10 @@ function setActions(){
                 console.log("errado")
                 return
             }
-
-            switch(pedido.status){
-                case "Recebido":
-                    pedido.status = "Recusado"
-                    break;
-            }
-
             elements.loadingSec.classList.remove("hide")
-            await usePedidos.updatePedido(idPedido, pedido)
+            await usePedidos.atualizarStatus(pedido, true)
             await getPedidos()
+            renderOptions()
             renderPedidos()
             elements.loadingSec.classList.add("hide")
         })
@@ -98,6 +89,7 @@ function setActions(){
     elements.btnAtualizar.addEventListener('click', async ()=>{
         elements.loadingSec.classList.remove("hide")
         await getPedidos()
+        renderOptions()
         renderPedidos()
         elements.loadingSec.classList.add("hide")
     })
@@ -122,7 +114,7 @@ function renderOptions(){
         const div = document.createElement("div")
         
         el.dataset.value=s
-        el.textContent = s
+        el.textContent = `${s} (${pedidosCat[s]?.length ?? 0})`
         if(s==state.menuSelected){
             el.classList.add("active")
         }
@@ -170,7 +162,7 @@ function renderPedidos(){
     const pedidosFiltered = pedidosCat[state.menuSelected]
 
     if(!pedidosFiltered || pedidosFiltered.length<=0){
-        elements.pedidosSec.innerHTML = `<h4>Nenhum pedido encontrado para status ${state.menuSelected}</h4>`
+        elements.pedidosSec.innerHTML = `<h3>Nenhum pedido encontrado para status ${state.menuSelected}</h3>`
         return;
     }
 
@@ -184,7 +176,7 @@ function renderPedidos(){
 
         const data = new Date(pedido.horarioRealizado)
 
-        pedidoElem.querySelector(".tempoPedido").textContent = data.toLocaleDateString("pt-BR")
+        pedidoElem.querySelector(".tempoPedido").textContent = data.toLocaleString("pt-BR")
         pedidoElem.querySelector(".precoPedido").textContent = pedido.resumoValores.total.toLocaleString('pt-BR', {style: 'currency', currency: "BRL" })
         pedidoElem.querySelector(".nomeCliente").textContent = pedido.nomeCliente
         renderBadgeStatusPedido(pedido.status, pedidoElem.querySelector(".badgeStatusPedido"))
@@ -206,9 +198,12 @@ function renderPedidos(){
             case "saiu para entrega":
                 primanryBtn.textContent = "Finalizar"
                 break;
-
+            case "finalizado":
+                primanryBtn.classList.add("hide")
+                break;
             case "recusado":
                 primanryBtn.classList.add("hide")
+                break;
         }
 
         elements.pedidosSec.appendChild(pedidoElem)

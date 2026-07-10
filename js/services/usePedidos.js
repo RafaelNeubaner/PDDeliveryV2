@@ -115,6 +115,27 @@ export const usePedidos = {
         console.error("Erro ao buscar detalhes do pedido:", error);
         throw error;
       }
+    },
+
+    atualizarStatus: async (pedido, isRecusado=false)=>{
+      if(pedido.status == "Finalizado" || pedido.status=="Recusado"){
+        throw new Error("Esse pedido já está em estado final e não pode ser modificado")
+      }
+
+      if(pedido.status == "Recebido" && isRecusado){
+        pedido.status = "Recusado"
+      }else if(pedido.status == "Recebido"){
+        pedido.status = "Aceito"
+      } else if(pedido.status == "Aceito"){
+        pedido.status = "Em Preparo"
+      } else if(pedido.status == "Em Preparo"){
+        pedido.status = "Saiu para Entrega"
+      } else if(pedido.status=="Saiu para Entrega"){
+        pedido.horarioEntregue = new Date().toISOString()
+        pedido.status = "Finalizado"
+      }
+
+      await usePedidos.updatePedido(pedido.id, pedido)
     }
 
 };
