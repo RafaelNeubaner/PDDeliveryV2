@@ -218,24 +218,9 @@ menu ul {
     header .navbar #navbarNav li a:hover,
     .nav-item:hover>a,
     .nav-item:hover>a>i {
-        color: var(--tertiary) !important;
+        color: var(--secondary) !important;
     }
 
-    header .navbar #navbarNav li a::after,
-    .nav-link::after {
-        content: "";
-        position: absolute;
-        width: 0;
-        height: 2px;
-        bottom: 0;
-        left: 0;
-        background: var(--primary);
-        transition: all 0.3s ease-out;
-    }
-
-    header .navbar #navbarNav li a:hover::after {
-        width: 90%;
-    }
 
     header .navbar .navbar-nav,
     header .navbar #navbarNav li a i {
