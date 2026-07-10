@@ -81,49 +81,69 @@ export const usePedidos = {
 
   // FUNÇÕES DO LOJISTA (E COMPARTILHADAS)
 
-  // Busca todos pedidos (Painel do Lojista)
-  getAllPedidos: async () => {
-    try {
-      const response = await fetch(API_URL_PEDIDOS, {
-        method: "GET",
-      });
-      if (!response.ok)
-        throw new Error("Falha ao buscar a lista geral de pedidos.");
-      return await response.json();
-    } catch (error) {
-      console.error("Erro ao buscar todos os pedidos:", error);
-      throw error;
-    }
-  },
+    // Busca todos pedidos (Painel do Lojista)
+    getAllPedidos: async () => {
+      try {
+        const response = await fetch(API_URL_PEDIDOS, {
+          method: "GET",
+        });
+        if (!response.ok) throw new Error("Falha ao buscar a lista geral de pedidos.");
+        return await response.json();
+      } catch (error) {
+        console.error("Erro ao buscar todos os pedidos:", error);
+        throw error;
+      }
+    },
 
-  // Atualiza os dados/status do pedido
-  updatePedido: async (idPedido, dadosAtualizados) => {
-    try {
-      const response = await fetch(`${API_URL_PEDIDOS}/${idPedido}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(dadosAtualizados),
-      });
-      if (!response.ok) throw new Error("Falha ao atualizar o pedido.");
-      return await response.json();
-    } catch (error) {
-      console.error("Erro ao atualizar status do pedido:", error);
-      throw error;
-    }
-  },
+    // Atualiza os dados/status do pedido 
+    updatePedido: async (idPedido, dadosAtualizados) => {
+      try {
+        const response = await fetch(`${API_URL_PEDIDOS}/${idPedido}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(dadosAtualizados),
+        });
+        if (!response.ok) throw new Error("Falha ao atualizar o pedido.");
+        return await response.json();
+      } catch (error) {
+        console.error("Erro ao atualizar status do pedido:", error);
+        throw error;
+      }
+    },
 
-  // Busca os dados de um pedido pelo seu id (Tela de Detalhes)
+    // Busca os dados de um pedido pelo seu id (Tela de Detalhes)
 
-  getPedidoById: async (idPedido) => {
-    try {
-      const response = await fetch(`${API_URL_PEDIDOS}/${idPedido}`, {
-        method: "GET",
-      });
-      if (!response.ok) throw new Error("Detalhes do pedido não encontrados.");
-      return await response.json();
-    } catch (error) {
-      console.error("Erro ao buscar detalhes do pedido:", error);
-      throw error;
+    getPedidoById: async (idPedido) => {
+      try {
+        const response = await fetch(`${API_URL_PEDIDOS}/${idPedido}`, {
+          method: "GET",
+        });
+        if (!response.ok) throw new Error("Detalhes do pedido não encontrados.");
+        return await response.json();
+      } catch (error) {
+        console.error("Erro ao buscar detalhes do pedido:", error);
+        throw error;
+      }
+    },
+
+    atualizarStatus: async (pedido, isRecusado=false)=>{
+      if(pedido.status == "Finalizado" || pedido.status=="Recusado"){
+        throw new Error("Esse pedido já está em estado final e não pode ser modificado")
+      }
+
+      if(pedido.status == "Recebido" && isRecusado){
+        pedido.status = "Recusado"
+      }else if(pedido.status == "Recebido"){
+        pedido.status = "Aceito"
+      } else if(pedido.status == "Aceito"){
+        pedido.status = "Em Preparo"
+      } else if(pedido.status == "Em Preparo"){
+        pedido.status = "Saiu para Entrega"
+      } else if(pedido.status=="Saiu para Entrega"){
+        pedido.horarioEntregue = new Date().toISOString()
+        pedido.status = "Finalizado"
+      }
+
+      await usePedidos.updatePedido(pedido.id, pedido)
     }
-  },
 };

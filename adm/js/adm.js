@@ -69,6 +69,7 @@ addEventListener('DOMContentLoaded', function () {
                 pedidosSection.classList.remove('visible');
                 pedidosSection.classList.add('hidden');
             }
+            document.querySelector("main").scrollTo(0, 0)
         });
     });
 
@@ -93,6 +94,7 @@ addEventListener('DOMContentLoaded', function () {
                     pedidosSection.classList.add('hidden');
                     break;
             }
+            document.querySelector("main").scrollTo(0, 0)
         })
     })
 });
