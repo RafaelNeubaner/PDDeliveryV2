@@ -2,6 +2,7 @@ p {
   padding: 0;
   margin: 0;
 }
+
 body {
   display: flex;
   flex-direction: column;
@@ -48,12 +49,14 @@ main {
 }
 
 .informacoesPedido h4 {
-  color: #606060;
+  color: var(--txt);
+  font-weight: 600;
   font-size: 20px;
 }
 
 .informacoesPedido span {
   color: #000;
+  font-weight: 400;
 }
 
 .horariosPedido {
@@ -79,11 +82,11 @@ main {
 }
 
 .avaliacao,
-.dadosDoPedido > div {
+.dadosDoPedido>div {
   display: flex;
   flex-direction: column;
   border-radius: 12px;
-  border: 1px solid black;
+  border: 1px solid var(--txtDark);
   padding: 20px;
   gap: 10px;
 }
@@ -104,6 +107,10 @@ main {
   cursor: pointer;
 }
 
+.avaliacao .bi-star-fill {
+  color: var(--secondary);
+}
+
 .dadosDoPedido {
   order: 6;
   display: flex;
@@ -111,7 +118,7 @@ main {
   gap: 20px;
 }
 
-.resumoContent > div {
+.resumoContent>div {
   display: flex;
   justify-content: space-between;
 }
@@ -152,7 +159,7 @@ main {
 }
 
 .totalCont p {
-    font-size: 24px;
+  font-size: 24px;
 }
 
 .acessoNegado {
@@ -194,6 +201,7 @@ main {
   .informacoesPedido {
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     order: 1;
   }
 
@@ -206,7 +214,7 @@ main {
     border: none;
   }
 
-  .dadosDoPedido > div {
+  .dadosDoPedido>div {
     flex: 1;
   }
 
