@@ -1,5 +1,3 @@
-
-
 /**
  * @typedef {Object} ResumoValores
  * @property {number} subtotal - Soma do valor dos produtos
@@ -33,42 +31,53 @@
  * @property {ItemPedido[]} listaItens - Array com os produtos do carrinho
  */
 
-const API_URL_PEDIDOS = "https://6a3149ec7bc5e1c612657d26.mockapi.io/api/pddeliveryv2/pedidos";
+const API_URL_PEDIDOS =
+  "https://6a3149ec7bc5e1c612657d26.mockapi.io/api/pddeliveryv2/pedidos";
 
 export const usePedidos = {
-  
   // FUNÇÕES CLIENTE
 
-    // Cria novo pedido feito pelo cliente
-    createPedido: async (pedido) => {
-      try {
-        const response = await fetch(API_URL_PEDIDOS, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(pedido),
-        });
-        if (!response.ok) throw new Error("Falha ao criar o pedido");
-        return await response.json();
-      } catch (error) {
-        console.error("Erro na API de Pedidos (POST):", error);
-        throw error;
-      }
-    },
+  // Cria novo pedido feito pelo cliente
+  createPedido: async (pedido) => {
+    try {
+      const response = await fetch(API_URL_PEDIDOS, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(pedido),
+      });
+      if (!response.ok) throw new Error("Falha ao criar o pedido");
+      return await response.json();
+    } catch (error) {
+      console.error("Erro na API de Pedidos (POST):", error);
+      throw error;
+    }
+  },
 
- 
-    // Busca a lista de pedidos do cliente
-    getPedidoByCliente: async (idCliente) => {
-      try {
-        const response = await fetch(`${API_URL_PEDIDOS}?idCliente=${idCliente}`, {
+  // Busca a lista de pedidos do cliente
+  getPedidoByCliente: async (idCliente) => {
+    try {
+      const response = await fetch(
+        `${API_URL_PEDIDOS}?idCliente=${idCliente}`,
+        {
           method: "GET",
-        });
-        if (!response.ok) throw new Error("Pedidos não encontrados para este cliente.");
-        return await response.json();
-      } catch (error) {
-        console.error("Erro ao buscar pedidos do cliente:", error);
-        throw error;
+        },
+      );
+
+      if (response.status === 404) {
+        return [];
       }
-    },
+
+      if (!response.ok)
+        throw new Error("Falha ao buscar os pedidos do cliente.");
+
+      
+      const data = await response.json();
+      return Array.isArray(data) ? data : [];
+    } catch (error) {
+      console.error("Erro ao buscar pedidos do cliente:", error);
+      throw error;
+    }
+  },
 
   // FUNÇÕES DO LOJISTA (E COMPARTILHADAS)
 
@@ -137,5 +146,36 @@ export const usePedidos = {
 
       await usePedidos.updatePedido(pedido.id, pedido)
     }
+  },
 
+  // Atualiza os dados/status do pedido
+  updatePedido: async (idPedido, dadosAtualizados) => {
+    try {
+      const response = await fetch(`${API_URL_PEDIDOS}/${idPedido}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dadosAtualizados),
+      });
+      if (!response.ok) throw new Error("Falha ao atualizar o pedido.");
+      return await response.json();
+    } catch (error) {
+      console.error("Erro ao atualizar status do pedido:", error);
+      throw error;
+    }
+  },
+
+  // Busca os dados de um pedido pelo seu id (Tela de Detalhes)
+
+  getPedidoById: async (idPedido) => {
+    try {
+      const response = await fetch(`${API_URL_PEDIDOS}/${idPedido}`, {
+        method: "GET",
+      });
+      if (!response.ok) throw new Error("Detalhes do pedido não encontrados.");
+      return await response.json();
+    } catch (error) {
+      console.error("Erro ao buscar detalhes do pedido:", error);
+      throw error;
+    }
+  },
 };
