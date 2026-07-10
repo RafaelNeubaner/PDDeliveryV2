@@ -148,34 +148,4 @@ export const usePedidos = {
     }
   },
 
-  // Atualiza os dados/status do pedido
-  updatePedido: async (idPedido, dadosAtualizados) => {
-    try {
-      const response = await fetch(`${API_URL_PEDIDOS}/${idPedido}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(dadosAtualizados),
-      });
-      if (!response.ok) throw new Error("Falha ao atualizar o pedido.");
-      return await response.json();
-    } catch (error) {
-      console.error("Erro ao atualizar status do pedido:", error);
-      throw error;
-    }
-  },
-
-  // Busca os dados de um pedido pelo seu id (Tela de Detalhes)
-
-  getPedidoById: async (idPedido) => {
-    try {
-      const response = await fetch(`${API_URL_PEDIDOS}/${idPedido}`, {
-        method: "GET",
-      });
-      if (!response.ok) throw new Error("Detalhes do pedido não encontrados.");
-      return await response.json();
-    } catch (error) {
-      console.error("Erro ao buscar detalhes do pedido:", error);
-      throw error;
-    }
-  },
 };
