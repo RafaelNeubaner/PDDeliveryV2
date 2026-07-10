@@ -1,11 +1,11 @@
-#gerenciarPedidos{
+#gerenciarPedidos {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
 }
 
-#gerenciarPedidos .title{
+#gerenciarPedidos .title {
     width: 100%;
     max-width: 1000px;
     display: flex;
@@ -14,11 +14,11 @@
     height: 10vh;
 }
 
-#gerenciarPedidos .title button{
+#gerenciarPedidos .title button {
     height: 50px;
 }
 
-.statusOptionsSec{
+.statusOptionsSec {
     display: flex;
     flex-direction: row;
     gap: 30px;
@@ -30,29 +30,31 @@
     justify-content: start;
 }
 
-.statusOptionsSec span{
+.statusOptionsSec span {
     font-size: 14px;
     cursor: pointer;
     white-space: nowrap;
     color: #606060;
 }
 
-.statusOptionsSec span div{
+.statusOptionsSec span div {
     width: 0%;
     height: 2px;
     background-color: var(--primary);
     transition: width 0.2s linear;
 }
 
-.statusOptionsSec span:hover, .statusOptionsSec span.active{
+.statusOptionsSec span:hover,
+.statusOptionsSec span.active {
     color: var(--primary)
 }
 
-.statusOptionsSec span:hover div, .statusOptionsSec span.active div{
+.statusOptionsSec span:hover div,
+.statusOptionsSec span.active div {
     width: 100%;
 }
 
-.pedidosSec{
+.pedidosSec {
     width: 100%;
     max-width: 1000px;
     display: flex;
@@ -60,11 +62,11 @@
     gap: 20px;
 }
 
-.pedidosSec h3{
+.pedidosSec h3 {
     text-align: center;
 }
 
-.cardPedido{
+.cardPedido {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -72,99 +74,111 @@
     cursor: pointer;
 }
 
-.cardPedido img{
+.cardPedido img {
     width: 100px;
     height: 100px;
     border-radius: 8px;
 }
 
-.cardPedido .dadosPedidos{
+.cardPedido .dadosPedidos {
     display: flex;
     gap: 15px;
 }
 
-.cardPedido .dadosPedidos h4{
+.cardPedido .dadosPedidos h4 {
     font-weight: 800;
 }
 
-.cardPedido .actions{
-  display: flex;
-  gap:20px;
-  align-items: center;
+.cardPedido .actions {
+    display: flex;
+    gap: 20px;
+    align-items: center;
 }
 
-.badgeStatusPedido{
-  display: block;
+.badgeStatusPedido {
+    display: block;
 }
 
 @media (max-width: 992px) {
-    .cardPedido{
+    .cardPedido {
         flex-direction: column;
         gap: 10px;
     }
-    .cardPedido .dadosPedidos{
+
+    .cardPedido .dadosPedidos {
         width: 100%;
     }
 
-    .cardPedido .actions{
+    .cardPedido .actions {
         width: 100%;
     }
 
-    .cardPedido .actions button{
+    .cardPedido .actions button {
         height: 45px;
         flex: 1;
     }
 }
 
-#modalPedido .modalContent{
+#modalPedido .modalContent {
     max-width: 800px;
 }
 
-#modalPedido h3{
+#modalPedido h3 {
     font-size: 20px;
 }
 
-#modalPedido h3 i{
+#modalPedido h3 i {
     color: var(--primary);
 }
 
-.itemPedido .imgItem{
+.itemPedido .imgItem {
     aspect-ratio: 1;
     width: 80px;
     border-radius: 12px;
     object-fit: cover;
 }
 
-#modalPedido .nomeItem, #modalPedido .valorUnit{
+#modalPedido .nomeItem,
+#modalPedido .valorUnit {
     font-size: 20px;
 }
 
-#modalPedido .itemPedido .opcionaisContent{
+#modalPedido .itemPedido .opcionaisContent {
     margin-left: 60px
 }
 
-#modalPedido .opcionalItem img{
+#modalPedido .opcionalItem img {
     aspect-ratio: 1;
     border-radius: 6px;
     width: 50px;
     object-fit: cover;
 }
 
-#modalPedido .itensContent{
+#modalPedido .itensContent {
     border-radius: 12px;
     border: 1px solid black;
     padding: 10px;
 }
 
-.opcionaisContent .qtdOp, .opcionaisContent .nomeOp, .opcionaisContent .precoOp{
+.opcionaisContent .qtdOp,
+.opcionaisContent .nomeOp,
+.opcionaisContent .precoOp {
     font-size: 16px;
 }
 
-.tipoPagamento, .precoTotal, .valorUnit{
+.tipoPagamento,
+.precoTotal,
+.valorUnit {
     color: var(--primary);
 }
 
-.btnFecharModalPedido{
+.btnFecharModalPedido {
     max-width: 100px;
     align-self: flex-end;
+}
+
+@media(max-width: 576px) {
+    #modalPedido .nomeItem, #modalPedido h3, #modalPedido .valorUnit, .precoTotal  {
+        font-size: 1.6rem;
+    }
 }
