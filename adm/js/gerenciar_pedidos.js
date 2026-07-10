@@ -21,7 +21,9 @@ const elements = {
     pedidosSec: document.querySelector(".pedidosSec"),
     btnAtualizar: document.querySelector(".btnAtualizarPagina"),
     //btnsSecondaryCardPedido: document.querySelectorAll(".secondaryBtnCardPedido"),
-    loadingSec: document.querySelector(".loading")
+    loadingSec: document.querySelector(".loading"),
+    modalPedido: document.querySelector("#modalPedido"),
+    itemModal: document.querySelector(".itemTemp")
 }
 
 var pedidos = []
@@ -86,12 +88,23 @@ function setActions(){
         })
     })
 
+    document.querySelectorAll(".cardPedido").forEach(card=>{
+        card.addEventListener("click", (ev)=>{
+            const pedidoIndex = ev.target.closest(".cardPedido").dataset.index
+            showModalPedido(pedidoIndex)
+        })
+    })
+
     elements.btnAtualizar.addEventListener('click', async ()=>{
         elements.loadingSec.classList.remove("hide")
         await getPedidos()
         renderOptions()
         renderPedidos()
         elements.loadingSec.classList.add("hide")
+    })
+
+    modalPedido.querySelector(".btnFecharModalPedido").addEventListener('click', ()=>{
+        modalPedido.classList.remove("active")
     })
 }
 
@@ -104,6 +117,31 @@ async function getPedidos(){
             pedidosCat[pedido.status] = []
         }
         pedidosCat[pedido.status].push(pedido)
+    })
+}
+
+function showModalPedido(pedidoIndex){
+    elements.modalPedido.classList.add("active")
+
+    const pedido = pedidosCat[state.menuSelected][pedidoIndex]
+
+    elements.modalPedido.querySelector(".enderecoPedido").textContent = pedido.endereco
+
+    const horarioRealizado = new Date(pedido.horarioRealizado)
+    elements.modalPedido.querySelector(".horarioPedido").textContent = horarioRealizado.toLocaleString("pt-BR")
+    elements.modalPedido.querySelector(".nomeCliente").textContent = pedido.nomeCliente
+    elements.modalPedido.querySelector(".tipoPagamento").textContent = pedido.formaPagamento
+
+     elements.modalPedido.querySelector(".itensContent").innerHTML=""
+    pedido.listaItens.forEach(item=>{        
+        const itemElem = elements.itemModal.content.cloneNode(true).firstElementChild
+        itemElem.querySelector(".imgItem").src = item.imagem
+        itemElem.querySelector(".nomeItem").textContent = item.nome
+        itemElem.querySelector(".valorUnit").textContent = item.precoTotalItem.toLocaleString('pt-BR', {style: 'currency', currency: "BRL" })
+        itemElem.querySelector(".precoTotal").textContent = item.precoTotalItem.toLocaleString('pt-BR', {style: 'currency', currency: "BRL" })
+        itemElem.querySelector(".opcionaisText").textContent = item.adicionais
+
+        elements.modalPedido.querySelector(".itensContent").appendChild(itemElem)
     })
 }
 
@@ -213,3 +251,4 @@ function renderPedidos(){
 
     setActions()
 }
+

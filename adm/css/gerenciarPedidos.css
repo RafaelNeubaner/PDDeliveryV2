@@ -1,6 +1,3 @@
-
-
-
 #gerenciarPedidos{
     display: flex;
     flex-direction: column;
@@ -72,6 +69,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
 }
 
 .cardPedido img{
@@ -116,4 +114,57 @@
         height: 45px;
         flex: 1;
     }
+}
+
+#modalPedido .modalContent{
+    max-width: 800px;
+}
+
+#modalPedido h3{
+    font-size: 20px;
+}
+
+#modalPedido h3 i{
+    color: var(--primary);
+}
+
+.itemPedido .imgItem{
+    aspect-ratio: 1;
+    width: 80px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+#modalPedido .nomeItem, #modalPedido .valorUnit{
+    font-size: 20px;
+}
+
+#modalPedido .itemPedido .opcionaisContent{
+    margin-left: 60px
+}
+
+#modalPedido .opcionalItem img{
+    aspect-ratio: 1;
+    border-radius: 6px;
+    width: 50px;
+    object-fit: cover;
+}
+
+#modalPedido .itensContent{
+    border-radius: 12px;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.opcionaisContent .qtdOp, .opcionaisContent .nomeOp, .opcionaisContent .precoOp{
+    font-size: 16px;
+}
+
+.tipoPagamento, .precoTotal, .valorUnit{
+    color: var(--primary);
+}
+
+.btnFecharModalPedido{
+    max-width: 100px;
+    align-self: flex-end;
 }
