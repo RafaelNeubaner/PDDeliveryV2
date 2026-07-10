@@ -69,14 +69,16 @@
       <section id="gerenciarPedidos" class="visible">
         <div class="title">
           <h2 class="title">Gerenciar Pedidos</h2>
-          <button class="btnPrimary">Atualizar</button>
+          <button class="btnPrimary btnAtualizarPagina">Atualizar</button>
         </div>
         <section class="statusOptionsSec"></section>
         <section class="pedidosSec">
-          <article class="cardPedido">
-            <div  class="dadosPedidos">
+          <template class="cardPedidoTemp">
 
-              <img src="https://s2-receitas.glbimg.com/X4ml6XBTOVnqH8KW57eBfGBs-Oc=/0x0:984x648/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_1f540e0b94d8437dbbc39d567a1dee68/internal_photos/bs/2022/Q/B/BHy7kUR0CN7EiUaccsZQ/picanha-no-espeto.jpg">
+            <article class="cardPedido">
+              <div  class="dadosPedidos">
+                
+                <img src="https://s2-receitas.glbimg.com/X4ml6XBTOVnqH8KW57eBfGBs-Oc=/0x0:984x648/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_1f540e0b94d8437dbbc39d567a1dee68/internal_photos/bs/2022/Q/B/BHy7kUR0CN7EiUaccsZQ/picanha-no-espeto.jpg">
               <div>
                 <h4>Pedido: #<span class="idPedido">321</span></h4>
                 <h4 class="tempoPedido"></h4>
@@ -84,11 +86,13 @@
                 <h4>Nome: <span class="nomeCliente"></span></h4>
               </div>
             </div>
-            <div>
-              <button class="btnSecondaryOutline">Recusar</button>
-              <button class="btnPrimary">Aceitar</button>
+            <div class="actions">
+              <span class="badgeStatusPedido"></span>
+              <button class="btnSecondaryOutline hide secondaryBtnCardPedido">Recusar</button>
+              <button class="btnPrimary primaryBtnCardPedido">Aceitar</button>
             </div>
           </article>
+        </template>
         </section>
       </section>
       <section id="gerenciarProdutos" class="hidden">
@@ -263,5 +267,12 @@
       </div>
     </div>
     
+    <div class="loading hide">
+      <div class="spinner-content">
+        <div class="spinner-border text-light" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    </div>
 </body>
 </html>
